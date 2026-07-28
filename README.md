@@ -67,8 +67,10 @@ depois de fechar.
 - GPU ativa → acende tudo em branco estático. Continua reaplicando a cada
   ciclo enquanto ativa (não só na 1ª vez — ver "Bugs corrigidos" abaixo).
 - GPU ociosa por 60s (`DEBOUNCE_SECONDS`) → apaga tudo.
-- Enquanto ocioso, re-afirma o "apagado" a cada 5 min (`DEFAULT_REASSERT_SECONDS`)
+- Enquanto ocioso, re-afirma o "apagado" a cada 2 min (`DEFAULT_REASSERT_SECONDS`)
   pra corrigir qualquer drift (ex: alguém mexeu no software da Aura por fora).
+  Só reenvia o mesmo estado (sem transição), então não tem risco de flicker —
+  só custa uns writes a mais de SMBus/HID por hora, irrisório.
 - No arranque do serviço, força o estado padrão (apagado) antes de qualquer
   outra coisa — cobre reboot, logout/login, crash do serviço.
 

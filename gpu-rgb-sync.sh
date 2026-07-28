@@ -87,11 +87,13 @@ POWER_THRESHOLD_W=25
 #  DEBOUNCE_SECONDS         : quanto os LEDs ficam acesos apos a ultima atividade
 #                            (evita strobar entre consultas curtas ao Ollama).
 #  DEFAULT_REASSERT_SECONDS : de quanto em quanto re-afirmar o "off" enquanto
-#                            ocioso. 300s = suave no SMBus e corrige drift em <=5min.
+#                            ocioso. So reenvia o MESMO estado (sem transicao,
+#                            sem risco de flicker) -- 120s corrige drift em ate
+#                            2min, com trafego SMBus/HID irrisorio (30 writes/h).
 #  SLEEP_SECONDS            : intervalo do laco de verificacao (tambem controla
 #                            a velocidade do auto-retry do "ligar" no boot).
 DEBOUNCE_SECONDS="${DEBOUNCE_SECONDS:-60}"
-DEFAULT_REASSERT_SECONDS="${DEFAULT_REASSERT_SECONDS:-300}"
+DEFAULT_REASSERT_SECONDS="${DEFAULT_REASSERT_SECONDS:-120}"
 SLEEP_SECONDS="${SLEEP_SECONDS:-10}"
 
 # --- Deteccao do backend de GPU (uma vez, no arranque) -----------------------
