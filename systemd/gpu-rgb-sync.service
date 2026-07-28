@@ -1,0 +1,12 @@
+[Unit]
+Description=GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa)
+After=graphical-session.target openrgb.service
+
+[Service]
+Type=simple
+ExecStart=/bin/bash {{SCRIPT_PATH}}
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target
