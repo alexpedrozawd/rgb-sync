@@ -69,13 +69,38 @@ Testando uma cor diferente por zona com o hardware à vista (2026-07-28):
   ligado.
 - **Zonas 1 e 2** → nada conectado.
 
-### O que é ASSUMIDO, não medido (importante)
+### Medido em 2026-07-29 (corrige o que estava escrito acima)
 
-1. **Os 40 LEDs da zona 3 são um chute que "pareceu certo"**, não uma
-   contagem real. Foi definido mandando `-sz 40` e observando que tudo
-   acendeu uniforme, sem ponta apagada. Nunca se determinou o número
-   verdadeiro de LEDs da cadeia. Fabricante não publica a contagem por fan
-   (busca feita; Rise Mode e Pichau não divulgam).
+O que responde na zona 3 e obedece são as **2 fans do radiador** do Pichau Aqua
+240X — não "o water cooler" genericamente. Confirmado com o hardware à vista,
+com o hub fora de sync (o que isola o cooler: só ele responde).
+
+**O número 40 não tem base, e o método original não podia medir nada.** Com cor
+única, "acendeu tudo uniforme sem ponta apagada" dá falso positivo em qualquer
+tamanho — o teste não pode falhar. Medindo de verdade (zerar a zona toda em
+`static 000000` com `-sz 40`, e depois mandar branco com a zona encolhida):
+
+| Comando | Resultado observado |
+|---|---|
+| `-sz 10 -m static -c FFFFFF` | as 2 fans do cooler acenderam **inteiras** |
+| `-sz 1 -m static -c FFFFFF` | as 2 fans do cooler acenderam **inteiras** |
+
+Acender inteiras com **1** LED endereçado é impossível numa cadeia simples de 40
+LEDs. Duas explicações cabem e o CLI do OpenRGB **não as separa**:
+
+- **(a)** o controlador Aura replica a cor única em todo o quadro quando a zona
+  é menor que a cadeia física; ou
+- **(b)** o que está na zona 3 não é cadeia crua — há elemento ativo que consome
+  o quadro e replica a cor nos LEDs dele.
+
+Em qualquer das duas, `FAN_ZONE_SIZE=40` **não corresponde a contagem física**.
+Funciona na prática; não é medição. Para separar (a) de (b) seria preciso um
+padrão com fronteira visível, e o CLI não entrega: `-c` com lista de cores só
+vale sem efeito, e `-m direct` **apaga o header** neste hardware.
+
+**Ainda em aberto e necessário para a decisão de hardware:** a contagem de LEDs
+por fan do gabinete. É contagem visual dos pontos no anel de **uma** fan × 8.
+Decide o orçamento de corrente do header (ver seção 7).
 2. **A forma da ligação não foi confirmada visualmente.** O comportamento
    observado (o water cooler continua obedecendo a placa-mãe mesmo com o hub
    em Rainbow autônomo) é mais compatível com **hub e water cooler em
@@ -176,6 +201,28 @@ acesso ao firmware, que é caixa-preta de terceiro. **Não foi tentada
 reprodução deliberada** — o custo de errar (fans paradas sob carga) não
 compensa.
 
+**⚠️ Hipótese concorrente, com correlação EXATAMENTE IGUAL (2026-07-29):** essa
+mesma janela de 19 minutos foi, simultaneamente, o maior período contínuo de
+**`FFFFFF` — branco pleno, o estado de corrente máxima possível** de todo o
+array. Os dois candidatos são indistinguíveis pela correlação:
+
+| Candidato | O que a janela 09:46→10:05 era |
+|---|---|
+| Firmware afogado em comando | a maior sequência de comandos repetidos do dia |
+| Regulador do hub em estresse térmico | o maior período contínuo de corrente máxima |
+
+Com ~60 mA por LED em branco pleno, o hub estava sustentando alguns ampères pelo
+regulador dele por 19 minutos seguidos. Regulador em estresse prolongado é causa
+tão plausível quanto comando em excesso — e o diagnóstico original só considerava
+a segunda.
+
+**Mitigação aplicada em 2026-07-29:** `LED_COLOR` passou de `FFFFFF` para
+`A0A0A0` (A0 = 160/255 ≈ 63% de duty), o que corta ~37% da corrente do array com
+diferença visual mínima. Ataca a metade do problema que o `ON_REASSERT_SECONDS`
+não toca. **Como as duas mitigações agora estão ativas ao mesmo tempo, um novo
+travamento não distinguiria qual hipótese estava certa** — mas o objetivo aqui é
+não travar, não ganhar o debate.
+
 **Mitigação aplicada:** o "ligar" passou a ser reafirmado a cada
 `ON_REASSERT_SECONDS` = **5 min** (em vez de 10s), separado do
 `DEFAULT_REASSERT_SECONDS` = 2 min usado no lado "apagado". Redução de ~30x no
@@ -230,13 +277,35 @@ Ver [`logs/incidente-2026-07-29-perda-sync-pos-reboot.log`](logs/incidente-2026-
 
 ## 6. Hipóteses em aberto, ranqueadas
 
-### H1 — `-m off` mata o stream ARGB e o hub cai para o modo autônomo ⭐ testar primeiro
+### H1 — `-m off` mata o stream ARGB e o hub cai para o modo autônomo ❌ REFUTADA (2026-07-29)
 
-O script usa `openrgb -d "$MB_DEVICE" -m off` para apagar. Se o modo `Off` do
-Aura **para de clockar dados** no header (em vez de enviar pixels pretos), o
-hub passa a ver uma linha de dados morta. Muitos hubs com "M/B sync" caem para
-o efeito interno após N segundos sem dados — e o design atual deixa o header
-mudo na maior parte do tempo (ocioso = apagado), além da janela de POST/boot.
+> **Não perca tempo aqui.** A hipótese era: se o modo `Off` do Aura para de
+> clockar dados, o hub vê uma linha morta e cai para o efeito interno após N
+> segundos sem dados.
+>
+> **A evidência nos logs deste repositório refuta isso.** Na manhã de
+> 2026-07-29 o header ficou em `Off` por **54min58s** seguidos:
+>
+> ```
+> jul 29 07:37:06  GPU ociosa ha 60s - LEDs apagados.     <- header em Off
+> jul 29 08:32:04  GPU ativa - LEDs ligados (branco...)   <- 54min58s depois
+> ```
+>
+> E o hub **continuou obedecendo** depois disso: às 09:46:07 acendeu **branco**,
+> que é a cor que só o script manda — um hub em Rainbow autônomo não pode
+> mostrar branco. (O travamento das 09:46–10:05 aconteceu justamente com os LEDs
+> em branco, o que só é possível se ele estava obedecendo o header.)
+>
+> A janela de silêncio de dados **do reboot que derrubou o sync** foi 16:47:57 →
+> 16:49:07 = **70 segundos**. Mesmo contando que o reassert de `off` a cada 120s
+> produza quadro, o silêncio máximo em idle (120s) ainda é maior que 70s.
+>
+> **O hub tolerou 55 minutos sem dado e voltou a obedecer; caiu numa janela de
+> 70 segundos, num reboot.** Ausência de sinal não é o gatilho — em nenhuma
+> variante da hipótese. Isso elimina toda a família "o hub caiu por falta de
+> dado", não só a formulação com `-m off`.
+
+Registro do que era a hipótese e do que se aprendeu testando:
 
 **Verificado:** `Off` e `Static preto` são estados distintos no controlador —
 o OpenRGB reporta `[Off]` num caso e `[Static]` no outro. O comando alternativo
@@ -247,18 +316,40 @@ openrgb -d "ASUS" -z 3 -sz 40 -c 000000 -m static   # aceito, fica em [Static]
 openrgb -d "ASUS" -m off                            # fica em [Off]
 ```
 
-**Teste proposto:** trocar `leds_apagar()` para usar `static` com `000000` (ou
-o modo `Direct`, que é streaming contínuo do host) em vez de `off`.
-Visualmente idêntico (LEDs apagados), mas mantém a linha de dados viva.
-Depois: reboot algumas vezes e ver se o sync sobrevive.
+**Aplicado mesmo assim, por outro motivo:** `leds_apagar()` passou a usar
+`static 000000` no dispositivo Aura em vez de `off`. **Não é a correção do
+sync** — é trava de segurança do botão: com o header nunca em `Off`, apertar
+`ON M/B` nunca cai no cenário que travou o PC inteiro em 2026-07-27. O
+`RAM_DEVICE` continua em `off` de propósito (as RAMs sempre funcionaram).
 
-**Atenção ao interpretar:** o fato de o hub ter ignorado 2h de branco **não
-refuta H1**. H1 explica *quando* ele sai do sync (janelas sem dado), não se
-ele volta sozinho — provavelmente a volta só acontece pelo botão.
+**⚠️ O modo `Direct` NÃO serve — medido em 2026-07-29.** Um único
+`openrgb -d "ASUS" -z 3 -m direct -c <lista>` deixou as fans do water cooler
+**apagadas**. Um frame em modo Direct não fica retido neste hardware; ele
+precisaria de streaming contínuo do host, que é exatamente o padrão de tráfego
+sob suspeita de ter travado o firmware do hub. Descartado nas duas pontas.
 
-**Risco:** manter stream contínuo aumenta o tráfego ao hub — exatamente o que
-se suspeita ter travado o firmware em 07-29. Se for testar o modo `Direct`,
-tomar cuidado com a frequência de atualização.
+**O que sobra de pé depois de refutar H1:** só duas causas, ambas do lado do
+hardware e ambas fora do alcance de qualquer código do SO, porque acontecem
+antes de o SO rodar:
+
+- **(A)** o hub perdeu alimentação nesse reboot → o modo mora em RAM (é a H2);
+- **(B)** o hub viu a linha em estado inválido enquanto o MCU Aura era resetado
+  no POST e desistiu sozinho.
+
+Um dado fraco contra (A): o intervalo entre última e primeira entrada do journal
+foi **idêntico** nos três reboots (15s, 16s, 16s) — nenhum sinal de ciclo
+completo de rails no que falhou.
+
+**Teste que separa (A) de (B), custo zero:** rebootar olhando as fans do
+gabinete. Se elas **param e voltam a girar**, o hub perdeu alimentação → (A). Se
+continuam girando, → (B).
+
+**Hipótese mais simples que esta seção não considerava:** talvez a
+não-determinismo de H4 **não exista**. As duas evidências de "reboot preservou o
+sync" são de 2026-07-28 12:50 e 12:59, mas o commit que introduziu `-z 3 -sz 40`
+é de 13:13:24 — não se sabe qual era o estado da zona 3 naqueles dois reboots.
+Se eles nunca preservaram sync de verdade, a história fica trivial: **todo
+reboot quebra o sync, sempre**, e é 100% hardware. Um reboot observado resolve.
 
 ### H2 — O estado "M/B Sync" é volátil no hub (RAM, não EEPROM)
 
@@ -303,28 +394,87 @@ O hub Rise Mode é um hub **ativo**: tem microcontrolador próprio, efeitos
 autônomos e receptor infravermelho. Toda a dor deste projeto vem daí — modo
 que se perde, botão físico obrigatório, firmware que trava e para as fans.
 
-Se H1 e H3 não resolverem, a solução real provavelmente é de hardware:
+**H1 está refutada** (seção 6) e o veredito de software é: nenhuma mudança no
+que o host escreve no header preserva ou restaura o modo M/B Sync. A solução é
+de hardware. O erro de arquitetura é o hub fazer **dois trabalhos** num único
+microcontrolador de terceiro sem telemetria: distribuir energia/PWM dos motores
+**e** decidir o modo ARGB. Separar os dois resolve as duas dores.
 
-**Trocar o hub ARGB ativo por um splitter ARGB passivo.** Um splitter passivo
-não tem microcontrolador, não tem modo autônomo, não tem controle remoto e não
-tem firmware para travar — ele só replica eletricamente o sinal do header da
-placa-mãe. Consequências:
+### Orçamento de corrente do header — fecha a questão do splitter passivo
 
-- Fim da classe inteira de problemas: nunca sai de sync, nunca precisa de
-  botão, não pode travar e parar as fans.
-- Perde-se o controle remoto IR (que já é irrelevante aqui, já que o objetivo
-  é controle por software).
-- **Atenção à alimentação das fans:** o hub atual também distribui energia/PWM
-  para os motores. Um splitter ARGB passivo cobre **só o ARGB** — seria
-  preciso manter um hub de energia/PWM separado (ou um hub que seja passivo no
-  lado ARGB).
-- **Atenção ao limite de corrente do header** da placa-mãe (headers ARGB Gen2
-  da ASUS costumam ser 5V / 3A). 8 fans + water cooler podem passar disso; um
-  splitter passivo não amplifica corrente. Calcular antes de comprar.
+Confirmado no manual da ASUS: o header **Addressable Gen 2** é **5V / máx 3A**,
+e os headers endereçáveis da placa somam no máximo 500 LEDs. Um WS2812B puxa
+~60 mA em branco pleno, então:
 
-Alternativa: um hub cujo controlador seja **diretamente endereçável** por
-USB/SMBus e suportado pelo OpenRGB (aí o software fala com o hub, não com o
-header da placa-mãe, e o problema de "modo sync" deixa de existir).
+```
+3000 mA / 60 mA por LED = ~50 LEDs no teto do header, em FFFFFF
+```
+
+Hoje isso não é problema porque a alimentação dos LEDs vem do **Molex do hub**,
+não do header — o header só entrega dado. **Um splitter ARGB passivo joga toda
+essa corrente no header**, porque não tem alimentação própria: é só cobre.
+
+Com 8 fans, dependendo da contagem por fan (ainda não medida, ver seção 3),
+o total fica plausivelmente **acima** dos 50 LEDs. Conclusão:
+
+> **Splitter passivo: provavelmente inviável em branco pleno.** Não é
+> alternativa a considerar antes de contar os LEDs. Com cor mais fraca poderia
+> entrar no orçamento, mas fica uma solução que depende de nunca subir o brilho.
+> **O caminho correto é um controlador com alimentação própria, não um divisor
+> passivo.**
+
+Nota relacionada: `LED_COLOR` era `FFFFFF`, o **estado de corrente máxima
+possível** de todo o array; passou para `A0A0A0` em 2026-07-29 (~37% menos
+corrente). O teto de ~50 LEDs acima é para branco pleno — em `A0A0A0` sobe para
+~80 LEDs, o que pode tornar o splitter passivo viável **se** a contagem real
+couber. Depende da medição que falta (seção 3).
+
+### Nível 1 — resolve a classe inteira e fecha o buraco de segurança
+
+**Iluminação:** controlador ARGB com saídas padrão 3 pinos 5V que o OpenRGB
+dirija direto, sem passar pelo header da placa. **Cuidado:** Corsair, NZXT e
+Lian Li usam conector RGB **proprietário** nos fans — nenhum deles acende fans
+Rise Mode genéricas. As opções reais são um controlador genérico de 8 portas
+ARGB com USB interno (tipo "OpenRGB/SignalRGB certified"), ou **ESP32 com
+firmware WS2812 falando E1.31**, que o OpenRGB suporta via config manual no
+`OpenRGB.json`. Antes de comprar, conferir o modelo exato na lista de
+dispositivos suportados do OpenRGB.
+
+**Motores + RPM:** **Corsair Commander Pro** ou **Commander Core XT**. O que
+importa: as portas de **fan** são 4 pinos PWM padrão, funcionam com qualquer
+ventoinha. São 6 portas, e o `liquidctl` lê **RPM por porta** no Linux (Core XT
+suportado desde a 1.11.0). Com 8 fans, dois pares vão em Y: perde-se RPM
+individual nesses, mantém-se a detecção de "está girando".
+
+Isso é o único caminho que fecha o buraco que **nenhum software fecha hoje** —
+uma fan parada é invisível ao sistema (seção 8), e foi exatamente esse o modo de
+falha perigoso de 2026-07-29.
+
+### Nível 2 — mais barato, mata a chatice do botão, não o risco térmico
+
+**Blaster IR automático.** O hub tem receptor infravermelho. Um ESP32 com LED IR
+disparando o código do `ON M/B` a cada boot — **só depois** do header ter branco
+válido confirmado, o que elimina o cenário de 2026-07-27 por construção. Mantém
+todo o hardware atual.
+
+Dois pré-requisitos: capturar o código IR do controle (exige um receptor para
+aprender), e descobrir se o `ON M/B` é **toggle** — se for, disparar com o hub já
+em sync o tiraria do sync.
+
+**Não resolve o travamento do firmware nem as fans paradas.** É conveniência,
+não segurança.
+
+### Ganho barato, independente de tudo
+
+A placa tem **3 headers ADD_GEN2 e dois estão livres.** Mover o water cooler para
+um header próprio dá controle independente dele no OpenRGB, tira o cooler do
+destino do hub e divide a carga. Vale em qualquer cenário.
+
+### O que NÃO fazer sem análise de impacto
+
+Habilitar `nct6775` para tentar expor os fan headers da placa exige parâmetro de
+kernel (`acpi_enforce_resources=lax`). É mudança global num sistema ostree —
+exige análise de impacto antes de qualquer comando.
 
 ---
 
@@ -359,8 +509,13 @@ openrgb --list-devices
 openrgb --list-devices | grep -o "'Aura Addressable 3, LED [0-9]*'" | wc -l
 
 # Forçar branco / apagar (zona 3 = hub + water cooler)
+openrgb -d "ASUS" -z 3 -sz 40 -c A0A0A0 -m static   # cor atual do estado "ligado"
+openrgb -d "ASUS" -m static -c 000000               # "apagado" atual (NAO usar -m off)
+
+# Antes de apertar o botao ON M/B, force branco PLENO e confirme visualmente --
+# e a condicao comprovada segura (2026-07-28). Com a zona sem sinal o botao
+# travou o PC inteiro em 2026-07-27.
 openrgb -d "ASUS" -z 3 -sz 40 -c FFFFFF -m static
-openrgb -d "ASUS" -m off
 
 # Carga atual da GPU
 cat /sys/class/drm/card1/device/gpu_busy_percent
@@ -392,6 +547,10 @@ sensors
 | 2026-07-28 | "Ligar" reaplicado a cada ciclo (10s) | Corrigir corrida de boot (RAMs ligavam, fans não) |
 | 2026-07-29 | Reduzido `DEFAULT_REASSERT_SECONDS` 300s → 120s | Pedido do dono; sem risco (só reenvia o mesmo estado, não é transição) |
 | 2026-07-29 | "Ligar" voltou a ser periódico, não a cada ciclo | **Suspeita de ter travado o hub.** Introduzido `ON_REASSERT_SECONDS` = 300s, separado do lado "apagado" (120s) |
+| 2026-07-29 | `leds_apagar` usa `static 000000` no Aura em vez de `-m off` | H1 (refutada como correção do sync); mantido como trava de segurança do botão `ON M/B` |
+| 2026-07-29 | `leds_ligar` manda **1** comando ao Aura em vez de 2 | O comando no dispositivo inteiro já cobre a zona 3; o da zona era redundante para cor e só existia pelo `-sz`. Metade das escritas no header |
+| 2026-07-29 | Tamanho da zona só é reescrito se uma **leitura** mostrar que está errado | Antes redimensionava a zona a cada reafirmação (12x/hora em jogo). Resize reconfigura o canal do header, é mais invasivo que trocar cor. Leitura como cliente custa 0,04s |
+| 2026-07-29 | `LED_COLOR` de `FFFFFF` para `A0A0A0` | ~37% menos corrente no array. Mitiga a hipótese de estresse do regulador do hub, que tem a mesma correlação que a de excesso de comando (seção 5) |
 
 Parâmetros atuais (sobrescrevíveis por variável de ambiente no `ExecStart`):
 
@@ -419,6 +578,36 @@ logs. O componente que falha é o hub ARGB ativo do gabinete, cujo firmware:
 4. e pelo menos uma vez travou por completo, **parando as fans** — que é um
    risco térmico real, não cosmético.
 
-**Ordem sugerida de ataque:** H1 (trocar `off` por `static 000000` — barato,
-rápido, plausível) → H3 (BIOS) → confirmar fisicamente a topologia real da
-fiação (seção 3) → se nada resolver, decisão de hardware (seção 7).
+**Atualização 2026-07-29 (segunda sessão) — o que mudou neste documento:**
+
+- **H1 está REFUTADA** pelos próprios logos daqui: o header ficou em `Off` por
+  54min58s e o hub continuou obedecendo. Ausência de sinal não é o gatilho.
+  Aplicada de todo modo, mas como trava de segurança do botão, não como
+  correção do sync.
+- **Modo `Direct` descartado:** medido, apaga o header neste hardware.
+- **Topologia corrigida:** o que obedece na zona 3 são as 2 fans do radiador do
+  cooler; o cooler não está a jusante do hub. E **`40 LEDs` não tem base** — o
+  método original não podia medir nada (seção 3).
+- **Splitter passivo provavelmente inviável** pelo orçamento de 3A do header
+  (seção 7). A solução precisa de alimentação própria.
+- **Hipótese nova para o travamento:** corrente sustentada em branco pleno, com
+  correlação idêntica à do excesso de comando (seção 5).
+- **Redução de tráfego aplicada no script:** uma escrita por dispositivo por
+  reafirmação em vez de duas, e o tamanho da zona só é reescrito se uma leitura
+  mostrar que está errado — antes redimensionava a zona em toda reafirmação.
+
+**Ordem sugerida de ataque, revisada:**
+
+1. **Reboot observado** — as fans do gabinete param e voltam a girar durante o
+   reboot? Separa (A) perda de alimentação de (B) linha inválida no POST, e
+   resolve de uma vez se a não-determinismo de H4 sequer existe. Custo zero.
+2. **Contar os LEDs de uma fan** (visual, gabinete aberto) — fecha o orçamento
+   de corrente e decide se splitter passivo é opção.
+3. **Traçar o cabo** do header (splitter em paralelo vs. cooler em série).
+4. **H3 (BIOS)** — barato, mas o manual desta placa não enumera opções de BIOS,
+   então não se sabe se a opção existe. E o manual diz que o header endereçável
+   *"will only light up when the system is powered on"* — não há iluminação em
+   S5 nesta placa.
+5. **Decisão de hardware** (seção 7).
+
+`A0A0A0` em vez de `FFFFFF`: **aplicado** em 2026-07-29.

@@ -32,14 +32,26 @@ Ver também: [`pichau-aqua-240x-linux-driver`](../pichau-aqua-240x-linux-driver)
 | Water cooler | Pichau Aqua 240X |
 | RAM | 2 pentes com controlador "ENE DRAM" |
 
-**Topologia real da fiação ARGB** (mapeada testando cor por zona com o
-hardware na frente, 2026-07-28): a placa-mãe expõe 4 zonas Aura ("Aura
-Mainboard" + "Aura Addressable 1/2/3"), mas só a zona 3 tem algo conectado — o
-hub de fans e o water cooler estão **encadeados em série no mesmo header**
-("Aura Addressable 3"), totalizando 40 LEDs endereçáveis. As zonas 1 e 2 não
-têm nada plugado. Isso é o oposto do que normalmente se assume (cada
-componente no seu próprio header) — se um dia trocar o hub ou o water cooler,
-vale re-mapear (ver "Como remapear zonas" abaixo).
+**Topologia ARGB — o que está medido** (2026-07-28 e 2026-07-29): a placa-mãe
+expõe 4 zonas Aura ("Aura Mainboard" + "Aura Addressable 1/2/3") e só a zona 3
+tem algo conectado; as zonas 1 e 2 estão vazias. Na zona 3 respondem as **2
+fans do radiador** do water cooler (sempre obedecem) e o **hub de fans**, que
+obedece só enquanto estiver no modo "M/B Sync".
+
+O water cooler **não está a jusante do hub**: continua obedecendo o header
+enquanto o hub roda o Rainbow autônomo dele. Se o sinal passasse *através* do
+hub, o cooler herdaria o Rainbow. A forma exata da fiação (splitter em paralelo
+vs. cooler primeiro em série) ainda **não foi confirmada visualmente**.
+
+> ⚠️ **Versões anteriores deste README diziam "encadeados em série, 40 LEDs
+> endereçáveis". Isso não tinha base.** O número 40 veio de subir `-sz` até
+> "acender tudo uniforme, sem ponta apagada" — mas com **cor única esse teste
+> não pode falhar**, qualquer tamanho parece certo. Medindo em 2026-07-29
+> (zerar a zona e depois mandar branco com a zona em tamanho 10, e em tamanho
+> 1), as fans do cooler acenderam **inteiras nos dois casos** — impossível numa
+> cadeia simples de 40 LEDs. `FAN_ZONE_SIZE=40` funciona na prática, mas não
+> corresponde a nenhuma contagem física. Detalhes e as duas explicações
+> possíveis: [`docs/DIAGNOSTICO-HUB.md`](docs/DIAGNOSTICO-HUB.md).
 
 ## Instalação
 
@@ -76,10 +88,12 @@ depois de fechar.
   - **NVIDIA** (RTX 5060 Ti anterior): lê utilização + potência via `nvidia-smi`.
   - Detecção de qual backend usar é automática, uma vez, no arranque — trocar
     de GPU não exige editar nada.
-- GPU ativa → acende tudo em branco estático. Reafirma a cada 5 min
-  (`ON_REASSERT_SECONDS`) enquanto continuar ativa, não a cada ciclo/10s — ver
-  "⚠️ Risco conhecido" e "Bugs corrigidos" abaixo pro motivo (intervalo mais
-  conservador que o do "off" de propósito, por segurança extra).
+- GPU ativa → acende tudo em branco estático, em `A0A0A0` (~63% de duty) e não
+  em `FFFFFF`. Branco pleno é o estado de **corrente máxima** de todo o array;
+  `A0A0A0` corta ~37% dessa corrente com diferença visual mínima — ver
+  "⚠️ Risco conhecido" abaixo. Reafirma a cada 5 min (`ON_REASSERT_SECONDS`)
+  enquanto continuar ativa, não a cada ciclo/10s (intervalo mais conservador que
+  o do "apagado" de propósito, por segurança extra).
 - GPU ociosa por 60s (`DEBOUNCE_SECONDS`) → apaga tudo.
 - Enquanto ocioso, re-afirma o "apagado" a cada 2 min (`DEFAULT_REASSERT_SECONDS`)
   pra corrigir qualquer drift (ex: alguém mexeu no software da Aura por fora).
@@ -93,13 +107,22 @@ Variáveis de ambiente pra afinar sem editar o script (`DEBOUNCE_SECONDS`,
 `UTIL_THRESHOLD_PCT`, `POWER_THRESHOLD_W`) — dá pra sobrescrever no
 `ExecStart` do `systemd/gpu-rgb-sync.service` se precisar.
 
-## Depois de uma queda de energia total
+## Quando o hub sai do modo "M/B Sync"
 
-**Isso nenhum software resolve.** Se a fonte for cortada de vez (não um
-desligamento normal), o hub Rise Mode pode sair do modo "M/B Sync" e passar a
-rodar o Rainbow autônomo dele, ignorando o header ARGB da placa-mãe. Placa-mãe
-(Aura) e RAMs voltam ao normal sozinhas; só o hub de fans + water cooler
-(zona 3) ficam presos nesse estado.
+**Isso nenhum software resolve.** O hub Rise Mode sai do modo "M/B Sync" em
+eventos de reboot/energia e passa a rodar o Rainbow autônomo dele, ignorando o
+header ARGB da placa-mãe. Placa-mãe (Aura), RAMs e as fans do water cooler
+continuam obedecendo normalmente; só o hub fica preso nesse estado.
+
+**Não é exclusivo de queda de energia total** — como este README dizia antes.
+Um `systemctl reboot` limpo bastou (2026-07-29 16:48).
+
+**E não é por falta de sinal no header.** Isso foi testado contra os logs e
+refutado: o header ficou em `Off` por **54min58s** na manhã de 2026-07-29 e o
+hub continuou obedecendo depois (acendeu branco às 09:46:07 — cor que só o
+script manda). Ele caiu depois, numa janela de silêncio de **70 segundos**, num
+reboot. Ausência de dado não é o gatilho; o evento de reboot é. Ver
+[`docs/DIAGNOSTICO-HUB.md`](docs/DIAGNOSTICO-HUB.md).
 
 Pra corrigir, é preciso apertar o botão **"ON M/B"** no controle remoto do hub.
 **Antes de apertar**, garanta que já existe sinal ARGB válido no header nesse
@@ -134,6 +157,16 @@ hub. Corrigido voltando a reafirmar o "ligado" a cada `ON_REASSERT_SECONDS`
 (5 min, mais conservador de propósito que o `DEFAULT_REASSERT_SECONDS` do
 lado "apagado", que ficou em 2 min).
 
+**⚠️ Existe uma segunda causa possível, com correlação exatamente igual, que a
+análise original não considerou:** aquela mesma janela de 19 min foi também o
+**maior período contínuo de `FFFFFF` — corrente máxima de todo o array** (~60 mA
+por LED em branco pleno). Estresse prolongado do regulador do hub é candidato
+tão plausível quanto firmware afogado em comando, e as duas explicações são
+indistinguíveis pelos dados. Por isso a cor passou para `A0A0A0` em 2026-07-29,
+cortando ~37% da corrente. **As duas mitigações estão ativas ao mesmo tempo** —
+se travar de novo, não vai dar pra saber qual hipótese estava certa, mas o
+objetivo é não travar.
+
 **Isso é uma falha de segurança real, não cosmética**: fans de gabinete
 paradas comprometem o fluxo de ar sob carga (jogo, LLM, render). Se as fans do
 hub pararem de girar de novo:
@@ -167,8 +200,13 @@ longas de carga pesada.
    openrgb -d "ASUS" -z 2 -sz 8 -c 00FF00 -m static   # zona 2 = verde
    openrgb -d "ASUS" -z 3 -sz 8 -c 0000FF -m static   # zona 3 = azul
    ```
-4. Suba o tamanho aos poucos (`-sz`) até achar o total real de LEDs da cadeia —
-   sem parte apagada nem cor torta no fim da fileira.
+4. **Não** tente achar o total de LEDs subindo `-sz` até "acender uniforme":
+   com cor única esse teste não pode falhar e dá falso positivo em qualquer
+   tamanho. Foi assim que o número 40 entrou aqui sem base. Para medir de
+   verdade é preciso um padrão com fronteira visível, e o CLI do OpenRGB não
+   entrega isso — `-c` com lista de cores só funciona sem efeito, e `-m direct`
+   **apaga o header** neste hardware (medido em 2026-07-29). Na prática:
+   escolha um tamanho que funcione e não trate o número como contagem física.
 5. Atualize `FAN_ZONE_INDEX` e `FAN_ZONE_SIZE` em `gpu-rgb-sync.sh`.
 6. `systemctl --user restart gpu-rgb-sync.service`.
 
