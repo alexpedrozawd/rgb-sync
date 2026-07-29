@@ -11,6 +11,18 @@ temperatura do water cooler — só na luz, via [OpenRGB](https://openrgb.org/).
 Ver também: [`pichau-aqua-240x-linux-driver`](../pichau-aqua-240x-linux-driver)
 — driver separado, do display de temperatura do pump (LCD), não da luz ARGB.
 
+> ## ⚠️ Problema em aberto
+>
+> **RAMs e water cooler funcionam de forma confiável. As 8 fans do gabinete
+> não.** O hub Rise Mode perde o modo "M/B Sync" em reboots/eventos de energia
+> e, uma vez fora dele, ignora sinal válido da placa-mãe — só volta apertando
+> o botão físico `ON M/B` no controle remoto. Em 2026-07-29 o firmware do hub
+> chegou a travar por completo, **parando as fans de girar** (risco térmico
+> real).
+>
+> Diagnóstico completo, linha do tempo dos incidentes, evidência dos logs e
+> hipóteses ainda não testadas: **[`docs/DIAGNOSTICO-HUB.md`](docs/DIAGNOSTICO-HUB.md)**.
+
 ## Hardware coberto
 
 | Componente | Como está ligado |

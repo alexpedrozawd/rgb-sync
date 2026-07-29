@@ -1,0 +1,441 @@
+jul 28 11:38:37 bazzite systemd[1847]: Started gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, rainbow quando GPU ativa).
+jul 28 11:38:37 bazzite bash[83147]: gpu-rgb-sync: backend de GPU detectado = amd.
+jul 28 11:45:08 bazzite systemd[1847]: Stopping gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, rainbow quando GPU ativa)...
+jul 28 11:45:08 bazzite systemd[1847]: Stopped gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, rainbow quando GPU ativa).
+jul 28 11:45:08 bazzite systemd[1847]: gpu-rgb-sync.service: Consumed 1.060s CPU time over 6min 30.602s wall clock time, 6.7M memory peak.
+jul 28 11:45:08 bazzite systemd[1847]: Started gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, rainbow quando GPU ativa).
+jul 28 11:45:08 bazzite bash[212453]: gpu-rgb-sync: backend de GPU detectado = amd.
+jul 28 12:02:01 bazzite bash[212453]: GPU ativa - LEDs ligados (Rainbow).
+jul 28 12:03:13 bazzite bash[212453]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 12:25:24 bazzite systemd[1847]: Stopping gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, rainbow quando GPU ativa)...
+jul 28 12:25:24 bazzite systemd[1847]: Stopped gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, rainbow quando GPU ativa).
+jul 28 12:25:24 bazzite systemd[1847]: gpu-rgb-sync.service: Consumed 1.612s CPU time over 40min 16.307s wall clock time, 6.3M memory peak.
+jul 28 12:41:44 bazzite systemd[1847]: Started gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 28 12:41:44 bazzite bash[1052188]: gpu-rgb-sync: backend de GPU detectado = amd.
+jul 28 12:42:51 bazzite bash[1052188]: GPU ativa - LEDs ligados (Rainbow).
+jul 28 12:47:53 bazzite bash[1052188]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 12:50:03 bazzite systemd[1847]: Stopping gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa)...
+jul 28 12:50:03 bazzite systemd[1847]: Stopped gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+-- Boot d8bfe4644f98496da97f161f9b2df9fc --
+jul 28 12:50:30 bazzite systemd[1564]: Started gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 28 12:50:30 bazzite bash[1655]: gpu-rgb-sync: backend de GPU detectado = amd.
+jul 28 12:50:32 bazzite bash[1655]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 12:57:34 bazzite bash[1655]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 12:58:08 bazzite systemd[1564]: Stopping gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa)...
+jul 28 12:58:08 bazzite systemd[1564]: Stopped gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 28 12:58:08 bazzite systemd[1564]: Started gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 28 12:58:08 bazzite bash[113412]: gpu-rgb-sync: backend de GPU detectado = amd.
+jul 28 12:59:40 bazzite systemd[1564]: Stopping gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa)...
+jul 28 12:59:40 bazzite systemd[1564]: Stopped gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+-- Boot 765dcf0e4da843ae95709816f50ebf02 --
+jul 28 13:00:07 bazzite systemd[1562]: Started gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 28 13:00:07 bazzite bash[1652]: gpu-rgb-sync: backend de GPU detectado = amd.
+jul 28 13:00:09 bazzite bash[1652]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 13:02:10 bazzite bash[1652]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 13:03:03 bazzite bash[1652]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 13:04:06 bazzite bash[1652]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 13:06:49 bazzite bash[1652]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 13:08:54 bazzite bash[1652]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 13:09:17 bazzite bash[1652]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 13:09:40 bazzite systemd[1562]: Stopping gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa)...
+jul 28 13:09:40 bazzite systemd[1562]: Stopped gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 28 13:09:40 bazzite systemd[1562]: Started gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 28 13:09:40 bazzite bash[203446]: gpu-rgb-sync: backend de GPU detectado = amd.
+jul 28 13:10:27 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 13:12:48 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 13:18:04 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 13:19:19 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 13:27:44 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 13:28:46 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 13:29:19 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 13:30:21 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 13:31:54 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 13:32:56 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 13:44:04 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 13:45:39 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 13:51:04 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 13:52:06 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 13:58:42 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 13:59:44 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 14:08:29 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 14:10:04 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 14:14:57 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 14:15:59 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 14:17:03 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 14:18:05 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 14:21:58 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 14:23:00 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 14:28:25 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 14:29:27 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 14:33:10 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 14:34:56 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 14:35:09 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 14:36:24 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 14:39:17 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 14:40:19 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 14:41:52 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 14:42:54 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 14:43:37 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 14:48:05 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 14:49:08 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 14:50:10 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 14:51:03 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 14:52:05 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 14:52:48 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 14:53:50 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 14:54:04 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 14:55:06 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 14:55:59 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 14:58:07 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 15:01:00 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 15:02:25 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 15:05:58 bazzite bash[203446]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 15:07:00 bazzite bash[203446]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 15:08:18 bazzite systemd[1562]: Stopping gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa)...
+jul 28 15:08:18 bazzite systemd[1562]: Stopped gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 28 15:08:18 bazzite systemd[1562]: gpu-rgb-sync.service: Consumed 7.017s CPU time over 1h 58min 38.369s wall clock time, 7.8M memory peak.
+-- Boot 6582ebee48db4e6d802ab0448a83ee44 --
+jul 28 15:23:10 bazzite systemd[1854]: Started gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 28 15:23:10 bazzite bash[1939]: gpu-rgb-sync: backend de GPU detectado = amd.
+jul 28 15:23:12 bazzite bash[1939]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 15:25:17 bazzite bash[1939]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 15:39:04 bazzite bash[1939]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 15:40:06 bazzite bash[1939]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 15:51:04 bazzite bash[1939]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 15:52:06 bazzite bash[1939]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 17:00:41 bazzite systemd[1854]: Stopping gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa)...
+jul 28 17:00:41 bazzite systemd[1854]: Stopped gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 28 17:00:41 bazzite systemd[1854]: gpu-rgb-sync.service: Consumed 3.575s CPU time over 1h 37min 31.253s wall clock time, 10M memory peak.
+jul 28 17:00:41 bazzite systemd[1854]: Started gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 28 17:00:41 bazzite bash[1944490]: gpu-rgb-sync: backend de GPU detectado = amd.
+jul 28 17:26:04 bazzite bash[1944490]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 17:27:06 bazzite bash[1944490]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 17:27:39 bazzite bash[1944490]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 17:28:41 bazzite bash[1944490]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 17:58:03 bazzite bash[1944490]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 17:59:06 bazzite bash[1944490]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 18:24:04 bazzite bash[1944490]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 18:25:06 bazzite bash[1944490]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 18:41:04 bazzite bash[1944490]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 18:42:06 bazzite bash[1944490]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 18:57:04 bazzite bash[1944490]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 18:58:06 bazzite bash[1944490]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 19:14:03 bazzite bash[1944490]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 19:15:06 bazzite bash[1944490]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 19:32:05 bazzite bash[1944490]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 19:33:08 bazzite bash[1944490]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 19:56:04 bazzite bash[1944490]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 19:57:06 bazzite bash[1944490]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 20:12:04 bazzite bash[1944490]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 20:13:06 bazzite bash[1944490]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 20:40:36 bazzite bash[1944490]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 20:47:45 bazzite bash[1944490]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 20:49:08 bazzite bash[1944490]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 20:52:48 bazzite bash[1944490]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 20:53:51 bazzite bash[1944490]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 21:00:56 bazzite bash[1944490]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 21:05:53 bazzite bash[1944490]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 21:14:30 bazzite bash[1944490]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 21:15:04 bazzite bash[1944490]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 21:19:22 bazzite systemd[1854]: Stopping gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa)...
+jul 28 21:19:22 bazzite systemd[1854]: Stopped gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 28 21:19:22 bazzite systemd[1854]: gpu-rgb-sync.service: Consumed 20.247s CPU time over 4h 18min 40.242s wall clock time, 9.7M memory peak.
+-- Boot 595fc7e001794ccaa1df6dbe35227f6b --
+jul 28 21:19:51 bazzite systemd[1588]: Started gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 28 21:19:51 bazzite bash[1680]: gpu-rgb-sync: backend de GPU detectado = amd.
+jul 28 21:19:53 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 21:22:53 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 21:38:01 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 21:40:52 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 21:43:47 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 21:45:41 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 21:47:34 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 22:10:53 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 22:16:01 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 22:17:03 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 22:17:16 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 22:18:18 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 22:31:04 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 22:32:06 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 22:36:01 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 22:38:06 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 22:52:22 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 22:53:24 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 22:57:41 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 22:59:06 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 23:00:19 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 23:01:21 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 23:05:07 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 23:06:09 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 23:09:04 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 23:10:06 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 23:13:31 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 23:14:33 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 23:14:46 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 23:15:48 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 23:17:22 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 23:18:24 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 23:24:21 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 23:25:23 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 23:39:39 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 23:40:41 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 23:41:04 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 23:42:06 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 23:42:29 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 23:43:31 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 23:44:04 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 23:45:06 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 23:50:34 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 23:51:36 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 28 23:57:43 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 28 23:58:45 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 00:00:28 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 00:01:30 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 00:10:42 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 00:11:44 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 00:14:59 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 00:22:17 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 00:26:02 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 00:27:04 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 00:28:37 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 00:29:39 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 00:35:26 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 00:36:28 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 00:39:04 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 00:40:06 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 00:58:26 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 00:59:28 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 01:00:01 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 01:01:03 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 01:02:26 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 01:03:28 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 01:06:23 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 01:07:25 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 01:08:38 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 01:09:40 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 01:10:04 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 01:11:06 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 01:21:17 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 01:23:02 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 01:32:24 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 01:33:26 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 01:37:01 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 01:38:03 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 01:39:26 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 01:40:28 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 01:41:11 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 01:42:27 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 01:46:22 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 01:47:24 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 01:53:43 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 01:54:45 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 01:55:18 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 01:57:14 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 01:57:47 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 01:58:49 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 02:03:26 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 02:04:28 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 02:11:38 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 02:12:40 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 02:13:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 02:14:05 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 02:16:40 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 02:17:42 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 02:19:05 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 02:20:07 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 02:29:09 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 02:30:11 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 02:31:04 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 02:32:06 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 02:37:53 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 02:38:55 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 02:45:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 02:46:38 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 02:49:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 02:50:05 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 02:53:30 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 02:54:32 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 02:55:15 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 02:56:17 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 02:58:53 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 02:59:55 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 03:00:38 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 03:01:40 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 03:06:27 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 03:08:09 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 03:12:04 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 03:13:06 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 03:16:41 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 03:19:09 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 03:25:29 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 03:26:31 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 03:27:04 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 03:28:06 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 03:34:45 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 03:35:47 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 03:42:17 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 03:43:19 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 03:47:04 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 03:48:06 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 03:53:13 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 03:54:15 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 03:57:51 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 03:59:06 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 04:02:21 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 04:04:06 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 04:10:26 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 04:11:28 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 04:14:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 04:15:05 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 04:15:38 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 04:16:40 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 04:17:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 04:18:05 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 04:27:17 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 04:28:19 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 04:32:24 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 04:33:26 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 04:37:01 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 04:38:03 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 04:43:41 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 04:45:06 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 04:45:29 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 04:46:31 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 04:53:10 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 04:55:06 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 04:59:01 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 05:00:03 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 05:03:08 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 05:04:10 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 05:05:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 05:06:05 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 05:10:11 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 05:11:13 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 05:14:08 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 05:15:10 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 05:16:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 05:17:48 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 05:19:21 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 05:20:23 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 05:21:56 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 05:22:59 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 05:38:06 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 05:39:42 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 05:46:01 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 05:47:36 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 05:49:29 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 05:50:31 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 05:51:14 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 05:52:50 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 05:53:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 05:54:05 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 05:55:58 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 05:57:00 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 05:58:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 05:59:18 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 06:07:50 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 06:08:52 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 06:15:11 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 06:16:13 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 06:21:30 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 06:23:39 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 06:23:52 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 06:30:40 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 06:30:53 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 06:32:38 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 06:33:22 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 06:36:16 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 06:39:21 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 06:40:23 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 06:52:07 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 06:53:09 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 06:55:44 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 06:56:46 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 06:59:21 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 07:00:23 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 07:09:35 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 07:10:37 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 07:13:42 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 07:16:54 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 07:18:37 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 07:22:01 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 07:23:34 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 07:25:19 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 07:35:21 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 07:37:06 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 08:32:04 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 08:33:06 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 08:38:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 08:39:05 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 08:54:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 08:55:05 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 09:10:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 09:11:05 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 09:36:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 09:37:05 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 09:46:07 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 10:05:15 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 10:09:10 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 10:10:12 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 10:47:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 10:48:05 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 11:13:04 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 11:14:06 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 11:19:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 11:20:05 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 11:45:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 11:46:05 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 11:51:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 11:52:05 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 12:17:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 12:18:05 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 12:21:10 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 12:22:12 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 13:42:59 bazzite systemd[1588]: Stopping gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa)...
+jul 29 13:42:59 bazzite systemd[1588]: Stopped gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 29 13:42:59 bazzite systemd[1588]: gpu-rgb-sync.service: Consumed 1min 8.981s CPU time over 16h 23min 7.993s wall clock time, 16.6M memory peak.
+-- Boot b658f73981ba414b8eba8f0771c2e928 --
+jul 29 14:02:40 bazzite systemd[1785]: Started gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 29 14:02:40 bazzite bash[1869]: gpu-rgb-sync: backend de GPU detectado = amd.
+jul 29 14:02:42 bazzite bash[1869]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 14:04:10 bazzite bash[1869]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 14:05:03 bazzite bash[1869]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 14:06:05 bazzite bash[1869]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 14:09:09 bazzite systemd[1785]: Stopping gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa)...
+jul 29 14:09:09 bazzite systemd[1785]: Stopped gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 29 14:09:09 bazzite systemd[1785]: Started gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 29 14:09:09 bazzite bash[143011]: gpu-rgb-sync: backend de GPU detectado = amd.
+jul 29 14:12:39 bazzite bash[143011]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 14:14:21 bazzite bash[143011]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 14:16:04 bazzite bash[143011]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 14:17:06 bazzite bash[143011]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 14:20:08 bazzite systemd[1785]: Stopping gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa)...
+jul 29 14:20:08 bazzite systemd[1785]: Stopped gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 29 14:20:08 bazzite systemd[1785]: Started gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 29 14:20:08 bazzite bash[365272]: gpu-rgb-sync: backend de GPU detectado = amd.
+jul 29 14:43:09 bazzite bash[365272]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 14:54:57 bazzite bash[365272]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 14:56:00 bazzite bash[365272]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 14:58:42 bazzite bash[365272]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 15:08:04 bazzite bash[365272]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 15:09:06 bazzite bash[365272]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 15:14:03 bazzite bash[365272]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 15:15:05 bazzite bash[365272]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 15:40:04 bazzite bash[365272]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 15:41:06 bazzite bash[365272]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 16:18:37 bazzite bash[365272]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 16:19:39 bazzite bash[365272]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 16:22:04 bazzite bash[365272]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 16:23:06 bazzite bash[365272]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 16:38:04 bazzite bash[365272]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 16:39:06 bazzite bash[365272]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 16:47:57 bazzite bash[365272]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 16:48:38 bazzite systemd[1785]: Stopping gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa)...
+jul 29 16:48:38 bazzite systemd[1785]: Stopped gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 29 16:48:38 bazzite systemd[1785]: gpu-rgb-sync.service: Consumed 7.326s CPU time over 2h 28min 29.411s wall clock time, 33.6M memory peak, 124K memory swap peak.
+-- Boot 4025ef4da8b2426e8858391436556cb0 --
+jul 29 16:49:05 bazzite systemd[1586]: Started gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 29 16:49:05 bazzite bash[1680]: gpu-rgb-sync: backend de GPU detectado = amd.
+jul 29 16:49:07 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 18:57:40 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 19:01:05 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).

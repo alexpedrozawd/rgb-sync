@@ -1,0 +1,120 @@
+jul 27 23:18:49 bazzite greenboot[2894]:  INFO  greenboot            > Initial /boot mount state: rw
+jul 27 23:18:49 bazzite greenboot[2894]:  INFO  greenboot            > /boot is already rw; no remount needed
+jul 27 23:18:49 bazzite sunshine[2796]: gtk_widget_get_scale_factor: assertion 'GTK_IS_WIDGET (widget)' failed
+jul 27 23:18:49 bazzite greenboot[2894]:  INFO  greenboot::grub      > Set grubenv: boot_success=1
+jul 27 23:18:49 bazzite greenboot[2894]:  INFO  greenboot::grub      > Clear grubenv: boot_counter
+jul 27 23:18:49 bazzite systemd[1]: Finished greenboot-healthcheck.service - Greenboot Health Checks Runner.
+jul 27 23:18:49 bazzite systemd[1]: Reached target boot-complete.target - Boot Completion Check.
+jul 27 23:18:49 bazzite systemd[1]: Reached target greenboot-success.target - GreenBoot Healthcheck Success Target.
+jul 27 23:18:49 bazzite systemd[1]: Reached target multi-user.target - Multi-User System.
+jul 27 23:18:49 bazzite systemd[1]: Reached target graphical.target - Graphical Interface.
+jul 27 23:18:49 bazzite systemd[1]: Startup finished in 16.419s (firmware) + 3.836s (loader) + 778ms (kernel) + 4.838s (initrd) + 14.194s (userspace) = 40.067s.
+jul 27 23:18:50 bazzite input-remapper-service[1189]: Request to autoload for "Mouse passthrough"
+jul 27 23:18:50 bazzite input-remapper-service[1189]: ERROR: Request to autoload "Mouse passthrough" before a user told the service about their session using set_config_dir
+jul 27 23:18:50 bazzite (udev-worker)[2823]: event19: Process '/bin/input-remapper-control --command autoload --device /dev/input/event19' failed with exit code 4.
+jul 27 23:18:50 bazzite input-remapper-service[1189]: Request to autoload for "Mouse passthrough"
+jul 27 23:18:50 bazzite input-remapper-service[1189]: ERROR: Request to autoload "Mouse passthrough" before a user told the service about their session using set_config_dir
+jul 27 23:18:50 bazzite systemd-logind[1262]: Watching system buttons on /dev/input/event18 (Keyboard passthrough)
+jul 27 23:18:50 bazzite input-remapper-service[1189]: Request to autoload for "Mouse passthrough"
+jul 27 23:18:50 bazzite input-remapper-service[1189]: ERROR: Request to autoload "Mouse passthrough" before a user told the service about their session using set_config_dir
+jul 27 23:18:50 bazzite (udev-worker)[2820]: event20: Process '/bin/input-remapper-control --command autoload --device /dev/input/event20' failed with exit code 4.
+jul 27 23:18:50 bazzite freshclam[2892]: daily.cld database is up-to-date (version: 28074, sigs: 355575, f-level: 90, builder: svc.clamav-publisher)
+jul 27 23:18:50 bazzite freshclam[2892]: main.cvd database is up-to-date (version: 63, sigs: 3287027, f-level: 90, builder: tomjudge)
+jul 27 23:18:50 bazzite freshclam[2892]: bytecode.cvd database is up-to-date (version: 339, sigs: 80, f-level: 90, builder: nrandolp)
+jul 27 23:18:50 bazzite flatpak[2796]: [2026-07-27 23:18:50.510]: Info: Avahi service bazzite successfully established.
+jul 27 23:18:51 bazzite avahi-daemon[1177]: Leaving mDNS multicast group on interface wlp0s20f0u8u2.IPv6 with address fe80::<IPV6-REDIGIDO>.
+jul 27 23:18:51 bazzite avahi-daemon[1177]: Joining mDNS multicast group on interface wlp0s20f0u8u2.IPv6 with address <IPV6-REDIGIDO>.
+jul 27 23:18:51 bazzite avahi-daemon[1177]: Registering new address record for <IPV6-REDIGIDO> on wlp0s20f0u8u2.*.
+jul 27 23:18:51 bazzite avahi-daemon[1177]: Withdrawing address record for fe80::<IPV6-REDIGIDO> on wlp0s20f0u8u2.
+jul 27 23:18:51 bazzite systemd-resolved[858]: wlp0s20f0u8u2: Bus client set DNS server list to: <IP-REDIGIDO>, <IP-REDIGIDO>, 2001:4860:4860::8888, 2001:4860:4860::8844
+jul 27 23:18:51 bazzite systemd[1555]: ap-tech-team-panel-api.service: Scheduled restart job, restart counter is at 1.
+jul 27 23:18:51 bazzite systemd[1555]: vfx-webui.service: Scheduled restart job, restart counter is at 1.
+jul 27 23:18:51 bazzite systemd[1555]: ap-tech-team-panel-web.service: Scheduled restart job, restart counter is at 1.
+jul 27 23:18:51 bazzite systemd[1555]: Started ap-tech-team-panel-web.service - AP Tech Team -- Painel de Operação (Web, Vite dev server).
+jul 27 23:18:51 bazzite npm[3000]: > web@0.0.0 dev
+jul 27 23:18:51 bazzite npm[3000]: > vite
+jul 27 23:18:51 bazzite npm[3012]: error when starting dev server:
+jul 27 23:18:51 bazzite npm[3012]: Error: listen EADDRNOTAVAIL: address not available <IP-TAILSCALE-REDIGIDO>:5173
+jul 27 23:18:51 bazzite npm[3012]:     at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+jul 27 23:18:51 bazzite npm[3012]:     at listenInCluster (node:net:2224:12)
+jul 27 23:18:51 bazzite npm[3012]:     at node:net:2448:7
+jul 27 23:18:51 bazzite npm[3012]:     at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+jul 27 23:18:51 bazzite npm[3012]:   code: 'EADDRNOTAVAIL',
+jul 27 23:18:51 bazzite npm[3012]:   errno: -99,
+jul 27 23:18:51 bazzite npm[3012]:   syscall: 'listen',
+jul 27 23:18:51 bazzite npm[3012]:   address: '<IP-TAILSCALE-REDIGIDO>',
+jul 27 23:18:51 bazzite npm[3012]:   port: 5173
+jul 27 23:18:51 bazzite npm[3012]: }
+jul 27 23:18:51 bazzite systemd[1555]: ap-tech-team-panel-web.service: Main process exited, code=exited, status=1/FAILURE
+jul 27 23:18:51 bazzite systemd[1555]: ap-tech-team-panel-web.service: Failed with result 'exit-code'.
+jul 27 23:18:51 bazzite systemd[1555]: ap-tech-team-panel-web.service: Consumed 299ms CPU time over 10.368s wall clock time, 86.7M memory peak.
+jul 27 23:18:51 bazzite python[3001]: INFO:     Started server process [3001]
+jul 27 23:18:51 bazzite python[3001]: INFO:     Waiting for application startup.
+jul 27 23:18:51 bazzite python[3001]: INFO:     Application startup complete.
+jul 27 23:18:51 bazzite python[3001]: ERROR:    could not bind on any address out of [('<IP-TAILSCALE-REDIGIDO>', 8299)]
+jul 27 23:18:51 bazzite python[3001]: INFO:     Waiting for application shutdown.
+jul 27 23:18:51 bazzite python[3001]: INFO:     Application shutdown complete.
+jul 27 23:18:51 bazzite systemd[1555]: ap-tech-team-panel-api.service: Main process exited, code=exited, status=1/FAILURE
+jul 27 23:18:51 bazzite systemd[1555]: ap-tech-team-panel-api.service: Failed with result 'exit-code'.
+jul 27 23:18:51 bazzite systemd[1555]: vfx-webui.service: Main process exited, code=exited, status=3/NOTIMPLEMENTED
+jul 27 23:18:51 bazzite systemd[1555]: vfx-webui.service: Failed with result 'exit-code'.
+jul 27 23:18:52 bazzite systemd[1]: dbus-:1.3-org.kde.kded.smart@0.service: Deactivated successfully.
+jul 27 23:18:52 bazzite avahi-daemon[1177]: Joining mDNS multicast group on interface tailscale0.IPv4 with address <IP-TAILSCALE-REDIGIDO>.
+jul 27 23:18:52 bazzite avahi-daemon[1177]: New relevant interface tailscale0.IPv4 for mDNS.
+jul 27 23:18:52 bazzite avahi-daemon[1177]: Registering new address record for <IP-TAILSCALE-REDIGIDO> on tailscale0.IPv4.
+jul 27 23:18:52 bazzite avahi-daemon[1177]: Leaving mDNS multicast group on interface tailscale0.IPv6 with address fe80::<IPV6-REDIGIDO>.
+jul 27 23:18:52 bazzite avahi-daemon[1177]: Joining mDNS multicast group on interface tailscale0.IPv6 with address fd7a:115c:a1e0::7839:407b.
+jul 27 23:18:52 bazzite avahi-daemon[1177]: Registering new address record for fd7a:115c:a1e0::7839:407b on tailscale0.*.
+jul 27 23:18:52 bazzite avahi-daemon[1177]: Withdrawing address record for fe80::<IPV6-REDIGIDO> on tailscale0.
+jul 27 23:18:52 bazzite systemd-resolved[858]: tailscale0: Bus client set DNS server list to: <IP-TAILSCALE-REDIGIDO>, fd7a:115c:a1e0::53
+jul 27 23:18:52 bazzite systemd-resolved[858]: tailscale0: Bus client set search domain list to: tailfd7629.ts.net., ~0.e.1.a.c.5.1.1.a.7.d.f.ip6.arpa., ~100.100.in-addr.arpa., ~101.100.in-addr.arpa., ~102.100.in-addr.arpa., ~103.100.in-addr.arpa., ~104.100.in-addr.arpa., ~105.100.in-addr.arpa., ~106.100.in-addr.arpa., ~107.100.in-addr.arpa., ~108.100.in-addr.arpa., ~109.100.in-addr.arpa., ~110.100.in-addr.arpa., ~111.100.in-addr.arpa., ~112.100.in-addr.arpa., ~113.100.in-addr.arpa., ~114.100.in-addr.arpa., ~115.100.in-addr.arpa., ~116.100.in-addr.arpa., ~117.100.in-addr.arpa., ~118.100.in-addr.arpa., ~119.100.in-addr.arpa., ~120.100.in-addr.arpa., ~121.100.in-addr.arpa., ~122.100.in-addr.arpa., ~123.100.in-addr.arpa., ~124.100.in-addr.arpa., ~125.100.in-addr.arpa., ~126.100.in-addr.arpa., ~127.100.in-addr.arpa., ~64.100.in-addr.arpa., ~65.100.in-addr.arpa., ~66.100.in-addr.arpa., ~67.100.in-addr.arpa., ~68.100.in-addr.arpa., ~69.100.in-addr.arpa., ~70.100.in-addr.arpa., ~71.100.in-addr.arpa., ~72.100.in-addr.arpa., ~73.100.in-addr.arpa., ~74.100.in-addr.arpa., ~75.100.in-addr.arpa., ~76.100.in-addr.arpa., ~77.100.in-addr.arpa., ~78.100.in-addr.arpa., ~79.100.in-addr.arpa., ~80.100.in-addr.arpa., ~81.100.in-addr.arpa., ~82.100.in-addr.arpa., ~83.100.in-addr.arpa., ~84.100.in-addr.arpa., ~85.100.in-addr.arpa., ~86.100.in-addr.arpa., ~87.100.in-addr.arpa., ~88.100.in-addr.arpa., ~89.100.in-addr.arpa., ~90.100.in-addr.arpa., ~91.100.in-addr.arpa., ~92.100.in-addr.arpa., ~93.100.in-addr.arpa., ~94.100.in-addr.arpa., ~95.100.in-addr.arpa., ~96.100.in-addr.arpa., ~97.100.in-addr.arpa., ~98.100.in-addr.arpa., ~99.100.in-addr.arpa., ~ts.net.
+jul 27 23:18:52 bazzite systemd-resolved[858]: tailscale0: Bus client set default route setting: no
+jul 27 23:18:52 bazzite systemd-resolved[858]: tailscale0: Bus client set LLMNR setting: no
+jul 27 23:18:52 bazzite systemd-resolved[858]: tailscale0: Bus client set MulticastDNS setting: no
+jul 27 23:18:52 bazzite systemd-resolved[858]: tailscale0: Bus client set DNSSEC setting: no
+jul 27 23:18:52 bazzite systemd-resolved[858]: tailscale0: Bus client set DNSOverTLS setting: no
+jul 27 23:18:52 bazzite systemd-resolved[858]: Flushed all caches.
+jul 27 23:18:52 bazzite systemd[1]: dbus-:1.3-org.fedoraproject.SetroubleshootPrivileged@0.service: Deactivated successfully.
+jul 27 23:18:52 bazzite systemd[1]: setroubleshootd.service: Deactivated successfully.
+jul 27 23:18:52 bazzite systemd[1]: setroubleshootd.service: Consumed 718ms CPU time over 11.449s wall clock time, 92.3M memory peak.
+jul 27 23:18:52 bazzite avahi-daemon[1177]: Registering new address record for <IPV6-REDIGIDO> on wlp0s20f0u8u2.*.
+jul 27 23:18:52 bazzite systemd-resolved[858]: Flushed all caches.
+jul 27 23:18:53 bazzite systemd[1]: dbus-:1.3-org.kde.powerdevil.discretegpuhelper@0.service: Deactivated successfully.
+jul 27 23:18:54 bazzite systemd[1]: dbus-:1.3-org.kde.powerdevil.chargethresholdhelper@0.service: Deactivated successfully.
+jul 27 23:18:54 bazzite systemd[1]: dbus-:1.3-org.kde.powerdevil.backlighthelper@0.service: Deactivated successfully.
+jul 27 23:18:54 bazzite chronyd[1181]: Selected source <IP-REDIGIDO> (2.fedora.pool.ntp.org)
+jul 27 23:18:54 bazzite chronyd[1181]: System clock TAI offset set to 37 seconds
+jul 27 23:18:56 bazzite rtkit-daemon[1203]: Successfully made thread 3318 of process 3223 (/var/home/apsrv/.local/share/Steam/ubuntu12_32/steam) owned by '1000' high priority at nice level -10.
+jul 27 23:18:56 bazzite plasmashell[2176]: Failed to find service for Unity Launcher "gldriverquery.desktop"
+jul 27 23:18:56 bazzite plasmashell[2176]: Failed to find service for Unity Launcher "gldriverquery.desktop"
+jul 27 23:18:56 bazzite rtkit-daemon[1203]: Successfully made thread 3319 of process 3223 (/var/home/apsrv/.local/share/Steam/ubuntu12_32/steam) owned by '1000' high priority at nice level -10.
+jul 27 23:18:57 bazzite systemd[1555]: Started dbus-:1.3-org.freedesktop.portal.IBus@0.service.
+jul 27 23:18:57 bazzite ibus-portal[3451]: Not connected to the ibus bus
+jul 27 23:18:57 bazzite systemd[1555]: dbus-:1.3-org.freedesktop.portal.IBus@0.service: Main process exited, code=exited, status=1/FAILURE
+jul 27 23:18:57 bazzite systemd[1555]: dbus-:1.3-org.freedesktop.portal.IBus@0.service: Failed with result 'exit-code'.
+jul 27 23:18:58 bazzite systemd-resolved[858]: Using degraded feature set UDP instead of UDP+EDNS0 for DNS server <IP-TAILSCALE-REDIGIDO>.
+jul 27 23:18:59 bazzite systemd-logind[1262]: Power key pressed short.
+jul 27 23:18:59 bazzite systemd[1555]: Started dbus-:1.3-org.kde.LogoutPrompt@0.service.
+jul 27 23:19:01 bazzite systemd[1555]: ap-tech-team-panel-web.service: Scheduled restart job, restart counter is at 2.
+jul 27 23:19:01 bazzite systemd[1555]: ap-tech-team-panel-api.service: Scheduled restart job immediately on client request, restart counter is at 2.
+jul 27 23:19:01 bazzite systemd[1555]: Started ap-tech-team-panel-web.service - AP Tech Team -- Painel de Operação (Web, Vite dev server).
+jul 27 23:19:01 bazzite npm[3821]: > web@0.0.0 dev
+jul 27 23:19:01 bazzite npm[3821]: > vite
+jul 27 23:19:01 bazzite npm[3832]:   VITE v8.1.4  ready in 132 ms
+jul 27 23:19:01 bazzite npm[3832]:   ➜  Network: http://<IP-TAILSCALE-REDIGIDO>:5173/
+jul 27 23:19:01 bazzite systemd[1555]: vfx-webui.service: Scheduled restart job, restart counter is at 2.
+jul 27 23:19:02 bazzite python[3875]: INFO:     Started server process [3875]
+jul 27 23:19:02 bazzite python[3875]: INFO:     Waiting for application startup.
+jul 27 23:19:02 bazzite python[3875]: INFO:     Application startup complete.
+jul 27 23:19:02 bazzite plasmashell[2176]: qrc:/qt/qml/plasma/applet/org/kde/plasma/systemtray/BackgroundAppItem.qml:21: TypeError: Cannot read property 'name' of null
+jul 27 23:19:02 bazzite plasmashell[2176]: qrc:/qt/qml/plasma/applet/org/kde/plasma/systemtray/BackgroundAppItem.qml:76: TypeError: Cannot read property 'name' of null
+jul 27 23:19:02 bazzite plasmashell[2176]: qrc:/qt/qml/plasma/applet/org/kde/plasma/systemtray/BackgroundAppItem.qml:32: TypeError: Cannot read property 'icon' of null
+jul 27 23:19:02 bazzite plasmashell[2176]: qrc:/qt/qml/plasma/applet/org/kde/plasma/systemtray/BackgroundAppItem.qml:20: TypeError: Cannot read property 'itemId' of null
+jul 27 23:19:02 bazzite plasmashell[2176]: qrc:/qt/qml/plasma/applet/org/kde/plasma/systemtray/BackgroundAppItem.qml:22: TypeError: Cannot read property 'name' of null
+jul 27 23:19:02 bazzite plasmashell[2176]: qrc:/qt/qml/plasma/applet/org/kde/plasma/systemtray/BackgroundAppItem.qml:23: TypeError: Cannot read property 'message' of null
+jul 27 23:19:02 bazzite ksmserver-logout-greeter[3745]: Lost focus, quitting
+jul 27 23:19:06 bazzite env[1646]: [1.1K blob data]
+jul 27 23:19:06 bazzite env[1646]: Write failed (write failed: [Errno 5] Input/output error), reconnecting...
+jul 27 23:19:10 bazzite systemd[1]: systemd-hostnamed.service: Deactivated successfully.
+jul 27 23:19:10 bazzite systemd[1]: systemd-localed.service: Deactivated successfully.
+jul 27 23:19:36 bazzite systemd-logind[1262]: Power key pressed short.

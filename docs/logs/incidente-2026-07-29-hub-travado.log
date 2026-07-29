@@ -1,0 +1,989 @@
+jul 29 09:00:09 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:00:09 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:01:10 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:01:11 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:01:14 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:01:14 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:02:19 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:02:19 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:03:12 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:03:13 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:03:24 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:03:24 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:04:29 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:04:29 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:05:14 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:05:16 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:05:34 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:05:34 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:06:39 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:06:39 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:07:17 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:07:18 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:07:44 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:07:44 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:08:31 bazzite env[1683]: [48K blob data]
+jul 29 09:08:49 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:08:49 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:09:19 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:09:20 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:09:54 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:09:54 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:10:01 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:10:02 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:10:03 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:10:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 09:10:59 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:10:59 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:11:04 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:11:05 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:11:05 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 09:11:49 bazzite ollama[1682]: time=2026-07-29T09:11:49.520-03:00 level=INFO source=model_recommendations.go:177 msg="model recommendations cache sleep scheduled" wait=4h37m17.10699077s consecutive_failures=0
+jul 29 09:12:04 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:12:04 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:13:06 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:13:07 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:13:09 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:13:09 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:14:14 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:14:14 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:15:08 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:15:09 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:15:19 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:15:19 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:16:24 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:16:24 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:17:10 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:17:11 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:17:29 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:17:29 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:18:34 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:18:34 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:19:12 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:19:13 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:19:39 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:19:39 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:20:10 bazzite freshclam[6845]: Received signal: wake up
+jul 29 09:20:10 bazzite freshclam[6845]: ClamAV update process started at Wed Jul 29 09:20:10 2026
+jul 29 09:20:10 bazzite freshclam[6845]: daily.cld database is up-to-date (version: 28076, sigs: 355575, f-level: 90, builder: svc.clamav-publisher)
+jul 29 09:20:10 bazzite freshclam[6845]: main.cvd database is up-to-date (version: 63, sigs: 3287027, f-level: 90, builder: tomjudge)
+jul 29 09:20:10 bazzite freshclam[6845]: bytecode.cvd database is up-to-date (version: 339, sigs: 80, f-level: 90, builder: nrandolp)
+jul 29 09:20:44 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:20:44 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:21:14 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:21:15 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:21:49 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:21:49 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:22:54 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:22:54 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:23:16 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:23:17 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:23:59 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:23:59 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:25:04 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:25:04 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:25:19 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:25:20 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:26:09 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:26:09 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:27:01 bazzite env[1683]: [48K blob data]
+jul 29 09:27:14 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:27:14 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:27:21 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:27:22 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:28:19 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:28:19 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:29:23 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:29:24 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:29:24 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:29:24 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:30:29 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:30:29 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:31:25 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:31:26 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:31:34 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:31:34 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:32:39 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:32:39 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:33:27 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:33:28 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:33:44 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:33:44 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:34:49 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:34:49 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:35:29 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:35:30 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:35:54 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:35:54 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:36:01 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:36:02 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:36:03 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:36:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 09:36:59 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:36:59 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:37:04 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:37:05 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:37:05 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 09:38:04 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:38:04 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:39:06 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:39:07 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:39:09 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:39:09 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:39:54 bazzite kded6[5680]: Failed to stat /proc/1976116 Arquivo ou diretório inexistente
+jul 29 09:39:54 bazzite kded6[5680]: Failed to stat /proc/1976118 Arquivo ou diretório inexistente
+jul 29 09:40:14 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:40:14 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:41:08 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:41:09 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:41:19 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:41:19 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:42:24 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:42:24 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:43:10 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:43:12 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:43:29 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:43:29 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:44:34 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:44:34 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:45:13 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:45:14 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:45:31 bazzite env[1683]: [48K blob data]
+jul 29 09:45:39 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:45:39 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:46:02 bazzite kernel: input: Pro Controller as /devices/virtual/misc/uhid/0005:057E:2009.0009/input/input31
+jul 29 09:46:02 bazzite kernel: hid-generic 0005:057E:2009.0009: input,hidraw0: BLUETOOTH HID v0.01 Gamepad [Pro Controller] on <IPV6-REDIGIDO>
+jul 29 09:46:02 bazzite kernel: nintendo 0005:057E:2009.0009: hidraw0: BLUETOOTH HID v80.01 Gamepad [Pro Controller] on <IPV6-REDIGIDO>
+jul 29 09:46:02 bazzite kernel: nintendo 0005:057E:2009.0009: controller MAC = <IPV6-REDIGIDO>
+jul 29 09:46:02 bazzite kernel: nintendo 0005:057E:2009.0009: using factory cal for left stick
+jul 29 09:46:02 bazzite kernel: nintendo 0005:057E:2009.0009: using factory cal for right stick
+jul 29 09:46:03 bazzite kernel: nintendo 0005:057E:2009.0009: using factory cal for IMU
+jul 29 09:46:03 bazzite kernel: nintendo 0005:057E:2009.0009: assigned player 1 led pattern
+jul 29 09:46:03 bazzite kernel: input: Pro Controller as /devices/virtual/misc/uhid/0005:057E:2009.0009/input/input32
+jul 29 09:46:03 bazzite kernel: input: Pro Controller (IMU) as /devices/virtual/misc/uhid/0005:057E:2009.0009/input/input33
+jul 29 09:46:03 bazzite kwin_wayland[3306]: Failed to open /dev/input/event3 device (No such device)
+jul 29 09:46:03 bazzite systemd[1]: Starting iio-sensor-proxy.service - IIO Sensor Proxy service...
+jul 29 09:46:03 bazzite systemd[1]: Started iio-sensor-proxy.service - IIO Sensor Proxy service.
+jul 29 09:46:03 bazzite iio-sensor-proxy[2095812]: Not a switch [/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.1/sound/card1/input10/../capabilities/sw]
+jul 29 09:46:03 bazzite iio-sensor-proxy[2095812]: Invalid bitmask entry for /sys/devices/pci0000:00/0000:00:14.0/usb1/1-6/1-6:1.3/0003:1A86:484A.0004/input/input7/event7
+jul 29 09:46:03 bazzite kwin_wayland[3306]: Failed to fetch net.hadess.SensorProxy.HasAccelerometer property: QDBusError("org.freedesktop.DBus.Error.NoReply", "Remote peer disconnected")
+jul 29 09:46:03 bazzite kwin_wayland[3306]: Failed to fetch net.hadess.SensorProxy.HasAmbientLight property: QDBusError("org.freedesktop.DBus.Error.NoReply", "Remote peer disconnected")
+jul 29 09:46:03 bazzite systemd[1]: iio-sensor-proxy.service: Deactivated successfully.
+jul 29 09:46:03 bazzite (udev-worker)[2095790]: hci0:1: Process '/usr/bin/cec-control onboot' failed with exit code 1.
+jul 29 09:46:03 bazzite systemd[1588]: Reached target bluetooth.target - Bluetooth.
+jul 29 09:46:03 bazzite input-remapper-service[1215]: Request to autoload for "Pro Controller"
+jul 29 09:46:03 bazzite input-remapper-service[1215]: ERROR: Request to autoload "Pro Controller" before a user told the service about their session using set_config_dir
+jul 29 09:46:03 bazzite input-remapper-service[1215]: Request to autoload for "Pro Controller"
+jul 29 09:46:03 bazzite input-remapper-service[1215]: ERROR: Request to autoload "Pro Controller" before a user told the service about their session using set_config_dir
+jul 29 09:46:03 bazzite systemd[1]: Starting iio-sensor-proxy.service - IIO Sensor Proxy service...
+jul 29 09:46:03 bazzite systemd[1]: Started iio-sensor-proxy.service - IIO Sensor Proxy service.
+jul 29 09:46:03 bazzite iio-sensor-proxy[2095837]: Not a switch [/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.1/sound/card1/input10/../capabilities/sw]
+jul 29 09:46:03 bazzite iio-sensor-proxy[2095837]: Invalid bitmask entry for /sys/devices/pci0000:00/0000:00:14.0/usb1/1-6/1-6:1.3/0003:1A86:484A.0004/input/input7/event7
+jul 29 09:46:03 bazzite kwin_wayland[3306]: Failed to fetch net.hadess.SensorProxy.HasAccelerometer property: QDBusError("org.freedesktop.DBus.Error.NoReply", "Remote peer disconnected")
+jul 29 09:46:03 bazzite kwin_wayland[3306]: Failed to fetch net.hadess.SensorProxy.HasAmbientLight property: QDBusError("org.freedesktop.DBus.Error.NoReply", "Remote peer disconnected")
+jul 29 09:46:03 bazzite systemd[1]: iio-sensor-proxy.service: Deactivated successfully.
+jul 29 09:46:05 bazzite kernel: input: Microsoft X-Box 360 pad 0 as /devices/virtual/input/input34
+jul 29 09:46:05 bazzite rtkit-daemon[1229]: Successfully made thread 2095861 of process 6866 (/var/home/apsrv/.local/share/Steam/ubuntu12_32/steam) owned by '1000' high priority at nice level -10.
+jul 29 09:46:05 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:46:05 bazzite input-remapper-service[1215]: Request to autoload for "Microsoft X-Box 360 pad 0"
+jul 29 09:46:05 bazzite input-remapper-service[1215]: ERROR: Request to autoload "Microsoft X-Box 360 pad 0" before a user told the service about their session using set_config_dir
+jul 29 09:46:06 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:46:07 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:46:07 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 09:46:18 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:46:18 bazzite kernel: input: Microsoft X-Box 360 pad 0 as /devices/virtual/input/input35
+jul 29 09:46:18 bazzite rtkit-daemon[1229]: Successfully made thread 2100197 of process 6866 (/var/home/apsrv/.local/share/Steam/ubuntu12_32/steam) owned by '1000' high priority at nice level -10.
+jul 29 09:46:19 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:46:19 bazzite input-remapper-service[1215]: Request to autoload for "Microsoft X-Box 360 pad 0"
+jul 29 09:46:19 bazzite input-remapper-service[1215]: ERROR: Request to autoload "Microsoft X-Box 360 pad 0" before a user told the service about their session using set_config_dir
+jul 29 09:46:20 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:46:22 bazzite rtkit-daemon[1229]: Successfully made thread 2103089 of process 6866 (/var/home/apsrv/.local/share/Steam/ubuntu12_32/steam) owned by '1000' high priority at nice level -10.
+jul 29 09:46:31 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:46:32 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:46:33 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:46:34 bazzite bash[2106799]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:46:44 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:46:44 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:46:44 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:46:45 bazzite bash[2108619]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:46:45 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:46:46 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:46:56 bazzite bash[2110396]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:46:57 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:46:58 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:46:59 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:47:07 bazzite bash[2112206]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:47:10 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:47:11 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:47:12 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:47:18 bazzite bash[2114003]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:47:23 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:47:24 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:47:25 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:47:29 bazzite bash[2115802]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:47:36 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:47:37 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:47:38 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:47:40 bazzite bash[2117591]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:47:49 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:47:49 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:47:49 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:47:50 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:47:51 bazzite bash[2119383]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:47:51 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:48:02 bazzite bash[2121157]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:48:02 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:48:03 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:48:05 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:48:13 bazzite bash[2122932]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:48:16 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:48:17 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:48:18 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:48:24 bazzite bash[2124729]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:48:28 bazzite rtkit-daemon[1229]: Successfully made thread 2124750 of process 2104732 (/run/media/system/dados/SteamLibrary/steamapps/common/Proton - Experimental/files/lib/wine/x86_64-unix/wine64-preloader) owned by '1000' high priority at nice level -10.
+jul 29 09:48:28 bazzite kernel: nintendo 0005:057E:2009.0009: compensating for 6 dropped IMU reports
+jul 29 09:48:28 bazzite kernel: nintendo 0005:057E:2009.0009: delta=114 avg_delta=15
+jul 29 09:48:29 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:48:30 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:48:31 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:48:35 bazzite bash[2126495]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:48:42 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:48:43 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:48:44 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:48:46 bazzite bash[2128253]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:48:54 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:48:54 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:48:55 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:48:56 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:48:57 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:48:57 bazzite bash[2130014]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:49:08 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:49:08 bazzite bash[2131752]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:49:09 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:49:10 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:49:19 bazzite bash[2133484]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:49:21 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:49:22 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:49:23 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:49:30 bazzite bash[2135233]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:49:34 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:49:35 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:49:36 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:49:41 bazzite bash[2136980]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:49:47 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:49:48 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:49:49 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:49:52 bazzite bash[2138701]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:49:59 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:49:59 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:50:00 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:50:01 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:50:02 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:50:03 bazzite bash[2140435]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:50:13 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:50:14 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:50:14 bazzite bash[2142145]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:50:15 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:50:25 bazzite bash[2143844]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:50:26 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:50:27 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:50:28 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:50:36 bazzite bash[2145559]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:50:40 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:50:41 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:50:42 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:50:47 bazzite bash[2147276]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:50:53 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:50:54 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:50:55 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:50:59 bazzite bash[2148995]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:51:04 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:51:04 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:51:06 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:51:07 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:51:08 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:51:10 bazzite bash[2150720]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:51:19 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:51:20 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:51:21 bazzite bash[2152406]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:51:21 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:51:32 bazzite bash[2154079]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:51:32 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:51:33 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:51:34 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:51:43 bazzite bash[2155765]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:51:45 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:51:46 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:51:47 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:51:54 bazzite bash[2157454]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:51:58 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:51:59 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:52:00 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:52:05 bazzite bash[2159159]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:52:09 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:52:09 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:52:11 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:52:12 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:52:13 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:52:16 bazzite bash[2160852]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:52:24 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:52:25 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:52:26 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:52:27 bazzite bash[2162542]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:52:37 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:52:38 bazzite bash[2164231]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:52:38 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:52:39 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:52:49 bazzite bash[2165899]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:52:50 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:52:51 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:52:52 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:53:00 bazzite bash[2167588]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:53:04 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:53:05 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:53:06 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:53:11 bazzite bash[2169291]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:53:14 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:53:14 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:53:17 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:53:18 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:53:19 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:53:22 bazzite bash[2170984]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:53:30 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:53:31 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:53:32 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:53:33 bazzite bash[2172676]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:53:43 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:53:44 bazzite bash[2174345]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:53:44 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:53:45 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:53:55 bazzite bash[2176003]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:53:56 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:53:57 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:53:58 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:54:06 bazzite bash[2177682]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:54:09 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:54:10 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:54:11 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:54:17 bazzite bash[2179359]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:54:19 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:54:19 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:54:22 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:54:23 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:54:24 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:54:28 bazzite bash[2181057]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:54:35 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:54:36 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:54:37 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:54:39 bazzite bash[2182734]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:54:48 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:54:49 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:54:50 bazzite bash[2184420]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:54:50 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:54:59 bazzite kernel: nintendo 0005:057E:2009.0009: compensating for 5 dropped IMU reports
+jul 29 09:54:59 bazzite kernel: nintendo 0005:057E:2009.0009: delta=95 avg_delta=14
+jul 29 09:55:01 bazzite bash[2186083]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:55:01 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:55:02 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:55:03 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:55:12 bazzite bash[2187748]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:55:14 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:55:15 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:55:16 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:55:23 bazzite bash[2189425]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:55:24 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:55:24 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:55:27 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:55:29 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:55:30 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:55:34 bazzite bash[2191110]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:55:41 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:55:42 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:55:43 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:55:45 bazzite bash[2192788]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:55:54 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:55:55 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:55:56 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:55:56 bazzite bash[2194476]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:56:07 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:56:07 bazzite bash[2196146]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:56:08 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:56:09 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:56:18 bazzite bash[2197805]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:56:20 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:56:21 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:56:22 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:56:25 bazzite kernel: nintendo 0005:057E:2009.0009: compensating for 4 dropped IMU reports
+jul 29 09:56:25 bazzite kernel: nintendo 0005:057E:2009.0009: delta=77 avg_delta=14
+jul 29 09:56:29 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:56:29 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:56:29 bazzite bash[2199490]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:56:33 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:56:34 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:56:35 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:56:40 bazzite bash[2201168]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:56:46 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:56:46 bazzite kernel: nintendo 0005:057E:2009.0009: compensating for 4 dropped IMU reports
+jul 29 09:56:46 bazzite kernel: nintendo 0005:057E:2009.0009: delta=91 avg_delta=15
+jul 29 09:56:47 bazzite kernel: nintendo 0005:057E:2009.0009: compensating for 9 dropped IMU reports
+jul 29 09:56:47 bazzite kernel: nintendo 0005:057E:2009.0009: delta=160 avg_delta=15
+jul 29 09:56:47 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:56:48 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:56:51 bazzite bash[2202837]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:56:59 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:57:00 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:57:01 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:57:02 bazzite bash[2204443]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:57:12 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:57:13 bazzite bash[2206021]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:57:13 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:57:14 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:57:24 bazzite bash[2207588]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:57:25 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:57:26 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:57:27 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:57:34 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:57:34 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:57:35 bazzite bash[2209194]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:57:38 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:57:39 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:57:40 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:57:46 bazzite bash[2210782]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:57:50 bazzite kernel: nintendo 0005:057E:2009.0009: compensating for 6 dropped IMU reports
+jul 29 09:57:50 bazzite kernel: nintendo 0005:057E:2009.0009: delta=117 avg_delta=14
+jul 29 09:57:51 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:57:52 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:57:54 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:57:57 bazzite bash[2212371]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:58:05 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:58:06 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:58:07 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:58:08 bazzite bash[2213958]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:58:14 bazzite cupsd[1476]: REQUEST localhost - - "POST / HTTP/1.1" 200 199 Renew-Subscription successful-ok
+jul 29 09:58:15 bazzite cupsd[1476]: REQUEST localhost - - "POST / HTTP/1.1" 200 199 Renew-Subscription successful-ok
+jul 29 09:58:18 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:58:19 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:58:19 bazzite bash[2215538]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:58:20 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:58:30 bazzite bash[2217106]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:58:30 bazzite bluetoothd[1204]: profiles/input/server.c:connect_event_cb() HUP or ERR on socket: Connection reset by peer (104)
+jul 29 09:58:31 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:58:31 bazzite (udev-worker)[2217122]: hci0:2: Process '/usr/bin/cec-control onboot' failed with exit code 1.
+jul 29 09:58:31 bazzite bluetoothd[1204]: profiles/input/server.c:connect_event_cb() HUP or ERR on socket: Connection reset by peer (104)
+jul 29 09:58:32 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:58:32 bazzite (udev-worker)[2217122]: hci0:3: Process '/usr/bin/cec-control onboot' failed with exit code 1.
+jul 29 09:58:33 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:58:34 bazzite kernel: nintendo 0005:057E:2009.000A: hidraw1: BLUETOOTH HID v80.01 Gamepad [Pro Controller] on <IPV6-REDIGIDO>
+jul 29 09:58:34 bazzite kernel: nintendo 0005:057E:2009.000A: controller MAC = <IPV6-REDIGIDO>
+jul 29 09:58:34 bazzite kernel: nintendo 0005:057E:2009.000A: using factory cal for left stick
+jul 29 09:58:35 bazzite kernel: nintendo 0005:057E:2009.000A: using factory cal for right stick
+jul 29 09:58:35 bazzite kernel: nintendo 0005:057E:2009.000A: using factory cal for IMU
+jul 29 09:58:35 bazzite kernel: nintendo 0005:057E:2009.000A: inaccurate IMU divisors (5)
+jul 29 09:58:35 bazzite (udev-worker)[2217122]: hci0:4: Process '/usr/bin/cec-control onboot' failed with exit code 1.
+jul 29 09:58:35 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:58:35 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:58:35 bazzite rtkit-daemon[1229]: Successfully made thread 2217183 of process 6866 (/var/home/apsrv/.local/share/Steam/ubuntu12_32/steam) owned by '1000' high priority at nice level -10.
+jul 29 09:58:35 bazzite kernel: nintendo 0005:057E:2009.000A: assigned player 1 led pattern
+jul 29 09:58:35 bazzite kernel: input: Pro Controller as /devices/virtual/misc/uhid/0005:057E:2009.000A/input/input36
+jul 29 09:58:35 bazzite kernel: input: Pro Controller (IMU) as /devices/virtual/misc/uhid/0005:057E:2009.000A/input/input37
+jul 29 09:58:35 bazzite systemd[1]: Starting iio-sensor-proxy.service - IIO Sensor Proxy service...
+jul 29 09:58:35 bazzite systemd[1]: Started iio-sensor-proxy.service - IIO Sensor Proxy service.
+jul 29 09:58:35 bazzite iio-sensor-proxy[2217189]: Not a switch [/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.1/sound/card1/input10/../capabilities/sw]
+jul 29 09:58:35 bazzite iio-sensor-proxy[2217189]: Invalid bitmask entry for /sys/devices/pci0000:00/0000:00:14.0/usb1/1-6/1-6:1.3/0003:1A86:484A.0004/input/input7/event7
+jul 29 09:58:35 bazzite kwin_wayland[3306]: Failed to fetch net.hadess.SensorProxy.HasAccelerometer property: QDBusError("org.freedesktop.DBus.Error.NoReply", "Remote peer disconnected")
+jul 29 09:58:35 bazzite kwin_wayland[3306]: Failed to fetch net.hadess.SensorProxy.HasAmbientLight property: QDBusError("org.freedesktop.DBus.Error.NoReply", "Remote peer disconnected")
+jul 29 09:58:35 bazzite systemd[1]: iio-sensor-proxy.service: Deactivated successfully.
+jul 29 09:58:36 bazzite kernel: nintendo 0005:057E:2009.000A: joycon_enforce_subcmd_rate: exceeded max attempts
+jul 29 09:58:36 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:36 bazzite input-remapper-service[1215]: Request to autoload for "Pro Controller"
+jul 29 09:58:36 bazzite input-remapper-service[1215]: ERROR: Request to autoload "Pro Controller" before a user told the service about their session using set_config_dir
+jul 29 09:58:36 bazzite input-remapper-service[1215]: Request to autoload for "Pro Controller"
+jul 29 09:58:36 bazzite input-remapper-service[1215]: ERROR: Request to autoload "Pro Controller" before a user told the service about their session using set_config_dir
+jul 29 09:58:36 bazzite systemd[1]: Starting iio-sensor-proxy.service - IIO Sensor Proxy service...
+jul 29 09:58:36 bazzite systemd[1]: Started iio-sensor-proxy.service - IIO Sensor Proxy service.
+jul 29 09:58:36 bazzite iio-sensor-proxy[2217215]: Not a switch [/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.1/sound/card1/input10/../capabilities/sw]
+jul 29 09:58:36 bazzite iio-sensor-proxy[2217215]: Invalid bitmask entry for /sys/devices/pci0000:00/0000:00:14.0/usb1/1-6/1-6:1.3/0003:1A86:484A.0004/input/input7/event7
+jul 29 09:58:36 bazzite kwin_wayland[3306]: Failed to fetch net.hadess.SensorProxy.HasAccelerometer property: QDBusError("org.freedesktop.DBus.Error.NoReply", "Remote peer disconnected")
+jul 29 09:58:36 bazzite kwin_wayland[3306]: Failed to fetch net.hadess.SensorProxy.HasAmbientLight property: QDBusError("org.freedesktop.DBus.Error.NoReply", "Remote peer disconnected")
+jul 29 09:58:36 bazzite systemd[1]: iio-sensor-proxy.service: Deactivated successfully.
+jul 29 09:58:36 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:36 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:37 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:37 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:37 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:37 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:38 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:38 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:38 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:38 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:39 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:39 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:39 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:39 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:40 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:40 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:40 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:40 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:41 bazzite bash[2218770]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:58:41 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:41 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:41 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:41 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:41 bazzite kernel: nintendo 0005:057E:2009.000A: joycon_enforce_subcmd_rate: exceeded max attempts
+jul 29 09:58:42 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:42 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:42 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:42 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:43 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:43 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:43 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:44 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:44 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:44 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:58:44 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:44 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:45 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:45 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:45 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:58:45 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:45 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:46 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:46 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:46 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:58:46 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:46 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:47 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:47 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:47 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:47 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:48 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:48 bazzite kernel: nintendo 0005:057E:2009.000A: timeout waiting for input report
+jul 29 09:58:48 bazzite kernel: nintendo 0005:057E:2009.000A: joycon_enforce_subcmd_rate: exceeded max attempts
+jul 29 09:58:52 bazzite bash[2220347]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:58:57 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:58:58 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:58:59 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:59:03 bazzite bash[2221927]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:59:10 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:59:11 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:59:12 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:59:13 bazzite kernel: nintendo 0005:057E:2009.000B: hidraw5: BLUETOOTH HID v80.01 Gamepad [Pro Controller] on <IPV6-REDIGIDO>
+jul 29 09:59:13 bazzite kernel: nintendo 0005:057E:2009.000B: controller MAC = <IPV6-REDIGIDO>
+jul 29 09:59:13 bazzite kernel: nintendo 0005:057E:2009.000B: using factory cal for left stick
+jul 29 09:59:13 bazzite kernel: nintendo 0005:057E:2009.000B: using factory cal for right stick
+jul 29 09:59:13 bazzite kernel: nintendo 0005:057E:2009.000B: using factory cal for IMU
+jul 29 09:59:13 bazzite kernel: nintendo 0005:057E:2009.000B: assigned player 1 led pattern
+jul 29 09:59:13 bazzite bash[2223535]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:59:14 bazzite (udev-worker)[2221972]: hci0:5: Process '/usr/bin/cec-control onboot' failed with exit code 1.
+jul 29 09:59:14 bazzite kernel: input: Pro Controller as /devices/virtual/misc/uhid/0005:057E:2009.000B/input/input38
+jul 29 09:59:14 bazzite kernel: input: Pro Controller (IMU) as /devices/virtual/misc/uhid/0005:057E:2009.000B/input/input39
+jul 29 09:59:14 bazzite systemd[1]: Starting iio-sensor-proxy.service - IIO Sensor Proxy service...
+jul 29 09:59:14 bazzite systemd[1]: Started iio-sensor-proxy.service - IIO Sensor Proxy service.
+jul 29 09:59:14 bazzite iio-sensor-proxy[2223540]: Not a switch [/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.1/sound/card1/input10/../capabilities/sw]
+jul 29 09:59:14 bazzite iio-sensor-proxy[2223540]: Invalid bitmask entry for /sys/devices/pci0000:00/0000:00:14.0/usb1/1-6/1-6:1.3/0003:1A86:484A.0004/input/input7/event7
+jul 29 09:59:14 bazzite kwin_wayland[3306]: Failed to fetch net.hadess.SensorProxy.HasAccelerometer property: QDBusError("org.freedesktop.DBus.Error.NoReply", "Remote peer disconnected")
+jul 29 09:59:14 bazzite kwin_wayland[3306]: Failed to fetch net.hadess.SensorProxy.HasAmbientLight property: QDBusError("org.freedesktop.DBus.Error.NoReply", "Remote peer disconnected")
+jul 29 09:59:14 bazzite systemd[1]: iio-sensor-proxy.service: Deactivated successfully.
+jul 29 09:59:14 bazzite input-remapper-service[1215]: Request to autoload for "Pro Controller"
+jul 29 09:59:14 bazzite input-remapper-service[1215]: ERROR: Request to autoload "Pro Controller" before a user told the service about their session using set_config_dir
+jul 29 09:59:14 bazzite input-remapper-service[1215]: Request to autoload for "Pro Controller"
+jul 29 09:59:14 bazzite input-remapper-service[1215]: ERROR: Request to autoload "Pro Controller" before a user told the service about their session using set_config_dir
+jul 29 09:59:14 bazzite systemd[1]: Starting iio-sensor-proxy.service - IIO Sensor Proxy service...
+jul 29 09:59:14 bazzite systemd[1]: Started iio-sensor-proxy.service - IIO Sensor Proxy service.
+jul 29 09:59:14 bazzite iio-sensor-proxy[2223564]: Not a switch [/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:00.0/0000:03:00.1/sound/card1/input10/../capabilities/sw]
+jul 29 09:59:14 bazzite iio-sensor-proxy[2223564]: Invalid bitmask entry for /sys/devices/pci0000:00/0000:00:14.0/usb1/1-6/1-6:1.3/0003:1A86:484A.0004/input/input7/event7
+jul 29 09:59:14 bazzite kwin_wayland[3306]: Failed to fetch net.hadess.SensorProxy.HasAccelerometer property: QDBusError("org.freedesktop.DBus.Error.NoReply", "Remote peer disconnected")
+jul 29 09:59:14 bazzite kwin_wayland[3306]: Failed to fetch net.hadess.SensorProxy.HasAmbientLight property: QDBusError("org.freedesktop.DBus.Error.NoReply", "Remote peer disconnected")
+jul 29 09:59:14 bazzite systemd[1]: iio-sensor-proxy.service: Deactivated successfully.
+jul 29 09:59:23 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:59:24 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:59:24 bazzite bash[2225145]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:59:25 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:59:35 bazzite bash[2226711]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:59:36 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:59:37 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:59:38 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:59:40 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 09:59:40 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 09:59:46 bazzite bash[2228282]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 09:59:49 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:59:50 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:59:51 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 09:59:57 bazzite bash[2229865]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:00:02 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:00:03 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:00:04 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:00:08 bazzite bash[2231442]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:00:15 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:00:16 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:00:17 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:00:19 bazzite bash[2233027]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:00:29 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:00:30 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:00:30 bazzite bash[2234605]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:00:31 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:00:41 bazzite bash[2236166]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:00:42 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:00:43 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:00:44 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:00:44 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:00:44 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:00:52 bazzite bash[2237737]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:00:55 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:00:56 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:00:57 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:01:03 bazzite bash[2239316]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:01:08 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:01:09 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:01:10 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:01:14 bazzite bash[2240893]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:01:21 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:01:22 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:01:23 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:01:25 bazzite bash[2242472]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:01:34 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:01:35 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:01:36 bazzite bash[2244050]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:01:36 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:01:47 bazzite bash[2245622]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:01:47 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:01:48 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:01:49 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:01:49 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:01:49 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:01:58 bazzite bash[2247195]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:02:00 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:02:01 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:02:02 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:02:08 bazzite bash[2248772]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:02:13 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:02:14 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:02:15 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:02:19 bazzite bash[2250349]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:02:21 bazzite kernel: perf: interrupt took too long (3959 > 3940), lowering kernel.perf_event_max_sample_rate to 50000
+jul 29 10:02:26 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:02:27 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:02:28 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:02:30 bazzite bash[2251928]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:02:39 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:02:40 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:02:41 bazzite bash[2253504]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:02:41 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:02:45 bazzite env[1683]: [48K blob data]
+jul 29 10:02:52 bazzite bash[2255066]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:02:52 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:02:54 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:02:54 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:02:54 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:02:55 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:03:03 bazzite bash[2256639]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:03:06 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:03:07 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:03:08 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:03:14 bazzite bash[2258216]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:03:19 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:03:20 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:03:21 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:03:25 bazzite bash[2259793]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:03:32 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:03:33 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:03:34 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:03:36 bazzite bash[2261372]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:03:45 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:03:46 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:03:47 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:03:47 bazzite bash[2262952]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:03:58 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:03:58 bazzite bash[2264533]: /home/apsrv/Scripts/steam-vram-optimizer.sh: linha 116: ollama: comando não encontrado
+jul 29 10:03:59 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:03:59 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:03:59 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:04:00 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:04:02 bazzite kernel: nintendo 0005:057E:2009.000B: compensating for 19171 dropped IMU reports
+jul 29 10:04:02 bazzite kernel: nintendo 0005:057E:2009.000B: delta=287596 avg_delta=15
+jul 29 10:04:11 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:04:12 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:04:13 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:05:04 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:05:04 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:05:14 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:05:15 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:05:15 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 10:06:09 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:06:09 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:07:14 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:07:14 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:07:16 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:07:17 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:08:19 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:08:19 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:09:08 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:09:09 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:09:10 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:09:10 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 10:09:24 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:09:24 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:10:11 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:10:12 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:10:12 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 10:10:21 bazzite sshd-session[2388508]: Accepted publickey for apsrv from <IP-TAILSCALE-REDIGIDO> port 53568 ssh2: ED25519 SHA256:sTMcIkDGP58InBO2gOS+k+i08NXtUYxv8uhkybhclcU
+jul 29 10:10:21 bazzite systemd-logind[1284]: New session '5' of user 'apsrv' with class 'user' and type 'tty'.
+jul 29 10:10:21 bazzite systemd[1]: Started session-5.scope - Session 5 of User apsrv.
+jul 29 10:10:21 bazzite sshd-session[2388508]: pam_unix(sshd:session): session opened for user apsrv(uid=1000) by apsrv(uid=0)
+jul 29 10:10:21 bazzite systemd[1]: Starting systemd-hostnamed.service - Hostname Service...
+jul 29 10:10:21 bazzite systemd[1]: Started systemd-hostnamed.service - Hostname Service.
+jul 29 10:10:21 bazzite systemd[1]: Starting rpm-ostreed.service - rpm-ostree System Management Daemon...
+jul 29 10:10:21 bazzite rpm-ostree[2388597]: Reading config file '/etc/rpm-ostreed.conf'
+jul 29 10:10:21 bazzite rpm-ostree[2388597]: In idle state; will auto-exit in 62 seconds
+jul 29 10:10:21 bazzite systemd[1]: Started rpm-ostreed.service - rpm-ostree System Management Daemon.
+jul 29 10:10:21 bazzite rpm-ostree[2388597]: Allowing active client :1.2206 (uid 1000)
+jul 29 10:10:21 bazzite rpm-ostree[2388597]: client(id:cli dbus:1.2206 unit:session-5.scope uid:1000) added; new total=1
+jul 29 10:10:21 bazzite rpm-ostree[2388597]: client(id:cli dbus:1.2206 unit:session-5.scope uid:1000) vanished; remaining=0
+jul 29 10:10:21 bazzite rpm-ostree[2388597]: In idle state; will auto-exit in 62 seconds
+jul 29 10:10:22 bazzite rpm-ostree[2388597]: Allowing active client :1.2209 (uid 1000)
+jul 29 10:10:22 bazzite rpm-ostree[2388597]: client(id:cli dbus:1.2209 unit:session-5.scope uid:1000) added; new total=1
+jul 29 10:10:22 bazzite rpm-ostree[2388597]: client(id:cli dbus:1.2209 unit:session-5.scope uid:1000) vanished; remaining=0
+jul 29 10:10:22 bazzite rpm-ostree[2388597]: In idle state; will auto-exit in 64 seconds
+jul 29 10:10:25 bazzite sshd-session[2389952]: Accepted publickey for apsrv from <IP-TAILSCALE-REDIGIDO> port 60924 ssh2: ED25519 SHA256:sTMcIkDGP58InBO2gOS+k+i08NXtUYxv8uhkybhclcU
+jul 29 10:10:25 bazzite systemd-logind[1284]: New session '6' of user 'apsrv' with class 'user' and type 'tty'.
+jul 29 10:10:25 bazzite systemd[1]: Started session-6.scope - Session 6 of User apsrv.
+jul 29 10:10:25 bazzite sshd-session[2389952]: pam_unix(sshd:session): session opened for user apsrv(uid=1000) by apsrv(uid=0)
+jul 29 10:10:26 bazzite rpm-ostree[2388597]: Allowing active client :1.2212 (uid 1000)
+jul 29 10:10:26 bazzite rpm-ostree[2388597]: client(id:cli dbus:1.2212 unit:session-6.scope uid:1000) added; new total=1
+jul 29 10:10:26 bazzite rpm-ostree[2388597]: client(id:cli dbus:1.2212 unit:session-6.scope uid:1000) vanished; remaining=0
+jul 29 10:10:26 bazzite rpm-ostree[2388597]: In idle state; will auto-exit in 63 seconds
+jul 29 10:10:26 bazzite rpm-ostree[2388597]: Allowing active client :1.2214 (uid 1000)
+jul 29 10:10:26 bazzite rpm-ostree[2388597]: client(id:cli dbus:1.2214 unit:session-6.scope uid:1000) added; new total=1
+jul 29 10:10:26 bazzite rpm-ostree[2388597]: client(id:cli dbus:1.2214 unit:session-6.scope uid:1000) vanished; remaining=0
+jul 29 10:10:26 bazzite rpm-ostree[2388597]: In idle state; will auto-exit in 60 seconds
+jul 29 10:10:29 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:10:29 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:10:56 bazzite systemd[1]: systemd-hostnamed.service: Deactivated successfully.
+jul 29 10:11:26 bazzite rpm-ostree[2388597]: In idle state; will auto-exit in 60 seconds
+jul 29 10:11:26 bazzite systemd[1]: rpm-ostreed.service: Deactivated successfully.
+jul 29 10:11:34 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:11:34 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:11:56 bazzite systemd[1]: Starting systemd-hostnamed.service - Hostname Service...
+jul 29 10:11:56 bazzite systemd[1]: Started systemd-hostnamed.service - Hostname Service.
+jul 29 10:11:56 bazzite systemd[1]: Starting rpm-ostreed.service - rpm-ostree System Management Daemon...
+jul 29 10:11:56 bazzite rpm-ostree[2420972]: Reading config file '/etc/rpm-ostreed.conf'
+jul 29 10:11:56 bazzite rpm-ostree[2420972]: In idle state; will auto-exit in 64 seconds
+jul 29 10:11:56 bazzite systemd[1]: Started rpm-ostreed.service - rpm-ostree System Management Daemon.
+jul 29 10:11:56 bazzite rpm-ostree[2420972]: Allowing active client :1.2217 (uid 1000)
+jul 29 10:11:56 bazzite rpm-ostree[2420972]: client(id:cli dbus:1.2217 unit:session-6.scope uid:1000) added; new total=1
+jul 29 10:11:56 bazzite rpm-ostree[2420972]: client(id:cli dbus:1.2217 unit:session-6.scope uid:1000) vanished; remaining=0
+jul 29 10:11:56 bazzite rpm-ostree[2420972]: In idle state; will auto-exit in 60 seconds
+jul 29 10:11:56 bazzite rpm-ostree[2420972]: Allowing active client :1.2219 (uid 1000)
+jul 29 10:11:56 bazzite rpm-ostree[2420972]: client(id:cli dbus:1.2219 unit:session-6.scope uid:1000) added; new total=1
+jul 29 10:11:56 bazzite rpm-ostree[2420972]: client(id:cli dbus:1.2219 unit:session-6.scope uid:1000) vanished; remaining=0
+jul 29 10:11:56 bazzite rpm-ostree[2420972]: In idle state; will auto-exit in 63 seconds
+jul 29 10:11:56 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:12:14 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:12:15 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:12:18 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:12:26 bazzite systemd[1]: systemd-hostnamed.service: Deactivated successfully.
+jul 29 10:12:39 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:12:39 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:13:00 bazzite systemd[1]: rpm-ostreed.service: Deactivated successfully.
+jul 29 10:13:44 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:13:44 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:14:10 bazzite kded6[5680]: No object for name "alsa_output.pci-0000_03_00.1.hdmi-stereo-extra3"
+jul 29 10:14:10 bazzite plasmashell[5891]: No object for name "alsa_output.pci-0000_03_00.1.hdmi-stereo-extra3"
+jul 29 10:14:10 bazzite kded6[5680]: No object for name "alsa_output.pci-0000_03_00.1.hdmi-stereo-extra3.monitor"
+jul 29 10:14:10 bazzite plasmashell[5891]: No object for name "alsa_output.pci-0000_03_00.1.hdmi-stereo-extra3.monitor"
+jul 29 10:14:10 bazzite kded6[5680]: No object for name "@DEFAULT_SINK@"
+jul 29 10:14:10 bazzite kded6[5680]: No object for name "@DEFAULT_SOURCE@"
+jul 29 10:14:10 bazzite plasmashell[5891]: No object for name "@DEFAULT_SINK@"
+jul 29 10:14:10 bazzite plasmashell[5891]: No object for name "@DEFAULT_SOURCE@"
+jul 29 10:14:10 bazzite kded6[5680]: No object for name "@DEFAULT_SINK@"
+jul 29 10:14:10 bazzite kded6[5680]: No object for name "@DEFAULT_SOURCE@"
+jul 29 10:14:10 bazzite plasmashell[5891]: No object for name "@DEFAULT_SINK@"
+jul 29 10:14:10 bazzite plasmashell[5891]: No object for name "@DEFAULT_SOURCE@"
+jul 29 10:14:10 bazzite kded6[5680]: No object for name "auto_null.monitor"
+jul 29 10:14:10 bazzite plasmashell[5891]: No object for name "auto_null.monitor"
+jul 29 10:14:16 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:14:17 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:14:49 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:14:49 bazzite kernel: HDR SB:e9 02 00 ee 7c 78 40 8e 3a 1c 75 60 1d a3 0b 09
+jul 29 10:14:49 bazzite kernel: HDR SB:3d 47 40 00 00 00 00 00 00 00 00 00 00 00 00 00
+jul 29 10:14:49 bazzite kernel: HDR SB:e9 02 00 ee 7c 78 40 8e 3a 1c 75 60 1d a3 0b 09
+jul 29 10:14:49 bazzite kernel: HDR SB:3d 47 40 00 00 00 00 00 00 00 00 00 00 00 00 00
+jul 29 10:14:49 bazzite kernel: HDR SB:e9 02 00 ee 7c 78 40 8e 3a 1c 75 60 1d a3 0b 09
+jul 29 10:14:49 bazzite kernel: HDR SB:3d 47 40 00 00 00 00 00 00 00 00 00 00 00 00 00
+jul 29 10:14:49 bazzite kernel: HDR SB:e9 02 00 ee 7c 78 40 8e 3a 1c 75 60 1d a3 0b 09
+jul 29 10:14:49 bazzite kernel: HDR SB:3d 47 40 00 00 00 00 00 00 00 00 00 00 00 00 00
+jul 29 10:14:49 bazzite tv-dpms-guard.sh[2477900]: reacendeu card1-HDMI-A-1: estava dpms=Off com a TV conectada
+jul 29 10:14:49 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:14:49 bazzite kernel: HDR SB:e9 02 00 ee 7c 78 40 8e 3a 1c 75 60 1d a3 0b 09
+jul 29 10:14:49 bazzite kernel: HDR SB:3d 47 40 00 00 00 00 00 00 00 00 00 00 00 00 00
+jul 29 10:14:49 bazzite plasmashell[5891]: No object for name "auto_null"
+jul 29 10:14:49 bazzite kded6[5680]: No object for name "auto_null"
+jul 29 10:14:49 bazzite plasmashell[5891]: No object for name "auto_null.monitor"
+jul 29 10:14:49 bazzite kded6[5680]: No object for name "auto_null.monitor"
+jul 29 10:14:49 bazzite kded6[5680]: No object for name "@DEFAULT_SINK@"
+jul 29 10:14:49 bazzite kded6[5680]: No object for name "@DEFAULT_SOURCE@"
+jul 29 10:14:49 bazzite plasmashell[5891]: No object for name "@DEFAULT_SINK@"
+jul 29 10:14:49 bazzite plasmashell[5891]: No object for name "@DEFAULT_SOURCE@"
+jul 29 10:14:49 bazzite plasmashell[5891]: No object for name "@DEFAULT_SINK@"
+jul 29 10:14:49 bazzite plasmashell[5891]: No object for name "@DEFAULT_SOURCE@"
+jul 29 10:14:49 bazzite kded6[5680]: No object for name "@DEFAULT_SINK@"
+jul 29 10:14:49 bazzite kded6[5680]: No object for name "@DEFAULT_SOURCE@"
+jul 29 10:14:49 bazzite kded6[5680]: No object for name "alsa_output.pci-0000_03_00.1.hdmi-stereo-extra3.monitor"
+jul 29 10:14:49 bazzite plasmashell[5891]: No object for name "alsa_output.pci-0000_03_00.1.hdmi-stereo-extra3.monitor"
+jul 29 10:14:56 bazzite systemd[1]: Starting systemd-hostnamed.service - Hostname Service...
+jul 29 10:14:56 bazzite systemd[1]: Started systemd-hostnamed.service - Hostname Service.
+jul 29 10:14:56 bazzite systemd[1]: Starting rpm-ostreed.service - rpm-ostree System Management Daemon...
+jul 29 10:14:56 bazzite rpm-ostree[2482038]: Reading config file '/etc/rpm-ostreed.conf'
+jul 29 10:14:56 bazzite rpm-ostree[2482038]: In idle state; will auto-exit in 60 seconds
+jul 29 10:14:56 bazzite systemd[1]: Started rpm-ostreed.service - rpm-ostree System Management Daemon.
+jul 29 10:14:56 bazzite rpm-ostree[2482038]: Allowing active client :1.2223 (uid 1000)
+jul 29 10:14:56 bazzite rpm-ostree[2482038]: client(id:cli dbus:1.2223 unit:session-5.scope uid:1000) added; new total=1
+jul 29 10:14:56 bazzite rpm-ostree[2482038]: client(id:cli dbus:1.2223 unit:session-5.scope uid:1000) vanished; remaining=0
+jul 29 10:14:56 bazzite rpm-ostree[2482038]: In idle state; will auto-exit in 61 seconds
+jul 29 10:14:56 bazzite rpm-ostree[2482038]: Allowing active client :1.2225 (uid 1000)
+jul 29 10:14:56 bazzite rpm-ostree[2482038]: client(id:cli dbus:1.2225 unit:session-5.scope uid:1000) added; new total=1
+jul 29 10:14:56 bazzite rpm-ostree[2482038]: client(id:cli dbus:1.2225 unit:session-5.scope uid:1000) vanished; remaining=0
+jul 29 10:14:56 bazzite rpm-ostree[2482038]: In idle state; will auto-exit in 63 seconds
+jul 29 10:15:26 bazzite systemd[1]: systemd-hostnamed.service: Deactivated successfully.
+jul 29 10:15:54 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:15:54 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:15:59 bazzite systemd[1]: rpm-ostreed.service: Deactivated successfully.
+jul 29 10:16:18 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:16:19 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:16:59 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:16:59 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:18:04 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:18:04 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:18:20 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:18:21 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:19:09 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:19:09 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:20:14 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:20:14 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:20:22 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:20:23 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:21:08 bazzite env[1683]: [47.9K blob data]
+jul 29 10:21:19 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:21:19 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:22:24 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:22:24 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:22:24 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:22:25 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:23:29 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:23:29 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:24:26 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:24:27 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:24:34 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:24:34 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:25:39 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:25:39 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:26:28 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:26:29 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:26:44 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:26:44 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:27:49 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:27:49 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:28:30 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:28:31 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:28:54 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:28:54 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:29:54 bazzite kded6[5680]: Failed to stat /proc/2778672 Arquivo ou diretório inexistente
+jul 29 10:29:54 bazzite kded6[5680]: Failed to stat /proc/2778673 Arquivo ou diretório inexistente
+jul 29 10:29:54 bazzite kded6[5680]: Failed to stat /proc/2778674 Arquivo ou diretório inexistente
+jul 29 10:29:59 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:29:59 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:30:32 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:30:33 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:31:04 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:31:04 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:32:09 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:32:09 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:32:34 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:32:36 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:33:14 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:33:14 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:34:19 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:34:19 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:34:37 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:34:38 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:35:24 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:35:24 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:36:29 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:36:29 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:36:39 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:36:40 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:37:34 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:37:34 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:38:39 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:38:39 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:38:41 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:38:42 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:39:34 bazzite env[1683]: [48K blob data]
+jul 29 10:39:44 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:39:44 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:40:43 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:40:44 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:40:49 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:40:49 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:41:54 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:41:54 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:42:45 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:42:46 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:42:59 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:42:59 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:44:04 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:44:04 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:44:47 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:44:48 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:45:09 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:45:09 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:46:14 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:46:14 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:46:49 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:46:50 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:47:01 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:47:02 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:47:03 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:47:03 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 10:47:19 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:47:19 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:48:04 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:48:05 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:48:05 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 10:48:24 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:48:24 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:49:29 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:49:29 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:49:54 bazzite kded6[5680]: Failed to stat /proc/3170613 Arquivo ou diretório inexistente
+jul 29 10:49:54 bazzite kded6[5680]: Failed to stat /proc/3170615 Arquivo ou diretório inexistente
+jul 29 10:50:06 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:50:07 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:50:34 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:50:34 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:51:39 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:51:39 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:52:09 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:52:10 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:52:44 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:52:44 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:53:49 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:53:49 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:54:11 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:54:12 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:54:54 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:54:54 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:55:59 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:55:59 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:56:13 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:56:14 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:56:34 bazzite cupsd[1476]: REQUEST localhost - - "POST / HTTP/1.1" 200 199 Renew-Subscription successful-ok
+jul 29 10:56:35 bazzite cupsd[1476]: REQUEST localhost - - "POST / HTTP/1.1" 200 199 Renew-Subscription successful-ok
+jul 29 10:57:04 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:57:04 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:58:02 bazzite env[1683]: [48K blob data]
+jul 29 10:58:09 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:58:09 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).
+jul 29 10:58:15 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:58:16 bazzite openrgb[1478]: [NetworkServer] recv_select failed receiving magic, closing listener
+jul 29 10:59:14 bazzite systemd[1588]: Starting tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar)...
+jul 29 10:59:14 bazzite systemd[1588]: Finished tv-dpms-guard.service - Reacende o output HDMI se o pipeline cair (TV desligada nao gera hotplug ao religar).

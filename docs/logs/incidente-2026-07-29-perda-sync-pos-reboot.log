@@ -1,0 +1,83 @@
+### EVENTOS DO gpu-rgb-sync NESTE BOOT (evidencia central) ###
+### O header ficou em BRANCO de 16:49:07 ate 18:57:40 (2h08min) ###
+### e as fans do gabinete permaneceram em Rainbow o tempo todo. ###
+
+jul 29 16:49:05 bazzite systemd[1586]: Started gpu-rgb-sync.service - GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa).
+jul 29 16:49:05 bazzite bash[1680]: gpu-rgb-sync: backend de GPU detectado = amd.
+jul 29 16:49:07 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+jul 29 18:57:40 bazzite bash[1680]: GPU ociosa ha 60s - LEDs apagados.
+jul 29 19:01:05 bazzite bash[1680]: GPU ativa - LEDs ligados (branco estatico).
+
+### openrgb.service neste boot ###
+jul 29 16:49:04 bazzite systemd[1]: Started openrgb.service - OpenRGB SDK Server.
+jul 29 16:49:04 bazzite openrgb[1479]: Connection attempt failed
+jul 29 16:49:04 bazzite openrgb[1479]: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+jul 29 16:49:04 bazzite openrgb[1479]: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+jul 29 16:49:04 bazzite openrgb[1479]: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+
+### erros de kernel relacionados a i2c/hid/usb neste boot ###
+jul 29 16:48:56 bazzite kernel: usb 1-8.1: device descriptor read/64, error -32
+jul 29 18:53:53 bazzite kernel: usb 1-8.3: USB disconnect, device number 8
+(vazio acima = nenhum erro registrado)
+
+### inicio do boot (contexto) ###
+jul 29 16:48:55 bazzite kernel: Linux version 7.1.3-ogc5.1.fc44.x86_64 (root@b5a90b30afb6) (gcc (GCC) 16.1.1 20260515 (Red Hat 16.1.1-2), GNU ld version 2.46.1-1.fc44) #1 SMP PREEMPT_DYNAMIC Tue Jul 21 03:41:50 UTC 2026
+jul 29 16:48:55 bazzite kernel: Command line: BOOT_IMAGE=(hd1,gpt2)/ostree/default-d9bc7207ad469555d847da991f246d37eaa3e11d23f7006d8038d8496a1ae7fa/vmlinuz-7.1.3-ogc5.1.fc44.x86_64 ostree=/ostree/boot.0/default/d9bc7207ad469555d847da991f246d37eaa3e11d23f7006d8038d8496a1ae7fa/0 rhgb quiet root=UUID=<REDIGIDO> vconsole.keymap=br rootflags=subvol=root rw bluetooth.disable_ertm=1 amdgpu.ppfeaturemask=0xffffffff
+jul 29 16:48:55 bazzite kernel: BIOS-provided physical RAM map:
+jul 29 16:48:55 bazzite kernel: NX (Execute Disable) protection: active
+jul 29 16:48:55 bazzite kernel: APIC: Static calls initialized
+jul 29 16:48:55 bazzite kernel: efi: EFI v2.8 by American Megatrends
+jul 29 16:48:55 bazzite kernel: efi: ACPI=0x7851e000 ACPI 2.0=0x7851e014 TPMFinalLog=0x7866c000 SMBIOS=0x79a01000 SMBIOS 3.0=0x79a00000 MEMATTR=0x70fc2818 ESRT=0x71981d18 MOKvar=0x79748000 RNG=0x7847bc18 TPMEventLog=0x7836a018 
+jul 29 16:48:55 bazzite kernel: random: crng init done
+jul 29 16:48:55 bazzite kernel: efi: Remove mem86: MMIO range=[0xc0000000-0xcfffffff] (256MB) from e820 map
+jul 29 16:48:55 bazzite kernel: e820: remove [mem 0xc0000000-0xcfffffff] device reserved
+jul 29 16:48:55 bazzite kernel: efi: Not removing mem87: MMIO range=[0xfe000000-0xfe010fff] (68KB) from e820 map
+jul 29 16:48:55 bazzite kernel: efi: Not removing mem88: MMIO range=[0xfec00000-0xfec00fff] (4KB) from e820 map
+jul 29 16:48:55 bazzite kernel: efi: Not removing mem89: MMIO range=[0xfed00000-0xfed00fff] (4KB) from e820 map
+jul 29 16:48:55 bazzite kernel: efi: Not removing mem91: MMIO range=[0xfee00000-0xfee00fff] (4KB) from e820 map
+jul 29 16:48:55 bazzite kernel: efi: Remove mem92: MMIO range=[0xff000000-0xffffffff] (16MB) from e820 map
+jul 29 16:48:55 bazzite kernel: e820: remove [mem 0xff000000-0xffffffff] device reserved
+jul 29 16:48:55 bazzite kernel: DMI: SMBIOS 3.5.0 present.
+jul 29 16:48:55 bazzite kernel: DMI: ASUS System Product Name/PRIME B760M-A D4, BIOS 1663 08/08/2024
+jul 29 16:48:55 bazzite kernel: DMI: Memory slots populated: 2/4
+jul 29 16:48:55 bazzite kernel: tsc: Detected 2500.000 MHz processor
+jul 29 16:48:55 bazzite kernel: tsc: Detected 2496.000 MHz TSC
+jul 29 16:48:55 bazzite kernel: e820: update [mem 0x00000000-0x00000fff] System RAM ==> device reserved
+jul 29 16:48:55 bazzite kernel: e820: remove [mem 0x000a0000-0x000fffff] System RAM
+jul 29 16:48:55 bazzite kernel: last_pfn = 0x880000 max_arch_pfn = 0x400000000
+jul 29 16:48:55 bazzite kernel: MTRR map: 5 entries (3 fixed + 2 variable; max 23), built from 10 variable MTRRs
+jul 29 16:48:55 bazzite kernel: x86/PAT: Configuration [0-7]: WB  WC  UC- UC  WB  WP  UC- WT  
+jul 29 16:48:55 bazzite kernel: last_pfn = 0x7a000 max_arch_pfn = 0x400000000
+jul 29 16:48:55 bazzite kernel: esrt: Reserving ESRT space from 0x0000000071981d18 to 0x0000000071981df0.
+jul 29 16:48:55 bazzite kernel: e820: update [mem 0x71981000-0x71981fff] System RAM ==> device reserved
+jul 29 16:48:55 bazzite kernel: Using GB pages for direct mapping
+jul 29 16:48:55 bazzite kernel: Secure boot disabled
+jul 29 16:48:55 bazzite kernel: RAMDISK: [mem 0x326f3000-0x41747fff]
+jul 29 16:48:55 bazzite kernel: No NUMA configuration found
+jul 29 16:48:55 bazzite kernel: Faking a node at [mem 0x0000000000000000-0x000000087fffffff]
+jul 29 16:48:55 bazzite kernel: NODE_DATA(0) allocated [mem 0x87ffd4f80-0x87fffffff]
+jul 29 16:48:55 bazzite kernel: IOAPIC[0]: apic_id 2, version 32, address 0xfec00000, GSI 0-119
+jul 29 16:48:55 bazzite kernel: e820: update [mem 0x6edb5000-0x6ee21fff] System RAM ==> device reserved
+jul 29 16:48:55 bazzite kernel: TSC deadline timer available
+jul 29 16:48:55 bazzite kernel: CPU topo: Max. logical packages:   1
+jul 29 16:48:55 bazzite kernel: CPU topo: Max. logical nodes:      1
+jul 29 16:48:55 bazzite kernel: CPU topo: Num. nodes per package:  1
+jul 29 16:48:55 bazzite kernel: CPU topo: Max. logical dies:       1
+jul 29 16:48:55 bazzite kernel: CPU topo: Max. dies per package:   1
+jul 29 16:48:55 bazzite kernel: CPU topo: Max. threads per core:   2
+jul 29 16:48:55 bazzite kernel: CPU topo: Num. cores per package:    10
+jul 29 16:48:55 bazzite kernel: CPU topo: Num. threads per package:  16
+jul 29 16:48:55 bazzite kernel: CPU topo: Allowing 16 present CPUs plus 0 hotplug CPUs
+jul 29 16:48:55 bazzite kernel: [gap 0x80000000-0xfdffffff] available for PCI devices
+jul 29 16:48:55 bazzite kernel: Booting paravirtualized kernel on bare hardware
+jul 29 16:48:55 bazzite kernel: clocksource: refined-jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1910969940391419 ns
+jul 29 16:48:55 bazzite kernel: Zone ranges:
+jul 29 16:48:55 bazzite kernel:   DMA      [mem 0x0000000000001000-0x0000000000ffffff]
+jul 29 16:48:55 bazzite kernel:   DMA32    [mem 0x0000000001000000-0x00000000ffffffff]
+jul 29 16:48:55 bazzite kernel:   Normal   [mem 0x0000000100000000-0x000000087fffffff]
+jul 29 16:48:55 bazzite kernel:   Device   empty
+jul 29 16:48:55 bazzite kernel: Movable zone start for each node
+jul 29 16:48:55 bazzite kernel: Early memory node ranges
+jul 29 16:48:55 bazzite kernel:   node   0: [mem 0x0000000000001000-0x000000000009dfff]
+jul 29 16:48:55 bazzite kernel:   node   0: [mem 0x000000000009f000-0x000000000009ffff]
+jul 29 16:48:55 bazzite kernel:   node   0: [mem 0x0000000000100000-0x0000000063e9bfff]

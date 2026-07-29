@@ -1,0 +1,35 @@
+Connected to server
+Network client listener started
+Client: Received controller count from server: 3
+Client: Requesting controller 0
+Client: Requesting controller 1
+Client: Requesting controller 2
+Client: All controllers received, adding them to master list
+0: ENE DRAM
+  Type:           DRAM
+  Description:    ENE SMBus Device
+  Version:        I2C: SMBus I801 adapter at 0000:00:1f.4 (/dev/i2c-10), address 0x71
+  Location:       I2C: SMBus I801 adapter at 0000:00:1f.4 (/dev/i2c-10), address 0x71
+  Modes: Direct Off [Static] Breathing Flashing 'Spectrum Cycle' Rainbow 'Chase Fade' Chase 'Random Flicker'
+  Zones: DRAM
+  LEDs: 'DRAM LED 1' 'DRAM LED 2' 'DRAM LED 3' 'DRAM LED 4' 'DRAM LED 5' 'DRAM LED 6' 'DRAM LED 7' 'DRAM LED 8'
+
+1: ENE DRAM
+  Type:           DRAM
+  Description:    ENE SMBus Device
+  Version:        I2C: SMBus I801 adapter at 0000:00:1f.4 (/dev/i2c-10), address 0x73
+  Location:       I2C: SMBus I801 adapter at 0000:00:1f.4 (/dev/i2c-10), address 0x73
+  Modes: Direct Off [Static] Breathing Flashing 'Spectrum Cycle' Rainbow 'Chase Fade' Chase 'Random Flicker'
+  Zones: DRAM
+  LEDs: 'DRAM LED 1' 'DRAM LED 2' 'DRAM LED 3' 'DRAM LED 4' 'DRAM LED 5' 'DRAM LED 6' 'DRAM LED 7' 'DRAM LED 8'
+
+2: ASUS PRIME B760M-A D4
+  Type:           Motherboard
+  Description:    ASUS Aura USB Mainboard Device
+  Version:        HID: /dev/hidraw2
+  Location:       HID: /dev/hidraw2
+  Serial:         9876543210
+  Modes: Direct Off [Static] Breathing Flashing 'Spectrum Cycle' Rainbow 'Chase Fade' Chase
+  Zones: 'Aura Mainboard' 'Aura Addressable 1' 'Aura Addressable 2' 'Aura Addressable 3'
+  LEDs: 'Aura Mainboard, LED 1' 'Aura Addressable 1, LED 1' 'Aura Addressable 1, LED 2' 'Aura Addressable 1, LED 3' 'Aura Addressable 1, LED 4' 'Aura Addressable 1, LED 5' 'Aura Addressable 1, LED 6' 'Aura Addressable 1, LED 7' 'Aura Addressable 1, LED 8' 'Aura Addressable 2, LED 1' 'Aura Addressable 2, LED 2' 'Aura Addressable 2, LED 3' 'Aura Addressable 2, LED 4' 'Aura Addressable 2, LED 5' 'Aura Addressable 2, LED 6' 'Aura Addressable 2, LED 7' 'Aura Addressable 2, LED 8' 'Aura Addressable 3, LED 1' 'Aura Addressable 3, LED 2' 'Aura Addressable 3, LED 3' 'Aura Addressable 3, LED 4' 'Aura Addressable 3, LED 5' 'Aura Addressable 3, LED 6' 'Aura Addressable 3, LED 7' 'Aura Addressable 3, LED 8' 'Aura Addressable 3, LED 9' 'Aura Addressable 3, LED 10' 'Aura Addressable 3, LED 11' 'Aura Addressable 3, LED 12' 'Aura Addressable 3, LED 13' 'Aura Addressable 3, LED 14' 'Aura Addressable 3, LED 15' 'Aura Addressable 3, LED 16' 'Aura Addressable 3, LED 17' 'Aura Addressable 3, LED 18' 'Aura Addressable 3, LED 19' 'Aura Addressable 3, LED 20' 'Aura Addressable 3, LED 21' 'Aura Addressable 3, LED 22' 'Aura Addressable 3, LED 23' 'Aura Addressable 3, LED 24' 'Aura Addressable 3, LED 25' 'Aura Addressable 3, LED 26' 'Aura Addressable 3, LED 27' 'Aura Addressable 3, LED 28' 'Aura Addressable 3, LED 29' 'Aura Addressable 3, LED 30' 'Aura Addressable 3, LED 31' 'Aura Addressable 3, LED 32' 'Aura Addressable 3, LED 33' 'Aura Addressable 3, LED 34' 'Aura Addressable 3, LED 35' 'Aura Addressable 3, LED 36' 'Aura Addressable 3, LED 37' 'Aura Addressable 3, LED 38' 'Aura Addressable 3, LED 39' 'Aura Addressable 3, LED 40'
+
