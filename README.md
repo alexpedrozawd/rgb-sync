@@ -64,9 +64,10 @@ depois de fechar.
   - **NVIDIA** (RTX 5060 Ti anterior): lê utilização + potência via `nvidia-smi`.
   - Detecção de qual backend usar é automática, uma vez, no arranque — trocar
     de GPU não exige editar nada.
-- GPU ativa → acende tudo em branco estático. Reafirma a cada 2 min
-  (`DEFAULT_REASSERT_SECONDS`) enquanto continuar ativa, não a cada ciclo/10s
-  — ver "⚠️ Risco conhecido" e "Bugs corrigidos" abaixo pro motivo.
+- GPU ativa → acende tudo em branco estático. Reafirma a cada 5 min
+  (`ON_REASSERT_SECONDS`) enquanto continuar ativa, não a cada ciclo/10s — ver
+  "⚠️ Risco conhecido" e "Bugs corrigidos" abaixo pro motivo (intervalo mais
+  conservador que o do "off" de propósito, por segurança extra).
 - GPU ociosa por 60s (`DEBOUNCE_SECONDS`) → apaga tudo.
 - Enquanto ocioso, re-afirma o "apagado" a cada 2 min (`DEFAULT_REASSERT_SECONDS`)
   pra corrigir qualquer drift (ex: alguém mexeu no software da Aura por fora).
@@ -76,9 +77,9 @@ depois de fechar.
   outra coisa — cobre reboot, logout/login, crash do serviço.
 
 Variáveis de ambiente pra afinar sem editar o script (`DEBOUNCE_SECONDS`,
-`DEFAULT_REASSERT_SECONDS`, `SLEEP_SECONDS`, `UTIL_THRESHOLD_PCT`,
-`POWER_THRESHOLD_W`) — dá pra sobrescrever no `ExecStart` do
-`systemd/gpu-rgb-sync.service` se precisar.
+`DEFAULT_REASSERT_SECONDS`, `ON_REASSERT_SECONDS`, `SLEEP_SECONDS`,
+`UTIL_THRESHOLD_PCT`, `POWER_THRESHOLD_W`) — dá pra sobrescrever no
+`ExecStart` do `systemd/gpu-rgb-sync.service` se precisar.
 
 ## Depois de uma queda de energia total
 
@@ -110,12 +111,16 @@ prova que o hub estava funcionando**: LEDs endereçáveis (WS2812) retêm a
 aceso e parado" era só a última cor latched antes do travamento, não sinal de
 vida.
 
-Causa suspeita (não 100% confirmada, só 1 incidente): o script chegou a
+Causa suspeita (não 100% confirmada, só 1 incidente — analisado em detalhe:
+não há nenhum erro de kernel/USB/I2C na janela do incidente, o que bate com
+uma falha interna ao firmware do hub, invisível pro host): o script chegou a
 reenviar o comando "ligado" a cada 10 segundos, sem parar, enquanto a GPU
-ficava ativa — numa sessão longa isso é centenas de comandos repetidos pro
-mesmo hub, e a suspeita é que sobrecarregou o firmware frágil dele. Corrigido
-voltando a reafirmar só a cada `DEFAULT_REASSERT_SECONDS` (2 min), igual já
-era feito do lado "apagado".
+ficava ativa. A única sessão ativa longa do dia (19min contínuos) terminou
+bem na hora em que o problema foi notado — coincidência forte, ainda que não
+seja prova definitiva. Nessa janela foram ~114 comandos repetidos pro mesmo
+hub. Corrigido voltando a reafirmar o "ligado" a cada `ON_REASSERT_SECONDS`
+(5 min, mais conservador de propósito que o `DEFAULT_REASSERT_SECONDS` do
+lado "apagado", que ficou em 2 min).
 
 **Isso é uma falha de segurança real, não cosmética**: fans de gabinete
 paradas comprometem o fluxo de ar sob carga (jogo, LLM, render). Se as fans do
@@ -178,8 +183,9 @@ longas de carga pesada.
   numa sessão longa de jogo aparentemente sobrecarregou o firmware do hub —
   fans do gabinete pararam de girar e o controle remoto ficou sem resposta
   nenhuma (ver "⚠️ Risco conhecido" acima). Corrigido trocando "a cada ciclo"
-  por "a cada `DEFAULT_REASSERT_SECONDS` (2min)", mantendo a correção da
-  corrida de boot original sem martelar o hub continuamente.
+  por "a cada `ON_REASSERT_SECONDS` (5min, separado do `DEFAULT_REASSERT_SECONDS`
+  de 2min usado no lado "apagado")", mantendo a correção da corrida de boot
+  original sem martelar o hub continuamente.
 - **Log dizia "Rainbow"** depois de trocar o efeito pra branco estático — só
   texto, sem efeito funcional.
 

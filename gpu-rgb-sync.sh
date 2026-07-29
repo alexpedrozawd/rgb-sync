@@ -101,10 +101,17 @@ POWER_THRESHOLD_W=25
 #                            ocioso. So reenvia o MESMO estado (sem transicao,
 #                            sem risco de flicker) -- 120s corrige drift em ate
 #                            2min, com trafego SMBus/HID irrisorio (30 writes/h).
+#  ON_REASSERT_SECONDS      : de quanto em quanto re-afirmar o "ligado" enquanto
+#                            a GPU continua ativa. Mais conservador que o do
+#                            "off" (300s = 5min) por seguranca extra: o hub de
+#                            fans ja travou 1x (2026-07-29) com reassert
+#                            frequente demais (10s) numa sessao longa de jogo --
+#                            ver BLINDAGEM no topo do arquivo.
 #  SLEEP_SECONDS            : intervalo do laco de verificacao (tambem controla
 #                            a velocidade do auto-retry do "ligar" no boot).
 DEBOUNCE_SECONDS="${DEBOUNCE_SECONDS:-60}"
 DEFAULT_REASSERT_SECONDS="${DEFAULT_REASSERT_SECONDS:-120}"
+ON_REASSERT_SECONDS="${ON_REASSERT_SECONDS:-300}"
 SLEEP_SECONDS="${SLEEP_SECONDS:-10}"
 
 # --- Deteccao do backend de GPU (uma vez, no arranque) -----------------------
@@ -191,8 +198,8 @@ while true; do
       estado_atual="on"
       ultima_reafirmacao_epoch=$agora
       echo "GPU ativa - LEDs ligados (branco estatico)."
-    elif [ $((agora - ultima_reafirmacao_epoch)) -ge "$DEFAULT_REASSERT_SECONDS" ]; then
-      # Blindagem: reafirma o "ligado" a cada DEFAULT_REASSERT_SECONDS (nao mais
+    elif [ $((agora - ultima_reafirmacao_epoch)) -ge "$ON_REASSERT_SECONDS" ]; then
+      # Blindagem: reafirma o "ligado" a cada ON_REASSERT_SECONDS (nao mais
       # a cada ciclo/10s) -- fecha a mesma corrida de boot do dispositivo Aura
       # nao estar pronto, mas SEM martelar o hub com comando repetido o tempo
       # todo. Suspeita forte (2026-07-29): reenviar a cada 10s numa sessao longa
