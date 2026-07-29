@@ -34,20 +34,31 @@
 #   so mais devagar). Ver openrgb.service -- precisa estar habilitado e, por
 #   seguranca, com bind restrito a 127.0.0.1 (o default do pacote e 0.0.0.0).
 #
-# BLINDAGEM (2026-07-06, reforcada em 2026-07-28):
+# BLINDAGEM (2026-07-06, reforcada em 2026-07-28, corrigida em 2026-07-29):
 #   (1) forca o estado padrao (apagado) ja no ARRANQUE -> cobre reboot / shutdown
 #       / queda de energia: assim que a sessao grafica sobe e o servico inicia,
 #       os LEDs voltam ao padrao;
-#   (2) RE-AFIRMA o estado padrao periodicamente enquanto ocioso -> corrige
-#       qualquer "drift" (Aura/RAM voltarem sozinhos pro efeito de fabrica depois
-#       de uma queda de energia, ou uma corrida de boot em que o 1o "off" nao
-#       pegou porque o dispositivo ainda nao estava pronto);
-#   (3) reaplica o "ligado" a CADA CICLO enquanto a GPU estiver ativa, nao so na
-#       1a transicao -> fecha a mesma corrida de boot do lado do "ligar": se o
-#       dispositivo Aura ainda nao estava pronto no exato momento em que a GPU
-#       ficou ativa logo apos o boot, o proximo ciclo (10s depois) corrige
-#       sozinho. Bug real observado em 2026-07-28: RAMs ligavam no boot mas
-#       fans+water cooler (zona 3) ficavam apagados ate uma reaplicacao manual.
+#   (2) RE-AFIRMA o estado padrao (e o ligado) a cada DEFAULT_REASSERT_SECONDS,
+#       NAO a cada ciclo/10s -> corrige "drift" (Aura/RAM voltarem sozinhos pro
+#       efeito de fabrica, ou uma corrida de boot em que o 1o comando nao pegou
+#       porque o dispositivo ainda nao estava pronto) sem martelar o hub com
+#       comando repetido o tempo todo.
+#
+#   HISTORICO DESSE PONTO (importante nao repetir): entre 2026-07-28 e 07-29 o
+#   "ligado" chegou a ser reenviado a CADA ciclo (10s) enquanto a GPU ficava
+#   ativa, pra fechar uma corrida de boot (RAMs ligavam mas fans+water cooler
+#   ficavam apagados ate reaplicacao manual). Ficou detectado que isso E
+#   PERIGOSO: numa sessao longa de jogo (2026-07-29), o microcontrolador do hub
+#   Rise Mode travou -- fans do gabinete PARARAM DE GIRAR e o controle remoto
+#   ficou 100% sem resposta (nem ON M/B, nem cor, nada), so voltando com um
+#   power-cycle isolado do cabo de energia do hub. Os LEDs endereçaveis (estilo
+#   WS2812) RETEM a ultima cor recebida indefinidamente sem precisar de sinal
+#   continuo -- entao "LED branco aceso e parado" NAO prova que o hub estava
+#   vivo, so que a ultima cor ficou latched enquanto o controlador ja tinha
+#   travado. Suspeita forte (nao 100% provada, so 1 incidente): o bombardeio de
+#   comando a cada 10s sobrecarregou o firmware fragil do hub. Corrigido
+#   voltando a reafirmar so a cada DEFAULT_REASSERT_SECONDS (mesmo intervalo do
+#   lado "apagado"). NAO reverter pra "a cada ciclo" sem entender esse risco.
 #
 # LIMITE FISICO (nenhum software resolve): se o hub Rise Mode sair do modo
 #   "M/B Sync" apos uma queda de energia TOTAL, ele passa a ignorar o header ARGB
@@ -175,13 +186,24 @@ while true; do
 
   if gpu_ativa; then
     ultima_atividade_epoch=$agora
-    # Blindagem: reaplica a cada ciclo (nao so na 1a transicao) -- estatico nao
-    # tem animacao pra reiniciar, entao isso e barato e fecha a corrida de boot
-    # em que o 1o "ligar" e disparado antes do dispositivo Aura estar pronto.
-    leds_ligar
     if [ "$estado_atual" != "on" ]; then
+      leds_ligar
       estado_atual="on"
+      ultima_reafirmacao_epoch=$agora
       echo "GPU ativa - LEDs ligados (branco estatico)."
+    elif [ $((agora - ultima_reafirmacao_epoch)) -ge "$DEFAULT_REASSERT_SECONDS" ]; then
+      # Blindagem: reafirma o "ligado" a cada DEFAULT_REASSERT_SECONDS (nao mais
+      # a cada ciclo/10s) -- fecha a mesma corrida de boot do dispositivo Aura
+      # nao estar pronto, mas SEM martelar o hub com comando repetido o tempo
+      # todo. Suspeita forte (2026-07-29): reenviar a cada 10s numa sessao longa
+      # de jogo parece ter travado o microcontrolador do hub (fans pararam de
+      # girar e o controle remoto ficou 100% sem resposta, ate um power-cycle
+      # isolado do hub religar) -- os LEDs WS2812 retem a ultima cor recebida
+      # indefinidamente sem precisar de sinal continuo, entao "LED aceso e
+      # parado" NAO prova que o hub estava vivo, so que a ultima cor ficou
+      # latched enquanto o controlador ja tinha travado.
+      leds_ligar
+      ultima_reafirmacao_epoch=$agora
     fi
   else
     if [ "$estado_atual" = "on" ] && [ $((agora - ultima_atividade_epoch)) -ge "$DEBOUNCE_SECONDS" ]; then

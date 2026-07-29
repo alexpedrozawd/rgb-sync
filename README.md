@@ -64,8 +64,9 @@ depois de fechar.
   - **NVIDIA** (RTX 5060 Ti anterior): lê utilização + potência via `nvidia-smi`.
   - Detecção de qual backend usar é automática, uma vez, no arranque — trocar
     de GPU não exige editar nada.
-- GPU ativa → acende tudo em branco estático. Continua reaplicando a cada
-  ciclo enquanto ativa (não só na 1ª vez — ver "Bugs corrigidos" abaixo).
+- GPU ativa → acende tudo em branco estático. Reafirma a cada 2 min
+  (`DEFAULT_REASSERT_SECONDS`) enquanto continuar ativa, não a cada ciclo/10s
+  — ver "⚠️ Risco conhecido" e "Bugs corrigidos" abaixo pro motivo.
 - GPU ociosa por 60s (`DEBOUNCE_SECONDS`) → apaga tudo.
 - Enquanto ocioso, re-afirma o "apagado" a cada 2 min (`DEFAULT_REASSERT_SECONDS`)
   pra corrigir qualquer drift (ex: alguém mexeu no software da Aura por fora).
@@ -98,6 +99,47 @@ mostram uma causa definitiva (o boot simplesmente para de logar, sem panic),
 mas o padrão bate com "hub esperando dado que nunca chega". Com sinal válido
 presente, o mesmo botão funcionou sem problema nenhum.
 
+## ⚠️ Risco conhecido: hub pode travar (fans param de girar)
+
+**Incidente real (2026-07-29):** durante uma sessão longa de jogo, o
+microcontrolador do hub Rise Mode travou — as 8 fans do gabinete **pararam de
+girar completamente** e o controle remoto do hub ficou 100% sem resposta (nem
+cor, nem ON M/B, nada). Os LEDs continuaram acesos em branco, **mas isso não
+prova que o hub estava funcionando**: LEDs endereçáveis (WS2812) retêm a
+última cor recebida indefinidamente, sem precisar de sinal contínuo — o "LED
+aceso e parado" era só a última cor latched antes do travamento, não sinal de
+vida.
+
+Causa suspeita (não 100% confirmada, só 1 incidente): o script chegou a
+reenviar o comando "ligado" a cada 10 segundos, sem parar, enquanto a GPU
+ficava ativa — numa sessão longa isso é centenas de comandos repetidos pro
+mesmo hub, e a suspeita é que sobrecarregou o firmware frágil dele. Corrigido
+voltando a reafirmar só a cada `DEFAULT_REASSERT_SECONDS` (2 min), igual já
+era feito do lado "apagado".
+
+**Isso é uma falha de segurança real, não cosmética**: fans de gabinete
+paradas comprometem o fluxo de ar sob carga (jogo, LLM, render). Se as fans do
+hub pararem de girar de novo:
+
+1. Pare o serviço: `systemctl --user stop gpu-rgb-sync.service`.
+2. Evite carga pesada até resolver (temperatura pode subir mais rápido que o
+   normal sem essas fans).
+3. Teste o controle remoto do hub. Se **nenhum botão** funcionar (nem trocar
+   cor, nem M/B), o microcontrolador dele travou — não tem correção por
+   software.
+4. Corrija com um power-cycle **isolado do hub**: PC desligado, desconecte só
+   o cabo de alimentação (SATA/Molex) do hub por uns 30s, reconecte, ligue o
+   PC. Isso resetou o problema no incidente real.
+5. Depois disso o hub volta pro Rainbow autônomo dele (mesmo comportamento de
+   uma queda de energia total — ver seção abaixo) — normal, siga o
+   procedimento de "ON M/B".
+
+**Limitação real, sem solução por software**: não há sensor de RPM exposto
+pelo sistema operacional pros fan headers desse hub (só a GPU tem sensor de
+fan próprio, sem relação). Não dá pra detectar "fans paradas" automaticamente
+— depende de checagem física/auditiva ocasional, especialmente em sessões
+longas de carga pesada.
+
 ## Como remapear zonas (se trocar hub/water cooler/placa)
 
 1. Pare o serviço pra evitar interferência: `systemctl --user stop gpu-rgb-sync.service`.
@@ -126,13 +168,18 @@ presente, o mesmo botão funcionou sem problema nenhum.
 
 ## Bugs corrigidos (histórico)
 
-- **Corrida de boot no "ligar"**: o script só mandava o comando de ligar uma
-  vez, na transição. Se disparasse antes do dispositivo Aura estar pronto
-  (ex: jogo abrindo automático logo no login), falhava silenciosamente e nunca
-  mais tentava — RAMs ligavam (mais rápidas a responder) mas fans+water cooler
-  ficavam apagados. Corrigido reaplicando o comando a cada ciclo (10s) enquanto
-  a GPU estiver ativa, não só na 1ª vez. Seguro porque o efeito é estático (sem
-  animação pra "reiniciar").
+- **Corrida de boot no "ligar"** (2026-07-28): o script só mandava o comando
+  de ligar uma vez, na transição. Se disparasse antes do dispositivo Aura
+  estar pronto (ex: jogo abrindo automático logo no login), falhava
+  silenciosamente e nunca mais tentava — RAMs ligavam (mais rápidas a
+  responder) mas fans+water cooler ficavam apagados. Corrigido reaplicando o
+  comando a cada ciclo (10s) enquanto a GPU estivesse ativa.
+- **Hub travou com o fix acima** (2026-07-29): reenviar o comando a cada 10s
+  numa sessão longa de jogo aparentemente sobrecarregou o firmware do hub —
+  fans do gabinete pararam de girar e o controle remoto ficou sem resposta
+  nenhuma (ver "⚠️ Risco conhecido" acima). Corrigido trocando "a cada ciclo"
+  por "a cada `DEFAULT_REASSERT_SECONDS` (2min)", mantendo a correção da
+  corrida de boot original sem martelar o hub continuamente.
 - **Log dizia "Rainbow"** depois de trocar o efeito pra branco estático — só
   texto, sem efeito funcional.
 
