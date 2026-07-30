@@ -121,24 +121,74 @@ FAN_ZONE_LED_LABEL="Aura Addressable ${FAN_ZONE_INDEX}, LED "
 # Cor do estado "ligado". Branco estatico escolhido no lugar do Rainbow (2026-07-28,
 # comparado lado a lado com o hardware na frente -- decisao do usuario).
 #
-# A0A0A0 em vez de FFFFFF (2026-07-29, aprovado pelo usuario): FFFFFF e o estado de
-#   CORRENTE MAXIMA POSSIVEL de todo o array ARGB (~60 mA por LED em branco pleno).
-#   A janela de 19 min que travou o hub em 2026-07-29 foi, ao mesmo tempo, a maior
-#   sequencia de comandos repetidos do dia E o maior periodo continuo de corrente
-#   maxima -- as duas hipoteses tem correlacao identica e o diagnostico original so
-#   considerava a primeira. A0 = 160/255 = ~63% de duty, o que corta ~37% da
-#   corrente do array com diferenca visual minima (continua branco, so um pouco
-#   menos ofuscante). Mitigacao da segunda hipotese; a da primeira e o
-#   ON_REASSERT_SECONDS. Se quiser voltar ao branco pleno, e so trocar aqui -- mas
-#   veja o orcamento de 3A do header na secao 7 do docs/DIAGNOSTICO-HUB.md antes de
-#   considerar splitter passivo com branco pleno.
-LED_COLOR="A0A0A0"
+# HISTORICO -- foi A0A0A0 por algumas horas em 2026-07-29 e VOLTOU pra FFFFFF em
+#   2026-07-30. Vale registrar porque a tentativa falhou por um motivo que nao era
+#   obvio, e nao convem alguem repetir:
+#
+#   A ideia era mitigar a hipotese de que o travamento do hub veio de corrente
+#   sustentada -- FFFFFF e o estado de CORRENTE MAXIMA POSSIVEL de todo o array
+#   (~60 mA por LED em branco pleno), e a janela de 19 min que travou o hub foi,
+#   ao mesmo tempo, a maior sequencia de comandos repetidos do dia E o maior
+#   periodo continuo de corrente maxima. A0 = 160/255 = ~63% de duty, ~37% menos
+#   corrente.
+#
+#   NA PRATICA NAO FUNCIONOU ESTETICAMENTE: cinza neutro (R=G=B) nesse hardware
+#   nao da "branco mais suave", da BRANCO AMARELADO. Em LED WS2812 o die azul
+#   perde eficiencia em duty reduzido antes dos outros dois, entao o branco puxa
+#   pro quente. Reportado pelo usuario olhando o hardware.
+#
+#   Revertido porque o ganho estetico era negativo e a hipotese que isso mitigava
+#   e fraca (especulacao correlacional, 1 incidente), enquanto a hipotese de
+#   excesso de comando foi corrigida de verdade (ON_REASSERT_SECONDS + metade das
+#   escritas por reafirmacao). Com FFFFFF nao existe mais mitigacao de corrente:
+#   em sessao longa de carga, vale checagem fisica das fans.
+#
+#   Se um dia quiser as fans do gabinete menos ofuscantes, o caminho NAO e a cor
+#   e sim os botoes de brilho do controle IR do hub -- ver docs/DIAGNOSTICO-HUB.md.
+LED_COLOR="FFFFFF"
 
-# Baseline ociosa observada (NVIDIA): ~0% de utilizacao, ~16W de potencia. Qualquer
-# utilizacao > 0% ja conta como atividade; a potencia e so uma rede de seguranca
-# caso a amostra de utilizacao caia bem no meio de uma rajada curta.
-UTIL_THRESHOLD_PCT=1
-POWER_THRESHOLD_W=25
+# LIMIAR DE ATIVIDADE -- corrigido em 2026-07-30 depois de MEDIR o idle da AMD.
+#
+#   O valor original era 1, herdado da NVIDIA ("baseline ociosa ~0%, qualquer
+#   utilizacao > 0% ja conta"). Na RX 9070 isso e um BUG: amostrando
+#   gpu_busy_percent a 1Hz por 2 minutos com a maquina parada,
+#
+#       0% -> 118 amostras     1% -> 2 amostras
+#
+#   e as duas amostras de 1% cairam em 01:25:00 e 01:26:00 -- EXATAMENTE no
+#   segundo :00. Ou seja: algo dispara uma vez por minuto, no topo do minuto, e
+#   produz um pico de 1% que dura menos de 1 segundo. Com o limiar em 1,
+#   `1 >= 1` e verdadeiro e o pico virava "GPU ativa".
+#
+#   Como o laco amostra a cada SLEEP_SECONDS (10s), ele pegava esse pico por
+#   COINCIDENCIA DE FASE, mais ou menos 1 vez a cada 10 minutos -- e cada acerto
+#   acendia tudo por 60s+ (o DEBOUNCE). Efeito observado: na madrugada de
+#   2026-07-29, sem ninguem usando a maquina, os LEDs acenderam ~50 vezes entre
+#   00:00 e 04:15, em intervalos irregulares de 1min25s a 19min. E a razao de as
+#   ligadas espurias cairem sempre no mesmo segundo do minuto nos logs (:03, :04
+#   naquele boot): e a fase do laco, nao atividade real.
+#
+#   10 da margem enorme sobre o piso medido (0%, com picos de 1%) e ainda pega
+#   qualquer carga real com folga -- jogo fica em 90-100%, e job de LLM/render
+#   passa de 10% sem esforco.
+UTIL_THRESHOLD_PCT="${UTIL_THRESHOLD_PCT:-10}"
+
+# Rede de seguranca por potencia. So usado no backend NVIDIA -- ver gpu_ativa().
+POWER_THRESHOLD_W="${POWER_THRESHOLD_W:-25}"
+
+# Amostras consecutivas acima do limiar necessarias pra LIGAR. Correcao estrutural
+#   do bug acima: o limiar e uma calibracao que pode envelhecer (outra GPU, outro
+#   compositor, outra tarefa de fundo), enquanto exigir N amostras seguidas mata a
+#   classe inteira de "pico de 1 amostra" seja qual for a magnitude dele. Um pico
+#   de menos de 1 segundo nao aparece em duas amostras separadas por 10s.
+#
+#   Assimetria de proposito -- DIFICIL de ligar, FACIL de continuar ligado: uma
+#   unica amostra ativa ja segura o estado "ligado", pra nao apagar no meio de um
+#   jogo por causa de uma queda instantanea de utilizacao.
+#
+#   Custo: ate SLEEP_SECONDS a mais de latencia pra acender (10-20s em vez de
+#   0-10s). Imperceptivel na pratica.
+ACTIVATION_SAMPLES="${ACTIVATION_SAMPLES:-2}"
 
 # Tempos (segundos). Overrideaveis por variavel de ambiente so pra teste/afinacao.
 #  DEBOUNCE_SECONDS         : quanto os LEDs ficam acesos apos a ultima atividade
@@ -275,11 +325,25 @@ leds_apagar
 estado_atual="off"
 ultima_atividade_epoch=0
 ultima_reafirmacao_epoch=0   # 0 => re-afirma logo no 1o ciclo ocioso (fecha a corrida de boot)
+amostras_ativas=0            # amostras consecutivas acima do limiar (ver ACTIVATION_SAMPLES)
 
 while true; do
   agora=$(date +%s)
 
   if gpu_ativa; then
+    amostras_ativas=$((amostras_ativas + 1))
+  else
+    amostras_ativas=0
+  fi
+
+  # DIFICIL de ligar, FACIL de continuar ligado (ver ACTIVATION_SAMPLES no topo):
+  #   - pra LIGAR, exige ACTIVATION_SAMPLES amostras consecutivas acima do limiar
+  #     -> mata o pico de 1 amostra que acendia tudo sozinho a cada ~10min;
+  #   - JA ligado, UMA amostra ativa basta pra segurar -> nao apaga no meio de um
+  #     jogo por causa de uma queda instantanea de utilizacao.
+  # Com ACTIVATION_SAMPLES=1 o comportamento volta a ser o antigo (util pra teste).
+  if [ "$amostras_ativas" -ge "$ACTIVATION_SAMPLES" ] \
+     || { [ "$estado_atual" = "on" ] && [ "$amostras_ativas" -gt 0 ]; }; then
     ultima_atividade_epoch=$agora
     if [ "$estado_atual" != "on" ]; then
       leds_ligar
