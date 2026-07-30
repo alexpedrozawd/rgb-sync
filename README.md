@@ -11,17 +11,21 @@ display de temperatura do water cooler — só na luz, via
 Ver também: [`pichau-aqua-240x-linux-driver`](../pichau-aqua-240x-linux-driver)
 — driver separado, do display de temperatura do pump (LCD), não da luz ARGB.
 
-> ## ⚠️ Problema em aberto
+> ## ⚠️ Problema em aberto (atualizado em 2026-07-30)
 >
-> **RAMs e fans do cooler funcionam de forma confiável. As 8 fans do gabinete
-> não.** O hub Rise Mode perde o modo "M/B Sync" em reboots/eventos de energia
-> e, uma vez fora dele, ignora sinal válido da placa-mãe — só volta apertando o
-> botão físico `ON M/B` no controle remoto. Em 2026-07-29 o firmware do hub
-> chegou a travar por completo, **parando as fans de girar** (risco térmico
-> real).
+> **RAMs e fans do cooler funcionam de forma confiável. O hub Rise Mode (8 fans
+> do gabinete) já travou 2 vezes em 4 dias** — controle remoto sem resposta,
+> LEDs com cor presa. Em 2026-07-29 chegou a **parar as fans de girar** (risco
+> térmico real).
+>
+> A recuperação mudou: um **corte de energia completo** (fonte desligada na
+> tomada por ~1min, não um simples reinício) trouxe o hub de volta ao M/B Sync
+> **sozinho, sem apertar `ON M/B`**, com anéis e pás em branco — a primeira vez
+> observada. Ainda é uma amostra única, mas é o procedimento a tentar primeiro
+> hoje, antes do controle remoto.
 >
 > Diagnóstico completo, linha do tempo dos incidentes, evidência dos logs e o
-> que já foi refutado: **[`docs/DIAGNOSTICO-HUB.md`](docs/DIAGNOSTICO-HUB.md)**.
+> que já foi refutado (ou corrigido): **[`docs/DIAGNOSTICO-HUB.md`](docs/DIAGNOSTICO-HUB.md)**.
 
 ## O projeto mudou em 2026-07-30
 
@@ -73,11 +77,17 @@ O cooler **não está a jusante do hub** — continua obedecendo o header enquan
 hub roda o Rainbow autônomo dele. Mas isso não distingue *splitter em paralelo*
 de *cooler primeiro, em série*: a fiação nunca foi conferida visualmente.
 
-> ⚠️ **`FAN_ZONE_SIZE=40` não é uma contagem de LEDs.** Veio de subir `-sz` até
-> "acender tudo uniforme, sem ponta apagada" — mas com **cor única esse teste não
-> pode falhar**, qualquer tamanho parece certo. Medindo depois: com a zona em
-> tamanho **1** as fans do cooler acendem **inteiras**, o que é impossível numa
-> cadeia de 40 LEDs endereçáveis. Funciona na prática; não tratar como medição.
+> ⚠️ **`FAN_ZONE_SIZE` não tem efeito observável entre 1 e 120 — medido.** O 40
+> veio de subir `-sz` até "acender tudo uniforme, sem ponta apagada", mas com
+> **cor única esse teste não pode falhar**: qualquer tamanho parece certo.
+> Medindo depois: com a zona em **1** as fans do cooler acendem **inteiras**, e
+> com **120** (aceito pelo controlador, 3x o valor em uso) **nada acende a mais em
+> nenhum dispositivo**. Qualquer valor ≥ 1 serve.
+>
+> O único valor que demonstravelmente importa é **`0`** — aí nada acende e o
+> header fica mudo, que foi o contexto do travamento de 2026-07-27. É por isso
+> que a rede de segurança contra "queda de energia zerou o tamanho" continua no
+> script, embora o valor exato não importe.
 
 ## Instalação
 
@@ -127,19 +137,47 @@ Duas otimizações que importam para a segurança do hub:
   errado. A leitura custa ~0,04s como cliente e não escreve nada. Redimensionar
   reconfigura o canal do header, que é mais invasivo que trocar cor.
 
-`REASSERT_SECONDS` é sobrescrevível por variável de ambiente no `ExecStart` do
-`systemd/rgb-branco.service`.
+`REASSERT_SECONDS` e `RAM_COLOR` são sobrescrevíveis por variável de ambiente no
+`ExecStart` do `systemd/rgb-branco.service`.
+
+### Por que existem duas cores de "branco"
+
+`FFFFFF` significa "R, G e B no duty máximo" — e isso **não** produz branco
+neutro num LED RGB, porque os três dies têm eficiências diferentes e o azul é
+tipicamente o mais fraco. O resultado varia por controlador:
+
+| Dispositivo | Cor | Motivo |
+|---|---|---|
+| Aura (8 fans + 2 do cooler) | `LED_COLOR=FFFFFF` | Branco aceitável a olho |
+| RAMs (ENE DRAM) | `RAM_COLOR=D0D0FF` | Em `FFFFFF` saíam visivelmente **amareladas** |
+
+Como o azul já está no máximo, a correção é **baixar R e G** — não há como subir
+azul. A calibração é visual e específica deste hardware: se ficar amarelado
+ainda, baixe mais (ex. `B0B0FF`); se ficar azulado, suba (ex. `E8E8FF`). Mantenha
+o azul em `FF`.
+
+É o mesmo mecanismo que fez a tentativa de usar `A0A0A0` no Aura sair amarelada —
+ver "Bugs corrigidos".
 
 ## Quando as 8 fans do gabinete não estão brancas
 
 Significa que o hub saiu do modo "M/B Sync" e está rodando o Rainbow autônomo
-dele, ignorando o header. **Nenhum software resolve isso** — ver o diagnóstico.
+dele (ou travou — ver "Risco conhecido" abaixo), ignorando o header.
 
-Para voltar:
+**Primeiro recurso: corte de energia completo, não o botão.** Desligue tudo,
+desconecte a fonte da tomada por ~1 minuto, segure o botão de power do
+gabinete por ~5s pra drenar energia residual, reconecte e ligue. Em 2026-07-30
+isso trouxe o hub de volta ao M/B Sync **sozinho**, com anéis e pás em branco,
+sem apertar nada no controle remoto — resultado melhor que o procedimento
+antigo, embora ainda seja uma amostra única (ver
+[`docs/DIAGNOSTICO-HUB.md`](docs/DIAGNOSTICO-HUB.md), seção 6). Um `reboot`
+comum **não** teve esse efeito num teste anterior.
+
+Se o corte de energia completo não resolver, aí sim o controle remoto:
 
 1. **Confirme que existe sinal válido no header**: as 2 fans do cooler devem
    estar brancas. Se não estiverem, rode `./install.sh` de novo e espere.
-2. Só então aperte **`ON M/B`** no controle IR do hub.
+2. Aperte **`ON M/B`** no controle IR do hub.
 
 > ⚠️ A ordem importa. Em 2026-07-27, apertar o botão com a zona sem nenhum sinal
 > configurado (tamanho 0, header mudo) **travou o sistema inteiro**, exigindo
@@ -149,32 +187,42 @@ Para voltar:
 > problema. Com este desenho o header está sempre com sinal, então a condição
 > perigosa só ocorre se o serviço estiver parado.
 
-## ⚠️ Risco conhecido: o hub pode travar (fans param de girar)
+## ⚠️ Risco conhecido: o hub trava (2 vezes em 4 dias)
 
-**Incidente real (2026-07-29):** durante uma sessão longa de jogo, o
-microcontrolador do hub travou — as 8 fans do gabinete **pararam de girar** e o
-controle remoto ficou 100% sem resposta. Os LEDs continuaram acesos em branco,
-**mas isso não prova que o hub estava funcionando**: LEDs endereçáveis (WS2812)
-retêm a última cor recebida indefinidamente, sem sinal contínuo.
+**Incidente 1 (2026-07-29), sob sincronia com GPU:** sessão longa de jogo, o
+microcontrolador travou — as 8 fans **pararam de girar** e o controle remoto
+ficou 100% sem resposta. Risco térmico real.
 
-Duas causas possíveis, **com correlação exatamente igual** — aquela janela de 19
-minutos foi simultaneamente a maior sequência de comandos repetidos do dia *e* o
-maior período contínuo de corrente máxima:
+**Incidente 2 (2026-07-30), já sob branco permanente:** anéis com cor presa e
+misturada (branco+rainbow — retenção de frame, não efeito), pás apagadas,
+controle remoto de novo 100% sem resposta. **Desta vez as pás continuaram
+girando** — sem risco térmico, mas o padrão de MCU travado é o mesmo.
 
-| Candidato | Estado hoje |
+LEDs acesos **não provam** que o hub está funcionando: WS2812 retém a última
+cor recebida indefinidamente, sem sinal contínuo.
+
+O segundo incidente pesa a favor de uma das duas hipóteses:
+
+| Candidato | Estado depois do 2º travamento |
 |---|---|
-| Firmware afogado em comando repetido | **Corrigido** — 2 escritas/hora contra ~6/minuto na época |
-| Regulador do hub em estresse térmico | **Sem mitigação** — branco pleno agora é permanente |
+| Firmware afogado em comando repetido | Mitigado ao limite prático (2 escritas/hora) — **travou mesmo assim** |
+| Regulador do hub em estresse térmico | Sem mitigação, exposição aumentou (branco 24/7) — **candidato mais provável agora** |
 
-Se as fans do hub pararem de girar:
+Se as fans do hub pararem de girar, ou o controle remoto não responder:
 
 1. Pare o serviço: `systemctl --user stop rgb-branco.service`.
 2. Evite carga pesada até resolver.
 3. Teste o controle remoto. Se **nenhum botão** funcionar, o microcontrolador
-   travou — não tem correção por software.
-4. PC desligado → desconecte só o cabo de alimentação (Molex/SATA) do hub por
-   ~30s → reconecte → ligue.
-5. O hub volta em Rainbow autônomo. Siga o procedimento de `ON M/B` acima.
+   travou.
+4. **Tente primeiro um corte de energia COMPLETO**, não só o Molex do hub: PC
+   desligado → fonte desconectada da tomada por ~1min → segure o botão de power
+   do gabinete ~5s pra drenar residual → reconecte → ligue. Em 2026-07-30 isso
+   recuperou o hub **sozinho, sem apertar nada**, com anéis e pás em branco —
+   melhor resultado que o power-cycle isolado do hub (só o Molex, ~30s) usado
+   antes. Ainda é uma amostra única; se não funcionar, tente o power-cycle
+   isolado do Molex do hub como alternativa.
+5. Se voltar em Rainbow autônomo (em vez de já voltar em M/B Sync sozinho),
+   siga o procedimento de `ON M/B` acima.
 
 **Limitação real, sem solução por software:** não há sensor de RPM exposto pelo
 sistema para os fan headers desse hub — confirmado, o `hwmon` do `asus_wmi` não
@@ -241,6 +289,19 @@ Mantido porque cada um destes custou tempo e a causa não era óbvia.
   limiar de atividade.
 - **`A0A0A0` para reduzir corrente** (2026-07-29, revertido em 2026-07-30):
   cinza neutro nesse hardware não dá branco mais suave, dá **branco amarelado**.
+- **RAMs amareladas em `FFFFFF`** (2026-07-30): não é bug de código, é física do
+  LED — duty igual em R/G/B não dá branco neutro. Corrigido com uma cor
+  calibrada separada para as RAMs (`RAM_COLOR`). Ver "Por que existem duas cores
+  de branco".
+- **"Hélices apagadas" nas 8 fans** (2026-07-30, corrigido na madrugada
+  seguinte): a hipótese de que a cadeia tivesse mais LEDs que os 40 endereçados
+  foi refutada (`-sz 120` não acendeu nada a mais) — descoberta lateral útil:
+  **`FAN_ZONE_SIZE` não tem efeito observável entre 1 e 120**, só `0` importa
+  (header mudo). Mas a conclusão seguinte, de que "as pás não têm LED próprio e
+  nunca acenderiam sob M/B Sync", **estava errada** — foi inferida observando um
+  hub que na verdade estava **travado**. Corrigido depois de um corte de
+  energia completo: o hub voltou ao M/B Sync com anéis **e** pás em branco. Ver
+  [`docs/DIAGNOSTICO-HUB.md`](docs/DIAGNOSTICO-HUB.md), seção 6.
 - **Log dizia "Rainbow"** depois de trocar o efeito para branco — só texto.
 
 ## Desinstalar

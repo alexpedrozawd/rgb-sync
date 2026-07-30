@@ -57,8 +57,23 @@
 MB_DEVICE="ASUS PRIME B760M-A D4"
 RAM_DEVICE="ENE DRAM"
 
-# Unica cor do projeto. Branco pleno.
+# Branco do dispositivo Aura (hub das 8 fans + 2 fans do cooler). Branco pleno.
 LED_COLOR="FFFFFF"
+
+# Branco das RAMs, CALIBRADO SEPARADO -- nao e capricho.
+#   `FFFFFF` significa "R, G e B no duty maximo", e isso NAO produz branco neutro
+#   num LED RGB: os tres dies tem eficiencias diferentes e o azul e tipicamente o
+#   mais fraco. Nas RAMs (controlador ENE DRAM) o resultado foi visivelmente
+#   AMARELADO -- R+G dominando. Reportado pelo usuario olhando o hardware em
+#   2026-07-30.
+#
+#   Como o azul ja esta no maximo (FF), a correcao e BAIXAR R e G. Nao ha como
+#   subir azul.
+#
+#   Calibracao e VISUAL e especifica deste hardware. Se ficar amarelado ainda,
+#   baixe mais R e G (ex. B0B0FF). Se ficar azulado/frio, suba (ex. E8E8FF).
+#   Manter o azul em FF.
+RAM_COLOR="${RAM_COLOR:-D0D0FF}"
 
 # Zona 3 = hub das 8 fans + 2 fans do cooler.
 #
@@ -110,7 +125,7 @@ aplicar_branco() {
   # LEDs than colors given, the last color will be applied to the remaining LEDs"
   # -- openrgb --help). Nao precisa de um segundo comando por zona.
   openrgb -d "$MB_DEVICE" -m static -c "$LED_COLOR" > /dev/null 2>&1
-  openrgb -d "$RAM_DEVICE" -m static -c "$LED_COLOR" > /dev/null 2>&1
+  openrgb -d "$RAM_DEVICE" -m static -c "$RAM_COLOR" > /dev/null 2>&1
 }
 
 # Rajada de arranque: fecha a corrida de boot em que o dispositivo Aura ainda nao

@@ -25,56 +25,51 @@ hub.**
 
 ---
 
-## 2. Estado atual (2026-07-30 01:30)
+## 2. Estado atual (2026-07-30, madrugada)
 
 | Item | Estado |
 |---|---|
 | `openrgb.service` (sistema) | `active` + `enabled` |
 | `rgb-branco.service` (usuário) | `active` + `enabled` |
-| Zona 3 (`Aura Addressable 3`) | 40 LEDs, preservado através de reboots |
-| RAMs (2x `ENE DRAM`) | Obedecem normalmente |
+| Zona 3 (`Aura Addressable 3`) | 40 LEDs |
+| RAMs (2x `ENE DRAM`) | `D0D0FF`, obedecem normalmente |
 | Water cooler (2 fans do radiador) | Obedecem normalmente |
-| 8 fans do gabinete (hub Rise Mode) | **De volta ao M/B Sync**, obedecendo |
-| Estado dos LEDs | `FFFFFF` **permanente**, 24/7 |
+| 8 fans do gabinete (hub Rise Mode) | **M/B Sync, anéis E pás em branco** |
 | Sincronia com a GPU | **removida do projeto** em 2026-07-30 |
 
-**Atenção ao ler este documento:** ele foi escrito em 2026-07-29 e depois
-corrigido em pontos específicos. As correções estão marcadas onde ocorrem. As
-maiores: **H1 refutada** (seção 6), **topologia e os "40 LEDs" sem base**
-(seção 3), e **splitter passivo provavelmente inviável** (seção 7).
+**Atenção ao ler este documento:** ele foi escrito em 2026-07-29 e corrigido em
+vários pontos desde então, alguns deles revertendo conclusões anteriores. As
+correções estão marcadas onde ocorrem. As maiores: **H1 refutada** (seção 6),
+**topologia e "40 LEDs" sem efeito medido** (seção 3), **splitter passivo
+provavelmente inviável** (seção 7), e a mais recente e mais importante:
 
-> **Nota sobre o hub voltar ao sync:** ele voltou, mas isso **não** invalida nada
-> aqui — a volta é sempre pelo botão `ON M/B`, nunca sozinha. O problema em
-> aberto é a próxima perda, não a recuperação.
+> **Um corte de energia COMPLETO (não um reinício comum) fez o hub voltar ao
+> M/B Sync sozinho, sem o botão `ON M/B`, com anéis e pás em branco — a
+> primeira vez em toda a investigação.** Isso corrige a afirmação que existia
+> aqui antes ("a volta é sempre pelo botão, nunca sozinha") e a conclusão de
+> que as pás nunca seriam cobertas pelo M/B Sync — as duas estavam erradas ou
+> incompletas. Detalhes, e o cuidado devido com uma amostra única: seção 6,
+> "Corte de energia COMPLETO recupera o hub sem botão".
 
-### O projeto foi redesenhado em 2026-07-30 — o que isso muda aqui
+### O projeto foi redesenhado em 2026-07-30 — o que isso mudou
 
 A sincronia com a GPU saiu. Os LEDs ficam em branco permanente. Decisão de
-preferência do dono, mas com três consequências diretas para este diagnóstico:
+preferência do dono, mas com consequências diretas para este diagnóstico:
 
 1. **O cenário de 2026-07-27 (seção 5) deixa de ser alcançável em operação
    normal.** O header nunca fica mudo, então apertar `ON M/B` nunca cai na
    condição que travou o host — a não ser que o serviço esteja parado.
-2. **A hipótese de "firmware afogado em comando" (seção 5) fica mitigada até o
-   limite prático.** Sem transições, o tráfego no header cai para **2 escritas
-   por hora**, contra ~6 por *minuto* na janela do travamento. ~180x menos.
-3. **A hipótese de corrente (seção 5) fica PIOR.** Branco pleno é o estado de
-   corrente máxima do array e agora é permanente, não só sob carga.
-
-E abre um teste que **nunca foi possível antes**:
-
-> No desenho antigo, a primeira ação de todo boot era *apagar* — o header ficava
-> mudo pelos primeiros ~30 segundos de cada boot, e só então recebia o primeiro
-> comando. Agora ele carrega branco válido desde o POST.
->
-> Se o hub decide o modo dele **no próprio power-on**, conforme haja ou não sinal
-> válido na linha naquele instante — design comum nessa classe de hub —, esse é o
-> único arranjo com chance real de o M/B Sync sobreviver a um reboot. **Não é uma
-> previsão, é uma hipótese testável que a configuração anterior impedia de
-> testar.** O próximo reboot responde.
->
-> Se o modo simplesmente mora em RAM e some a cada queda de alimentação do hub
-> (H2), nada disso ajuda e o botão continua obrigatório.
+2. **A hipótese de "firmware afogado em comando" (seção 5) ficou mitigada até o
+   limite prático** — 2 escritas/hora contra ~6/minuto na janela do travamento
+   original — **e mesmo assim o hub travou de novo** (seção 6, noite de
+   2026-07-30). Isso pesa contra a hipótese de comando e a favor da de corrente.
+3. **A hipótese de corrente ficou mais exposta**, e é a mais plausível das duas
+   agora: branco pleno é o estado de corrente máxima do array e passou a ser
+   permanente, não só sob carga.
+4. **Abriu, e CONFIRMOU (n=1), o teste que a configuração antiga impedia:** com
+   o header carregando branco válido desde o POST, um corte de energia completo
+   trouxe o hub de volta ao M/B Sync sozinho. Ver seção 6 para os detalhes e as
+   ressalvas sobre generalizar de uma única observação.
 
 ---
 
@@ -114,25 +109,74 @@ tamanho — o teste não pode falhar. Medindo de verdade (zerar a zona toda em
 |---|---|
 | `-sz 10 -m static -c FFFFFF` | as 2 fans do cooler acenderam **inteiras** |
 | `-sz 1 -m static -c FFFFFF` | as 2 fans do cooler acenderam **inteiras** |
+| `-sz 120 -m static -c FFFFFF` | **nada mudou em nada** (2026-07-30, hub em sync) |
 
 Acender inteiras com **1** LED endereçado é impossível numa cadeia simples de 40
-LEDs. Duas explicações cabem e o CLI do OpenRGB **não as separa**:
+LEDs. E `120` — três vezes o valor em uso, aceito pelo controlador sem recusa —
+não acendeu **um único LED a mais** em nenhum dispositivo.
 
-- **(a)** o controlador Aura replica a cor única em todo o quadro quando a zona
-  é menor que a cadeia física; ou
+### Conclusão medida: `FAN_ZONE_SIZE` não tem efeito observável entre 1 e 120
+
+Isso é mais forte que "o número 40 não tem base". O tamanho da zona **não muda
+nada** em nenhum ponto do intervalo testado. Duas explicações cabem e o CLI do
+OpenRGB não as separa:
+
+- **(a)** o controlador Aura replica a cor única em todo o quadro,
+  independentemente do tamanho declarado da zona; ou
 - **(b)** o que está na zona 3 não é cadeia crua — há elemento ativo que consome
   o quadro e replica a cor nos LEDs dele.
 
-Em qualquer das duas, `FAN_ZONE_SIZE=40` **não corresponde a contagem física**.
-Funciona na prática; não é medição. Para separar (a) de (b) seria preciso um
-padrão com fronteira visível, e o CLI não entrega: `-c` com lista de cores só
-vale sem efeito, e `-m direct` **apaga o header** neste hardware.
+**Consequência prática:** qualquer valor ≥ 1 serve. O único valor que
+demonstravelmente importa é **0** — com a zona em tamanho 0 nada acende e o
+header fica mudo, que foi o contexto do travamento de 2026-07-27 (seção 5). A
+rede de segurança do script contra "queda de energia zerou o tamanho" continua
+valendo por causa disso; o valor exato, não.
+
+Para separar (a) de (b) seria preciso um padrão com fronteira visível, e o CLI
+não entrega: `-c` com lista de cores só vale sem efeito, e `-m direct` **apaga o
+header** neste hardware. Não vale gastar mais comandos no hub por uma distinção
+sem consequência prática.
+
+### "Hélices apagadas" nas fans do gabinete — CORRIGIDO em 2026-07-30 (madrugada seguinte)
+
+Reportado em 2026-07-30 (noite): só o **anel externo** das 8 fans acendia; a
+região das pás ficava escura, com o hub aparentemente em sync. **As pás
+giravam normalmente**, o que descartou o cenário de travamento naquele momento.
+
+Hipótese testada então: a cadeia física teria mais LEDs que os 40 endereçados.
+**Refutada** — `-sz 120` não acendeu nada a mais (ver tabela acima). Essa parte
+do teste continua válida e útil (ver "Conclusão medida" acima).
+
+**A partir daí eu errei a inferência.** Concluí que "as pás provavelmente não
+têm LED próprio" e que o M/B Sync tinha um teto estrutural que nunca cobriria
+elas. **Estava errado**, e o motivo do erro é didático: pouco depois descobri
+que o hub estava **travado** (controle remoto 100% sem resposta, anéis com
+cores paradas e misturadas de branco+rainbow — não um efeito, retenção de
+frame). Uma inferência sobre "o que o M/B Sync consegue comandar" tirada de um
+hub **em pane** não vale nada — comportamento de firmware travado não
+representa a capacidade real do modo. Devia ter suspeitado da pane antes de
+generalizar sobre cobertura de LEDs.
+
+**Corrigido pela evidência seguinte.** Depois de um corte de energia
+**completo** (fonte desconectada da tomada, 1 min a zero volt, botão do
+gabinete segurado 5s para drenar residual — bem mais agressivo que o
+power-cycle isolado do hub usado antes), o hub voltou ao boot em Rainbow
+(esperado) e, **sem qualquer botão apertado**, foi sozinho para M/B Sync com
+**anéis E pás em branco**. O modo cobre as pás sim; o problema nunca foi
+alcance do M/B Sync, era o firmware travado.
+
+**Corolário de segurança:** antes de recorrer ao controle IR ou a
+diagnósticos elaborados diante de um hub travado ou fora de sync, um corte de
+energia completo (não um simples power-cycle do PC) é o primeiro teste a
+tentar — parece mais eficaz que reinício comum (ver seção 6) e mais seguro que
+apertar botão.
 
 ### O que continua ASSUMIDO, não medido
 
 1. **A contagem de LEDs por fan do gabinete.** É contagem visual dos pontos no
-   anel de **uma** fan × 8, mais o cooler. Decide o orçamento de corrente do
-   header e, com ele, se splitter passivo é opção (ver seção 7).
+   anel de **uma** fan × 8, mais o cooler. Não é obtenível por software (ver
+   acima). Decide o orçamento de corrente do header e, com ele, se splitter
+   passivo é opção (ver seção 7).
 2. **A forma da ligação não foi confirmada visualmente.** Sabe-se que o cooler
    **não** está a jusante do hub — ele continua obedecendo o header enquanto o
    hub roda o Rainbow autônomo, e se o sinal passasse *através* do hub o cooler
@@ -351,6 +395,71 @@ separadas por 10s.
 o script real): a configuração antiga reproduz o bug, a nova não acende com os
 picos, carga real continua acendendo, e queda instantânea no meio da carga não
 apaga. Um teste que passasse nas duas configurações não valeria nada.
+
+### 2026-07-30 (noite) — Hub trava de novo, agora sob branco permanente
+
+Com o projeto já redesenhado para branco 24/7, o hub travou pela segunda vez em
+4 dias: anéis com cores paradas e misturadas de branco+rainbow (retenção de
+frame, não efeito — WS2812 não precisa de sinal contínuo pra reter cor), pás
+apagadas, controle remoto **100% sem resposta** a qualquer botão. As pás
+continuaram girando e as temperaturas seguiram baixas — sem risco térmico desta
+vez, mas o padrão de MCU travado bateu com o de 2026-07-29.
+
+**Isso pesa contra a hipótese de excesso de comando e a favor da de corrente.**
+O desenho atual manda **2 escritas/hora** contra as ~6/minuto de 2026-07-29 —
+~180x menos tráfego — e travou mesmo assim. Frequência de comando provavelmente
+nunca foi a causa isolada. A exposição que aumentou neste desenho foi
+justamente a de corrente sustentada (branco pleno permanente em vez de só sob
+carga), então essa hipótese fica reforçada, ainda que não provada (n=2 no
+total, causas de firmware de terceiro continuam inacessíveis a instrumentação).
+
+Um fator que **não pode ser descartado**: pouco antes do travamento, dentro
+desta mesma sessão, a zona 3 recebeu dois redimensionamentos de teste (`-sz
+120` e volta para `40`) para investigar as "pás apagadas" — ver seção 3. O hub
+respondeu bem logo depois (anéis brancos confirmados), mas resize é a operação
+mais invasiva no header e não dá pra excluir que tenha deixado o firmware
+fragilizado para o travamento que veio a seguir.
+
+### 2026-07-30 (madrugada seguinte) — Corte de energia COMPLETO recupera o hub sem botão
+
+Recuperação: fonte desconectada da tomada, **1 minuto** a zero volt, botão do
+gabinete segurado **5 segundos** para drenar energia residual dos
+capacitores — bem mais agressivo que o power-cycle isolado do hub (só o Molex,
+~30s) usado no incidente anterior.
+
+**Resultado, e é o achado central do projeto:** ao ligar, o hub subiu em
+Rainbow (esperado — H2, modo em memória volátil). O `rgb-branco.service` aplicou
+branco na rajada de arranque (concluída em ~67s, sem retries). **Sem qualquer
+botão apertado**, o hub saiu do Rainbow sozinho e foi para M/B Sync — com
+**anéis E pás em branco**, a primeira vez que as pás acenderam sob M/B Sync.
+
+Contraste direto com a tentativa da noite anterior (`systemctl reboot` comum),
+que **não** recuperou o sync:
+
+| | Reinício comum (noite) | Corte de energia completo (madrugada) |
+|---|---|---|
+| PSU perde tensão nos trilhos 12V/5V? | Provavelmente não — reinício via SO tipicamente não derruba os trilhos da fonte, só reseta a placa | Sim, por completo, com dreno de residual |
+| Header carrega branco desde o boot? | Sim (mesmo desenho) | Sim |
+| Resultado no hub | Continuou travado | Voltou ao Rainbow e depois, sozinho, ao M/B Sync completo |
+
+**Interpretação, com o cuidado devido — n=1:** o reinício comum provavelmente
+nunca chega a cortar a alimentação do hub (o ATX mantém os trilhos principais
+durante um reboot típico), então o MCU travado nunca teve chance de resetar. Um
+corte de energia genuíno parece ser o gatilho que faltava, e a combinação com
+o header já carregando branco válido desde o POST (o design deste
+redesenho — ver seção 2) pode ser o que permitiu o hub voltar ao M/B Sync
+sozinho. Não está provado que isso se repete todo corte de energia; é a
+primeira vez que acontece em toda a investigação.
+
+**Corrige uma conclusão errada, registrada e assumida aqui:** a inferência
+anterior de que "o M/B Sync tem um teto estrutural e nunca cobre as pás" foi
+tirada observando um hub **em pane**, e não vale — comportamento de firmware
+travado não representa a capacidade real do modo. Ver seção 3 para o registro
+completo da correção.
+
+**Corolário prático, ainda sem confirmação repetida:** diante de um hub travado
+ou fora de sync, um corte de energia completo pode ser mais eficaz que
+reinício comum e mais seguro que o `ON M/B` — vale ser o primeiro recurso.
 
 ---
 
@@ -632,6 +741,8 @@ sensors
 | 2026-07-30 | `LED_COLOR` de volta para `FFFFFF` | Cinza neutro dá branco **amarelado** nesse hardware (die azul perde eficiência em duty baixo). Ganho estético negativo, e a hipótese mitigada é a fraca das duas |
 | 2026-07-30 | `UTIL_THRESHOLD_PCT` de 1 para 10, e `ACTIVATION_SAMPLES=2` | **Bug real:** idle da RX 9070 tem pico de 1% uma vez por minuto no segundo `:00`; com limiar 1 isso acendia tudo por 60s+, ~50x por noite. Ver seção 5 |
 | 2026-07-30 | `UTIL_THRESHOLD_PCT` e `POWER_THRESHOLD_W` viraram sobrescrevíveis por env | O README dizia que eram, mas no script eram atribuições fixas — a variável era ignorada em silêncio |
+| 2026-07-30 | `RAM_COLOR=D0D0FF` separado do `LED_COLOR` | RAMs saíam **amareladas** em `FFFFFF`: duty igual em R/G/B não dá branco neutro num LED RGB. Azul já no máximo, então baixa R e G |
+| 2026-07-30 | Medido que `FAN_ZONE_SIZE` não tem efeito entre 1 e 120 | `-sz 120` não acendeu nada a mais. Só `0` importa (header mudo). Encerra a investigação das "hélices apagadas" |
 | 2026-07-30 | **Redesenho completo.** `gpu-rgb-sync.sh` → `rgb-branco.sh`; sincronia com a GPU REMOVIDA; branco permanente 24/7 | Preferência do dono. De quebra: header nunca mudo, tráfego de 2 escritas/hora, e abre o teste de sync no POST que a configuração antiga impedia |
 
 Parâmetros atuais (sobrescrevíveis por variável de ambiente no `ExecStart`):
@@ -678,17 +789,16 @@ logs. O componente que falha é o hub ARGB ativo do gabinete, cujo firmware:
   reafirmação em vez de duas, e o tamanho da zona só é reescrito se uma leitura
   mostrar que está errado — antes redimensionava a zona em toda reafirmação.
 
-**Ordem sugerida de ataque, revisada em 2026-07-30:**
+**Ordem sugerida de ataque, revisada em 2026-07-30 (madrugada seguinte):**
 
-1. **Reboot observado, agora no desenho de branco permanente.** Duas perguntas
-   num único reboot, custo zero:
-   - **Durante** o reboot, os LEDs das 8 fans ficam completamente escuros em
-     algum instante? Escuro = o hub perdeu alimentação → (A)/H2, o modo é
-     volátil e nenhum software resolve. Nunca escuro = o hub manteve energia
-     → (B).
-   - **Depois** do boot, as 8 fans voltam brancas ou em Rainbow? Brancas = o
-     header carregando branco desde o POST preservou o sync, e o problema
-     acabou. Rainbow = o botão continua obrigatório.
+1. **Reboot morno vs. corte de energia completo — já testados, resultado
+   assimétrico e importante.** Um `systemctl reboot` comum **não** recuperou um
+   hub travado; um corte de energia completo (fonte na tomada, ~1min a zero
+   volt, botão do gabinete 5s pra drenar residual) recuperou **sozinho, sem
+   botão**, anéis e pás inclusos. Hipótese de trabalho: reinício comum
+   provavelmente nunca derruba os trilhos 12V/5V da fonte, então nunca dá ao MCU
+   travado a chance de resetar. **Ainda é n=1** — repetir esse teste (idealmente
+   partindo de um hub saudável em Rainbow, não travado) fecharia a dúvida de vez.
 2. **Contar os LEDs de uma fan** (visual, gabinete aberto) — fecha o orçamento
    de corrente e decide se splitter passivo é opção.
 3. **Traçar o cabo** do header (splitter em paralelo vs. cooler em série).
@@ -697,9 +807,12 @@ logs. O componente que falha é o hub ARGB ativo do gabinete, cujo firmware:
    BIOS/UEFI (o manual desta placa não enumera opções de BIOS, então só olhando
    se sabe), ou "salvar no dispositivo" pela GUI do OpenRGB — o CLI **não** tem
    flag de save (`-sp/--save-profile` grava um arquivo de perfil, não no
-   hardware). Se funcionar, é o estado ideal: o header branco desde o instante do
-   POST, e possivelmente sem serviço nenhum.
-5. **Decisão de hardware** (seção 7).
+   hardware). Com o corte de energia completo já demonstrando recuperação
+   automática, isso fica em segundo plano — o botão pode já não ser necessário
+   na prática.
+5. **Decisão de hardware** (seção 7) — reavaliar a urgência à luz do achado do
+   corte de energia. O hub ainda trava (2 vezes em 4 dias) e ainda não há
+   telemetria de RPM; isso não mudou.
 
 Notas de tentativas encerradas: `A0A0A0` em vez de `FFFFFF` foi tentado em
 2026-07-29 e **revertido** em 2026-07-30 (cinza neutro dá branco amarelado nesse
