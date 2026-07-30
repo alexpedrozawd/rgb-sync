@@ -1,20 +1,38 @@
 #!/bin/bash
-# install.sh -- deixa o gpu-rgb-sync funcionando do zero (Bazzite/Fedora ostree).
+# install.sh -- deixa o rgb-branco funcionando do zero (Bazzite/Fedora ostree).
 # Idempotente: pode rodar de novo a qualquer momento so pra conferir/corrigir o
 # estado atual. Pensado pro cenario "formatei o PC, so quero rodar isso e
 # funcionar igual antes".
 set -euo pipefail
 
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SCRIPT_PATH="$PROJECT_DIR/gpu-rgb-sync.sh"
-USER_UNIT_SRC="$PROJECT_DIR/systemd/gpu-rgb-sync.service"
-USER_UNIT_DST="$HOME/.config/systemd/user/gpu-rgb-sync.service"
+SCRIPT_PATH="$PROJECT_DIR/rgb-branco.sh"
+USER_UNIT_SRC="$PROJECT_DIR/systemd/rgb-branco.service"
+USER_UNIT_DST="$HOME/.config/systemd/user/rgb-branco.service"
 OPENRGB_OVERRIDE_SRC="$PROJECT_DIR/systemd/openrgb-server-override.conf"
 OPENRGB_OVERRIDE_DIR="/etc/systemd/system/openrgb.service.d"
 OPENRGB_OVERRIDE_DST="$OPENRGB_OVERRIDE_DIR/override.conf"
 
-echo "== gpu-rgb-sync: instalador =="
+# Nome da unidade antiga, de quando o projeto sincronizava com a GPU. Removida
+# aqui pra nao ficarem os dois servicos disputando os mesmos LEDs.
+UNIT_ANTIGA="gpu-rgb-sync.service"
+UNIT_ANTIGA_DST="$HOME/.config/systemd/user/$UNIT_ANTIGA"
+
+echo "== rgb-branco: instalador =="
 echo
+
+# --- 0. Migracao: remove o servico antigo (gpu-rgb-sync) se ainda existir ------
+if systemctl --user cat "$UNIT_ANTIGA" >/dev/null 2>&1 || [ -f "$UNIT_ANTIGA_DST" ]; then
+  echo "Encontrado o servico antigo '$UNIT_ANTIGA' -- removendo."
+  echo "  (o projeto mudou: nao ha mais sincronia com a GPU, e os dois brigariam"
+  echo "   pelos mesmos LEDs se ficassem ativos ao mesmo tempo)"
+  systemctl --user disable --now "$UNIT_ANTIGA" >/dev/null 2>&1 || true
+  rm -f "$UNIT_ANTIGA_DST"
+  systemctl --user daemon-reload
+  echo "[ok] $UNIT_ANTIGA desabilitado e removido"
+else
+  echo "[ok] nenhum servico antigo pra migrar"
+fi
 
 # --- 1. OpenRGB precisa estar instalado no sistema (pacote via rpm-ostree) ---
 if ! command -v openrgb >/dev/null 2>&1; then
@@ -52,23 +70,26 @@ else
   echo "[ok] openrgb.service ativo"
 fi
 
-# --- 3. Servico do usuario (o loop que decide ligar/apagar) ---
+# --- 3. Servico do usuario (aplica branco e reafirma) --------------------------
 mkdir -p "$(dirname "$USER_UNIT_DST")"
 sed "s#{{SCRIPT_PATH}}#$SCRIPT_PATH#" "$USER_UNIT_SRC" > "$USER_UNIT_DST"
 systemctl --user daemon-reload
-systemctl --user enable --now gpu-rgb-sync.service
-echo "[ok] gpu-rgb-sync.service (usuario) ativo, apontando para $SCRIPT_PATH"
+systemctl --user reenable rgb-branco.service >/dev/null
+systemctl --user restart rgb-branco.service
+echo "[ok] rgb-branco.service (usuario) ativo, apontando para $SCRIPT_PATH"
 
 echo
 echo "== Instalacao concluida =="
-echo "Os LEDs devem estar apagados agora (estado padrao ocioso)."
-echo "Teste abrindo um jogo, uma carga do ap-ai-studio ou um LLM do ap-tech-team:"
-echo "os 8 fans do gabinete + water cooler + RAMs devem acender em branco em"
-echo "poucos segundos, e apagar ~60s depois que a GPU ficar ociosa."
+echo "Em ate ~30s tudo deve estar em BRANCO e ficar assim permanentemente:"
+echo "  8 fans do gabinete + 2 fans do water cooler + 2 RAMs."
 echo
-echo "IMPORTANTE -- so depois de uma queda de energia TOTAL (nao um reboot normal):"
-echo "o hub Rise Mode pode sair do modo 'M/B Sync' e ignorar o header da placa-mae."
-echo "Antes de apertar o botao 'ON M/B' no controle do hub pra voltar, rode este"
-echo "instalador de novo (ou so abra um jogo) pra garantir que ja existe sinal"
-echo "valido no header no momento do aperto -- ver README.md, secao"
-echo "'Depois de uma queda de energia total'."
+echo "Se as 8 fans do gabinete NAO acenderem em branco, o hub Rise Mode esta fora"
+echo "do modo 'M/B Sync' -- ele ignora o header da placa-mae e roda o Rainbow"
+echo "autonomo dele. Pra voltar, aperte 'ON M/B' no controle IR do hub. Faca isso"
+echo "SO depois de confirmar que as fans do cooler ja estao em branco (ou seja,"
+echo "que existe sinal valido no header): apertar o botao com a zona sem sinal"
+echo "travou o PC inteiro uma vez, em 2026-07-27."
+echo
+echo "Com este desenho o header carrega branco valido o tempo todo, inclusive"
+echo "durante o boot -- o que da a melhor chance de o sync sobreviver a reboots."
+echo "Ver README.md e docs/DIAGNOSTICO-HUB.md."

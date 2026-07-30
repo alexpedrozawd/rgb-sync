@@ -5,7 +5,7 @@ contexto prévio. Reúne tudo que foi medido, o que foi só inferido, os
 incidentes reais e as hipóteses ainda em aberto.
 
 Leia junto com o [`README.md`](../README.md) (manual de uso) e o
-[`gpu-rgb-sync.sh`](../gpu-rgb-sync.sh) (comentários no topo do arquivo).
+[`rgb-branco.sh`](../rgb-branco.sh) (comentários no topo do arquivo).
 
 Logs brutos das janelas citadas estão em [`logs/`](logs/).
 
@@ -25,26 +25,56 @@ hub.**
 
 ---
 
-## 2. Estado atual (2026-07-29 19:00)
+## 2. Estado atual (2026-07-30 01:30)
 
 | Item | Estado |
 |---|---|
 | `openrgb.service` (sistema) | `active` + `enabled` |
-| `gpu-rgb-sync.service` (usuário) | `active` + `enabled` |
+| `rgb-branco.service` (usuário) | `active` + `enabled` |
 | Zona 3 (`Aura Addressable 3`) | 40 LEDs, preservado através de reboots |
 | RAMs (2x `ENE DRAM`) | Obedecem normalmente |
-| Water cooler (Pichau Aqua 240X) | Obedece normalmente |
-| 8 fans do gabinete (hub Rise Mode) | **Rainbow autônomo, ignorando a placa-mãe** |
-| Backend de GPU detectado | `amd` (RX 9070 XT, via `gpu_busy_percent`) |
+| Water cooler (2 fans do radiador) | Obedecem normalmente |
+| 8 fans do gabinete (hub Rise Mode) | **De volta ao M/B Sync**, obedecendo |
+| Estado dos LEDs | `FFFFFF` **permanente**, 24/7 |
+| Sincronia com a GPU | **removida do projeto** em 2026-07-30 |
 
-Último `git log`:
+**Atenção ao ler este documento:** ele foi escrito em 2026-07-29 e depois
+corrigido em pontos específicos. As correções estão marcadas onde ocorrem. As
+maiores: **H1 refutada** (seção 6), **topologia e os "40 LEDs" sem base**
+(seção 3), e **splitter passivo provavelmente inviável** (seção 7).
 
-```
-79aa980 Separa intervalo de reassert do "ligado" (5min) do "apagado" (2min)
-08abb9d Corrige risco de seguranca: hub travava com reassert a cada 10s
-ff44b3d Reduz reassert de idle de 5min para 2min
-157b7e0 Configuracao inicial: sync de LEDs ARGB com atividade da GPU
-```
+> **Nota sobre o hub voltar ao sync:** ele voltou, mas isso **não** invalida nada
+> aqui — a volta é sempre pelo botão `ON M/B`, nunca sozinha. O problema em
+> aberto é a próxima perda, não a recuperação.
+
+### O projeto foi redesenhado em 2026-07-30 — o que isso muda aqui
+
+A sincronia com a GPU saiu. Os LEDs ficam em branco permanente. Decisão de
+preferência do dono, mas com três consequências diretas para este diagnóstico:
+
+1. **O cenário de 2026-07-27 (seção 5) deixa de ser alcançável em operação
+   normal.** O header nunca fica mudo, então apertar `ON M/B` nunca cai na
+   condição que travou o host — a não ser que o serviço esteja parado.
+2. **A hipótese de "firmware afogado em comando" (seção 5) fica mitigada até o
+   limite prático.** Sem transições, o tráfego no header cai para **2 escritas
+   por hora**, contra ~6 por *minuto* na janela do travamento. ~180x menos.
+3. **A hipótese de corrente (seção 5) fica PIOR.** Branco pleno é o estado de
+   corrente máxima do array e agora é permanente, não só sob carga.
+
+E abre um teste que **nunca foi possível antes**:
+
+> No desenho antigo, a primeira ação de todo boot era *apagar* — o header ficava
+> mudo pelos primeiros ~30 segundos de cada boot, e só então recebia o primeiro
+> comando. Agora ele carrega branco válido desde o POST.
+>
+> Se o hub decide o modo dele **no próprio power-on**, conforme haja ou não sinal
+> válido na linha naquele instante — design comum nessa classe de hub —, esse é o
+> único arranjo com chance real de o M/B Sync sobreviver a um reboot. **Não é uma
+> previsão, é uma hipótese testável que a configuração anterior impedia de
+> testar.** O próximo reboot responde.
+>
+> Se o modo simplesmente mora em RAM e some a cada queda de alimentação do hub
+> (H2), nada disso ajuda e o botão continua obrigatório.
 
 ---
 
@@ -98,25 +128,22 @@ Funciona na prática; não é medição. Para separar (a) de (b) seria preciso u
 padrão com fronteira visível, e o CLI não entrega: `-c` com lista de cores só
 vale sem efeito, e `-m direct` **apaga o header** neste hardware.
 
-**Ainda em aberto e necessário para a decisão de hardware:** a contagem de LEDs
-por fan do gabinete. É contagem visual dos pontos no anel de **uma** fan × 8.
-Decide o orçamento de corrente do header (ver seção 7).
-2. **A forma da ligação não foi confirmada visualmente.** O comportamento
-   observado (o water cooler continua obedecendo a placa-mãe mesmo com o hub
-   em Rainbow autônomo) é mais compatível com **hub e water cooler em
-   paralelo, a partir de um splitter no header da zona 3**, do que com uma
-   cadeia em série passando pelo hub — se o sinal passasse *através* do hub,
-   o water cooler provavelmente herdaria o Rainbow dele. **Vale abrir o
-   gabinete e conferir fisicamente**, porque isso muda o diagnóstico e as
+### O que continua ASSUMIDO, não medido
+
+1. **A contagem de LEDs por fan do gabinete.** É contagem visual dos pontos no
+   anel de **uma** fan × 8, mais o cooler. Decide o orçamento de corrente do
+   header e, com ele, se splitter passivo é opção (ver seção 7).
+2. **A forma da ligação não foi confirmada visualmente.** Sabe-se que o cooler
+   **não** está a jusante do hub — ele continua obedecendo o header enquanto o
+   hub roda o Rainbow autônomo, e se o sinal passasse *através* do hub o cooler
+   herdaria o Rainbow. Mas isso não distingue **splitter em paralelo** de
+   **cooler primeiro, em série**. Só olhando o cabo resolve, e isso muda as
    opções de solução.
 
 ---
 
 ## 4. O que funciona de forma confiável (não mexer)
 
-- Detecção de carga de GPU: `gpu_busy_percent` via sysfs do `amdgpu`.
-  Responde corretamente a jogos e cargas reais. Validado em hardware.
-- Detecção automática de backend AMD/NVIDIA no arranque.
 - `openrgb.service` como servidor persistente + script como cliente. Sem
   isso, cada chamada `openrgb` standalone leva ~8,7s (a RX 9070 registra ~13
   barramentos I2C que são re-sondados do zero a cada invocação).
@@ -127,7 +154,12 @@ Decide o orçamento de corrente do header (ver seção 7).
   Aura e sobrevivem a restart do serviço **e a reboot** (verificado várias
   vezes, inclusive no boot atual).
 - Serviços sobem sozinhos no boot, sem intervenção.
-- RAM e water cooler: ligam, apagam e mudam de cor de forma 100% previsível.
+- RAM e fans do cooler: obedecem cor e modo de forma 100% previsível.
+
+> A detecção de carga de GPU (`gpu_busy_percent` via sysfs do `amdgpu`) e a
+> detecção automática de backend NVIDIA/AMD **saíram do projeto** em 2026-07-30,
+> junto com a sincronia. Funcionavam e estão no histórico do git. O único defeito
+> que tinham era o limiar herdado da NVIDIA — ver seção 5, 2026-07-30.
 
 ---
 
@@ -216,12 +248,22 @@ regulador dele por 19 minutos seguidos. Regulador em estresse prolongado é caus
 tão plausível quanto comando em excesso — e o diagnóstico original só considerava
 a segunda.
 
-**Mitigação aplicada em 2026-07-29:** `LED_COLOR` passou de `FFFFFF` para
-`A0A0A0` (A0 = 160/255 ≈ 63% de duty), o que corta ~37% da corrente do array com
-diferença visual mínima. Ataca a metade do problema que o `ON_REASSERT_SECONDS`
-não toca. **Como as duas mitigações agora estão ativas ao mesmo tempo, um novo
-travamento não distinguiria qual hipótese estava certa** — mas o objetivo aqui é
-não travar, não ganhar o debate.
+**Mitigação tentada em 2026-07-29 e REVERTIDA em 2026-07-30.** `LED_COLOR` passou
+de `FFFFFF` para `A0A0A0` (A0 = 160/255 ≈ 63% de duty, ~37% menos corrente) e
+voltou para `FFFFFF`.
+
+Motivo da reversão, e vale registrar porque não era óbvio: **cinza neutro
+(R=G=B) nesse hardware não dá "branco mais suave", dá branco AMARELADO.** Em LED
+WS2812 o die azul perde eficiência em duty reduzido antes dos outros dois, então
+o branco puxa pro quente. Reportado pelo usuário olhando o hardware. O ganho
+estético era negativo, e a hipótese que isso mitigava é a fraca das duas
+(especulação correlacional, 1 incidente), enquanto a de excesso de comando foi
+corrigida de verdade.
+
+> **Estado atual: não existe mitigação de corrente, só a de frequência.** Em
+> sessão longa de carga pesada, vale checagem física das fans. E se um dia quiser
+> as fans do gabinete menos ofuscantes, o caminho **não é a cor** — é o botão de
+> brilho do controle IR do hub.
 
 **Mitigação aplicada:** o "ligar" passou a ser reafirmado a cada
 `ON_REASSERT_SECONDS` = **5 min** (em vez de 10s), separado do
@@ -272,6 +314,43 @@ do sync.
    perdeu. **Por que uns sim e outros não é uma questão em aberto.**
 
 Ver [`logs/incidente-2026-07-29-perda-sync-pos-reboot.log`](logs/incidente-2026-07-29-perda-sync-pos-reboot.log).
+
+### 2026-07-30 — LEDs acendendo sozinhos em idle (bug meu, corrigido)
+
+Reportado pelo usuário: "de tempos em tempos, talvez 5 minutos, tudo acende do
+nada, sem atividade na GPU". Não era novo — sempre esteve lá, só não tinha sido
+notado.
+
+**Causa, medida:** amostrando `gpu_busy_percent` a 1Hz por 4 minutos com a
+máquina parada:
+
+```
+0% -> 236 amostras
+1% ->   4 amostras   @ 01:25:00, 01:26:00, 01:27:00, 01:28:00
+```
+
+Algo dispara **uma vez por minuto, exatamente no segundo `:00`**, e produz um
+pico de 1% que dura menos de 1 segundo. O `UTIL_THRESHOLD_PCT=1` era herdado da
+NVIDIA ("idle ~0%, qualquer utilização > 0% conta"), então `1 >= 1` era
+verdadeiro e o pico virava "GPU ativa" — acendendo tudo pelos 60s do debounce.
+
+**É um artefato de aliasing.** O laço amostra a cada 10s, então pegava o pico por
+coincidência de fase, ~1 vez a cada 10 min. Isso explica os intervalos
+irregulares (1min25s a 19min) e por que as ligadas espúrias caem sempre no mesmo
+segundo do minuto nos logs — é a fase do laço, não atividade. No log histórico:
+**~50 ligadas entre 00:00 e 04:15 de 2026-07-29**, com a máquina sozinha.
+
+**Corrigido em duas frentes:** limiar para 10% (10x de margem sobre o teto
+medido) e `ACTIVATION_SAMPLES=2`. A segunda é a correção estrutural — o limiar é
+calibração que envelhece (outra GPU, outro compositor, outra tarefa de fundo),
+enquanto exigir duas amostras consecutivas mata a classe inteira de "pico de 1
+amostra" seja qual for a magnitude: um pico de <1s não aparece em duas amostras
+separadas por 10s.
+
+**Validado com a GPU simulada** (stub de `openrgb` + arquivo de sysfs falso, com
+o script real): a configuração antiga reproduz o bug, a nova não acende com os
+picos, carga real continua acendendo, e queda instantânea no meio da carga não
+apaga. Um teste que passasse nas duas configurações não valeria nada.
 
 ---
 
@@ -423,11 +502,10 @@ o total fica plausivelmente **acima** dos 50 LEDs. Conclusão:
 > **O caminho correto é um controlador com alimentação própria, não um divisor
 > passivo.**
 
-Nota relacionada: `LED_COLOR` era `FFFFFF`, o **estado de corrente máxima
-possível** de todo o array; passou para `A0A0A0` em 2026-07-29 (~37% menos
-corrente). O teto de ~50 LEDs acima é para branco pleno — em `A0A0A0` sobe para
-~80 LEDs, o que pode tornar o splitter passivo viável **se** a contagem real
-couber. Depende da medição que falta (seção 3).
+Nota relacionada: `LED_COLOR` é `FFFFFF`, o **estado de corrente máxima possível**
+de todo o array — a tentativa de usar `A0A0A0` foi revertida em 2026-07-30 (ver
+seção 5). Então o teto de ~50 LEDs vale como está, e o splitter passivo segue
+provavelmente inviável. Depende da contagem que falta (seção 3).
 
 ### Nível 1 — resolve a classe inteira e fecha o buraco de segurança
 
@@ -496,11 +574,11 @@ exige análise de impacto antes de qualquer comando.
 
 ```bash
 # Estado dos serviços
-systemctl --user status gpu-rgb-sync.service
+systemctl --user status rgb-branco.service
 systemctl status openrgb.service
 
 # Logs do script
-journalctl --user -u gpu-rgb-sync.service -f
+journalctl --user -u rgb-branco.service -f
 
 # Inventário de dispositivos e zonas
 openrgb --list-devices
@@ -509,7 +587,7 @@ openrgb --list-devices
 openrgb --list-devices | grep -o "'Aura Addressable 3, LED [0-9]*'" | wc -l
 
 # Forçar branco / apagar (zona 3 = hub + water cooler)
-openrgb -d "ASUS" -z 3 -sz 40 -c A0A0A0 -m static   # cor atual do estado "ligado"
+openrgb -d "ASUS" -z 3 -sz 40 -c FFFFFF -m static   # cor atual do estado "ligado"
 openrgb -d "ASUS" -m static -c 000000               # "apagado" atual (NAO usar -m off)
 
 # Antes de apertar o botao ON M/B, force branco PLENO e confirme visualmente --
@@ -526,7 +604,7 @@ sensors
 
 ### Procedimento quando o hub para de responder
 
-1. `systemctl --user stop gpu-rgb-sync.service`
+1. `systemctl --user stop rgb-branco.service`
 2. **Evitar carga pesada** (jogo, LLM, render) até resolver.
 3. Testar o controle remoto do hub. Se **nenhum** botão funcionar, o
    microcontrolador travou — não há correção por software.
@@ -550,7 +628,11 @@ sensors
 | 2026-07-29 | `leds_apagar` usa `static 000000` no Aura em vez de `-m off` | H1 (refutada como correção do sync); mantido como trava de segurança do botão `ON M/B` |
 | 2026-07-29 | `leds_ligar` manda **1** comando ao Aura em vez de 2 | O comando no dispositivo inteiro já cobre a zona 3; o da zona era redundante para cor e só existia pelo `-sz`. Metade das escritas no header |
 | 2026-07-29 | Tamanho da zona só é reescrito se uma **leitura** mostrar que está errado | Antes redimensionava a zona a cada reafirmação (12x/hora em jogo). Resize reconfigura o canal do header, é mais invasivo que trocar cor. Leitura como cliente custa 0,04s |
-| 2026-07-29 | `LED_COLOR` de `FFFFFF` para `A0A0A0` | ~37% menos corrente no array. Mitiga a hipótese de estresse do regulador do hub, que tem a mesma correlação que a de excesso de comando (seção 5) |
+| 2026-07-29 | `LED_COLOR` de `FFFFFF` para `A0A0A0` | Mitigar a hipótese de corrente. **Revertido em 2026-07-30** |
+| 2026-07-30 | `LED_COLOR` de volta para `FFFFFF` | Cinza neutro dá branco **amarelado** nesse hardware (die azul perde eficiência em duty baixo). Ganho estético negativo, e a hipótese mitigada é a fraca das duas |
+| 2026-07-30 | `UTIL_THRESHOLD_PCT` de 1 para 10, e `ACTIVATION_SAMPLES=2` | **Bug real:** idle da RX 9070 tem pico de 1% uma vez por minuto no segundo `:00`; com limiar 1 isso acendia tudo por 60s+, ~50x por noite. Ver seção 5 |
+| 2026-07-30 | `UTIL_THRESHOLD_PCT` e `POWER_THRESHOLD_W` viraram sobrescrevíveis por env | O README dizia que eram, mas no script eram atribuições fixas — a variável era ignorada em silêncio |
+| 2026-07-30 | **Redesenho completo.** `gpu-rgb-sync.sh` → `rgb-branco.sh`; sincronia com a GPU REMOVIDA; branco permanente 24/7 | Preferência do dono. De quebra: header nunca mudo, tráfego de 2 escritas/hora, e abre o teste de sync no POST que a configuração antiga impedia |
 
 Parâmetros atuais (sobrescrevíveis por variável de ambiente no `ExecStart`):
 
@@ -596,18 +678,29 @@ logs. O componente que falha é o hub ARGB ativo do gabinete, cujo firmware:
   reafirmação em vez de duas, e o tamanho da zona só é reescrito se uma leitura
   mostrar que está errado — antes redimensionava a zona em toda reafirmação.
 
-**Ordem sugerida de ataque, revisada:**
+**Ordem sugerida de ataque, revisada em 2026-07-30:**
 
-1. **Reboot observado** — as fans do gabinete param e voltam a girar durante o
-   reboot? Separa (A) perda de alimentação de (B) linha inválida no POST, e
-   resolve de uma vez se a não-determinismo de H4 sequer existe. Custo zero.
+1. **Reboot observado, agora no desenho de branco permanente.** Duas perguntas
+   num único reboot, custo zero:
+   - **Durante** o reboot, os LEDs das 8 fans ficam completamente escuros em
+     algum instante? Escuro = o hub perdeu alimentação → (A)/H2, o modo é
+     volátil e nenhum software resolve. Nunca escuro = o hub manteve energia
+     → (B).
+   - **Depois** do boot, as 8 fans voltam brancas ou em Rainbow? Brancas = o
+     header carregando branco desde o POST preservou o sync, e o problema
+     acabou. Rainbow = o botão continua obrigatório.
 2. **Contar os LEDs de uma fan** (visual, gabinete aberto) — fecha o orçamento
    de corrente e decide se splitter passivo é opção.
 3. **Traçar o cabo** do header (splitter em paralelo vs. cooler em série).
-4. **H3 (BIOS)** — barato, mas o manual desta placa não enumera opções de BIOS,
-   então não se sabe se a opção existe. E o manual diz que o header endereçável
-   *"will only light up when the system is powered on"* — não há iluminação em
-   S5 nesta placa.
+4. **Persistir branco no próprio controlador Aura**, para o header acender já no
+   POST sem depender do SO. Dois caminhos, os dois não testados: opção de Aura no
+   BIOS/UEFI (o manual desta placa não enumera opções de BIOS, então só olhando
+   se sabe), ou "salvar no dispositivo" pela GUI do OpenRGB — o CLI **não** tem
+   flag de save (`-sp/--save-profile` grava um arquivo de perfil, não no
+   hardware). Se funcionar, é o estado ideal: o header branco desde o instante do
+   POST, e possivelmente sem serviço nenhum.
 5. **Decisão de hardware** (seção 7).
 
-`A0A0A0` em vez de `FFFFFF`: **aplicado** em 2026-07-29.
+Notas de tentativas encerradas: `A0A0A0` em vez de `FFFFFF` foi tentado em
+2026-07-29 e **revertido** em 2026-07-30 (cinza neutro dá branco amarelado nesse
+hardware — seção 5). Modo `Direct` **descartado**: apaga o header (seção 6).

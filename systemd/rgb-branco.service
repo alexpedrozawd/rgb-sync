@@ -1,5 +1,5 @@
 [Unit]
-Description=GPU RGB Sync (OpenRGB - apaga em idle, branco estatico quando GPU ativa)
+Description=rgb-branco (OpenRGB - todos os LEDs em branco estatico, permanente)
 After=graphical-session.target openrgb.service
 
 [Service]
