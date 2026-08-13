@@ -36,6 +36,8 @@ hub.**
 | Water cooler (2 fans do radiador) | Obedecem normalmente |
 | 8 fans do gabinete (hub Rise Mode) | **M/B Sync, anéis E pás em branco** |
 | Sincronia com a GPU | **removida do projeto** em 2026-07-30 |
+| Brilho | **48% de duty** desde 2026-08-12 — mitigação de pane, ver seção 5 |
+| Panes do hub | **3** (07-29, 07-30, 08-12), sempre com fans parando de girar |
 
 **Atenção ao ler este documento:** ele foi escrito em 2026-07-29 e corrigido em
 vários pontos desde então, alguns deles revertendo conclusões anteriores. As
@@ -460,6 +462,91 @@ completo da correção.
 **Corolário prático, ainda sem confirmação repetida:** diante de um hub travado
 ou fora de sync, um corte de energia completo pode ser mais eficaz que
 reinício comum e mais seguro que o `ON M/B` — vale ser o primeiro recurso.
+
+> **Não se confirmou.** Na pane de 2026-08-12 o mesmo procedimento (5 min sem
+> energia, 10s de dreno) trouxe o hub de volta em **Rainbow**, e foi preciso
+> apertar `ON M/B` para voltar ao branco. A recuperação automática de 07-30
+> continua sendo n=1 e **não é reproduzível** — tratar como episódio isolado,
+> não como comportamento esperado.
+
+### 2026-08-12 — Terceira pane, com sintoma NOVO: LEDs piscando
+
+Após **~24h de uptime** (boot de 2026-08-11 20:58 até 2026-08-12 21:19), as 8
+fans do gabinete pararam de girar de novo. As 2 fans do cooler continuaram
+normais. Temperaturas baixas no momento da checagem (CPU 35°C, GPU 47°C, GPU em
+0%) — sem emergência térmica, mas o modo de falha perigoso se repetiu.
+
+**Correção de frequência, registrada porque eu errei isso na hora:** afirmei
+"três travamentos em cinco dias". Está errado. As panes foram **2026-07-29,
+2026-07-30 e 2026-08-12** — três em **quatorze dias**, com **treze dias inteiros
+de intervalo** entre a segunda e a terceira. A taxa é bem menor do que eu disse.
+
+**O sintoma novo é a peça que faltava.** Nas duas panes anteriores a cor ficava
+**presa e imóvel** — MCU morto, retenção passiva de frame (WS2812 retém cor sem
+sinal). Desta vez os LEDs estavam **piscando**, descrito pelo dono como "como se
+estivessem querendo falhar". Piscar significa algo **ciclando**: liga, atinge um
+limite, desliga, tenta de novo. Essa é a assinatura de **proteção de alimentação
+em modo hiccup**, não de firmware travado. Aponta para energia, não para lógica.
+
+**A observação do dono que reorienta o diagnóstico:** *"não acho que seja
+problema do hub porque antes de criar o script isso nunca aconteceu, e eu só
+usava o RGB padrão mesmo"*. A correlação é forte e estava sendo subestimada
+aqui — meses em Rainbow autônomo sem nenhuma pane, três panes em duas semanas
+depois que o projeto entrou. Isso aponta para o que **mudamos**, não para um
+componente que já estava morrendo.
+
+Três coisas mudaram quando o projeto começou. Só uma tem mecanismo físico que
+explica *piscar*:
+
+| Mudança | Avaliação |
+|---|---|
+| Hub entrou em **M/B Sync** (caminho de firmware nunca exercitado antes) | Possível, mas sem mecanismo que explique modo hiccup |
+| Header passou a mandar **branco pleno sustentado** | **Principal** — ver a conta abaixo |
+| `openrgb.service` rodando 24/7 | Improvável: não escreve no header por conta própria |
+
+**A conta da corrente.** No Rainbow cada LED mostra um tom saturado — vermelho
+puro acende 1 canal, amarelo 2, ciano 2, e assim por diante; a média ao longo do
+arco-íris fica em torno de **48% dos canais ligados**. Branco pleno acende os
+**3 canais em 100%**. O projeto portanto **praticamente dobrou a corrente
+contínua** pelo hub, e a partir de 2026-07-30 (branco permanente) isso passou a
+ser 24/7 em vez de só sob carga de GPU.
+
+Reforço: o hub é especificado para **até 10 fans** (são 8 em uso, dentro do
+projeto) — mas rodando **os efeitos dele**. Branco pleno em todos os LEDs é um
+estado que o firmware dele nunca produz sozinho e que nunca foi validado.
+
+Isso também reinterpreta a primeira pane: 2026-07-29 aconteceu na janela de
+**19 minutos contínuos de branco** — o maior período de corrente máxima daquele
+dia, sob o desenho antigo em que o branco era intermitente.
+
+**Mitigação aplicada (2026-08-12):** `LED_COLOR` de `FFFFFF` para `707090` e
+`RAM_COLOR` de `D0D0FF` para `72728B` — ambos calibrados para **48% de duty
+médio**, batendo com a corrente do Rainbow que rodou meses sem uma única pane.
+Não é chute: é voltar ao ponto empiricamente comprovado, mantendo branco. O azul
+fica acima de R/G porque em duty reduzido o die azul perde eficiência antes dos
+outros (mesma compensação validada nas RAMs em 2026-07-30).
+
+**Posição do teste, e por que essa ordem:** o plano aplicado fica a **uma única
+variável** da configuração comprovadamente segura.
+
+| Configuração | Corrente | M/B Sync | Automático | Resultado |
+|---|---|---|---|---|
+| Rainbow autônomo (pré-projeto) | ~48% | Não | Sim | **Meses sem pane** |
+| Branco pleno + M/B Sync | 100% | Sim | Sim | **3 panes** |
+| Plano A — branco 48% + M/B Sync | ~48% | Sim | Sim | **em teste** |
+| Plano B — branco autônomo + brilho baixo pelo controle IR | baixo | Não | Não | reserva |
+
+Se travar de novo a 48%, **a hipótese de corrente cai** e sobra o M/B Sync em
+si — aí o plano B entra sem ambiguidade: hub em modo autônomo pelo controle IR
+(que tem branco **e** controle de brilho, confirmado com o dono em 2026-08-12),
+tirando a placa-mãe do caminho do hub. O software continuaria cuidando do cooler
+e das RAMs normalmente. Custo do plano B: o hub volta a Rainbow após queda total
+de energia, exigindo apertar botões de cor/brilho — chateação equivalente à do
+`ON M/B` de hoje.
+
+**Ciclo de retorno longo:** o intervalo entre a segunda e a terceira pane foi de
+13 dias. "Não travou hoje" não significa nada. Só há sinal depois de **2 a 3
+semanas** sem pane.
 
 ---
 

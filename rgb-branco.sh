@@ -20,13 +20,16 @@
 #       travamento do hub em 2026-07-29 aconteceu sob ~6 escritas por MINUTO
 #       sustentadas por 19 min. E ~180x menos trafego.
 #
-#   Contrapartida honesta: branco pleno e o estado de CORRENTE MAXIMA do array
-#   (~60 mA por LED), e agora ele e permanente, 24/7, em vez de so sob carga. Se
-#   a hipotese de que o travamento de 2026-07-29 veio de corrente sustentada
-#   estiver certa, essa exposicao aumentou. Nao ha como mitigar por cor sem
-#   estragar o branco (cinza neutro da branco AMARELADO nesse hardware -- ver
-#   docs/DIAGNOSTICO-HUB.md). O caminho, se precisar, e o botao de brilho do
-#   controle IR do hub, que reduz a corrente sem tocar no header.
+#   Contrapartida que se confirmou custosa: branco PLENO e o estado de CORRENTE
+#   MAXIMA do array, e o desenho o tornou permanente 24/7 em vez de so sob carga.
+#   O hub travou de novo em 2026-08-12, terceira vez -- e o sintoma novo (LEDs
+#   PISCANDO em vez de cor presa) apontou pra protecao de alimentacao em modo
+#   hiccup. Ver LED_COLOR abaixo pra conta completa e pra mitigacao aplicada.
+#
+#   Uma tentativa anterior de escurecer (A0A0A0, 2026-07-29) foi revertida porque
+#   saiu AMARELADA -- mas o problema era falta de compensacao de azul, nao o
+#   escurecimento em si. Com compensacao, da pra escurecer mantendo branco
+#   neutro; foi o que se fez em 2026-08-12.
 #
 # TOPOLOGIA ARGB -- o que esta MEDIDO:
 #   A placa expoe 4 zonas no dispositivo Aura ("Aura Mainboard" + "Aura
@@ -57,8 +60,39 @@
 MB_DEVICE="ASUS PRIME B760M-A D4"
 RAM_DEVICE="ENE DRAM"
 
-# Branco do dispositivo Aura (hub das 8 fans + 2 fans do cooler). Branco pleno.
-LED_COLOR="FFFFFF"
+# Branco do dispositivo Aura (hub das 8 fans + 2 fans do cooler).
+#
+# 707090 e NAO FFFFFF (2026-08-12) -- isto e mitigacao de PANE, nao estetica:
+#   O hub travou 3x (2026-07-29, 07-30 e 08-12), sempre com as fans do gabinete
+#   parando de girar. Antes deste projeto existir, o hub rodava o Rainbow
+#   autonomo dele e NUNCA travou. O usuario apontou essa correlacao e ela e o
+#   melhor indicio que temos.
+#
+#   A conta: no Rainbow cada LED mostra um tom saturado -- vermelho puro acende 1
+#   canal, amarelo 2, e assim por diante; a media ao longo do arco-iris fica em
+#   ~48% dos canais ligados. Branco pleno acende os 3 canais em 100%. Ou seja, o
+#   projeto praticamente DOBROU a corrente continua pelo hub, e desde 2026-07-30
+#   isso virou permanente 24/7. O hub e especificado pra 10 fans rodando OS
+#   EFEITOS DELE -- branco pleno em todos os LEDs e um estado que o firmware dele
+#   nunca produz sozinho, e nunca foi validado nessa condicao.
+#
+#   O sintoma de 2026-08-12 fecha o raciocinio: as duas panes anteriores tinham
+#   cor PRESA E IMOVEL (MCU morto, retencao passiva de frame WS2812). Desta vez
+#   os LEDs estavam PISCANDO -- algo ciclando: liga, atinge um limite, desliga,
+#   tenta de novo. Assinatura de protecao de alimentacao em modo hiccup, nao de
+#   firmware travado.
+#
+#   707090 = 48% de duty medio, calibrado pra bater exatamente com a corrente do
+#   Rainbow que rodou meses sem uma unica pane. Nao e chute: e voltar ao ponto
+#   empiricamente comprovado como seguro, mantendo branco. O azul vai mais alto
+#   que R/G (0x90 vs 0x70) porque em duty reduzido o die azul do WS2812 perde
+#   eficiencia antes dos outros e o branco puxa pro amarelado -- mesma
+#   compensacao ja validada nas RAMs.
+#
+#   SE VOLTAR A TRAVAR mesmo assim: a hipotese de corrente cai, sobra o modo M/B
+#   Sync em si, e o caminho passa a ser tirar o hub do header (modo autonomo pelo
+#   controle IR) ou trocar o hardware. Ver docs/DIAGNOSTICO-HUB.md secao 7.
+LED_COLOR="${LED_COLOR:-707090}"
 
 # Branco das RAMs, CALIBRADO SEPARADO -- nao e capricho.
 #   `FFFFFF` significa "R, G e B no duty maximo", e isso NAO produz branco neutro
@@ -67,13 +101,27 @@ LED_COLOR="FFFFFF"
 #   AMARELADO -- R+G dominando. Reportado pelo usuario olhando o hardware em
 #   2026-07-30.
 #
-#   Como o azul ja esta no maximo (FF), a correcao e BAIXAR R e G. Nao ha como
-#   subir azul.
+#   A correcao e subir o azul em relacao a R e G. Em 2026-07-30, com o conjunto
+#   em brilho alto, D0D0FF resolveu -- proporcao B/R = 1.23.
 #
-#   Calibracao e VISUAL e especifica deste hardware. Se ficar amarelado ainda,
-#   baixe mais R e G (ex. B0B0FF). Se ficar azulado/frio, suba (ex. E8E8FF).
-#   Manter o azul em FF.
-RAM_COLOR="${RAM_COLOR:-D0D0FF}"
+#   ATENCAO -- A COMPENSACAO NAO ESCALA LINEARMENTE COM O BRILHO. Em 2026-08-12,
+#   ao acompanhar o escurecimento do Aura pra 48% de duty, a primeira tentativa
+#   foi 72728B, que preserva exatamente a mesma proporcao B/R = 1.22. Ficou
+#   VISIVELMENTE AMARELADO. Motivo: em duty reduzido o die azul do WS2812 perde
+#   eficiencia MAIS RAPIDO que os outros dois, entao quanto mais escuro, MAIS
+#   compensacao e preciso -- nao a mesma.
+#
+#   7272C0 = B/R 1.68, calibrado visualmente a 48% de duty em tres rodadas:
+#     72728B (B/R 1.22) -> bem amarelado
+#     7272AC (B/R 1.51) -> ainda um pouco amarelado
+#     7272C0 (B/R 1.68) -> neutro, aprovado com o hardware a vista
+#   Se um dia mudar o brilho, RECALIBRE: nao reaproveite a proporcao do brilho
+#   anterior. Amarelado ainda -> suba o azul. Azulado/frio -> desca.
+#
+#   As RAMs NAO fazem parte do problema de corrente do hub (sao alimentadas pelos
+#   slots DIMM, nao pelo Molex do hub). O escurecimento aqui e puramente pra
+#   manter o conjunto visualmente uniforme com as fans.
+RAM_COLOR="${RAM_COLOR:-7272C0}"
 
 # Zona 3 = hub das 8 fans + 2 fans do cooler.
 #

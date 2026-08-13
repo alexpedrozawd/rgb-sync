@@ -187,26 +187,60 @@ Se o corte de energia completo não resolver, aí sim o controle remoto:
 > problema. Com este desenho o header está sempre com sinal, então a condição
 > perigosa só ocorre se o serviço estiver parado.
 
-## ⚠️ Risco conhecido: o hub trava (2 vezes em 4 dias)
+## ⚠️ Risco conhecido: o hub trava (3 vezes em 14 dias)
 
-**Incidente 1 (2026-07-29), sob sincronia com GPU:** sessão longa de jogo, o
-microcontrolador travou — as 8 fans **pararam de girar** e o controle remoto
-ficou 100% sem resposta. Risco térmico real.
+**Incidente 1 (2026-07-29), sob sincronia com GPU:** durante a janela de 19 min
+contínuos de branco, o microcontrolador travou — as 8 fans **pararam de girar**
+e o controle remoto ficou 100% sem resposta. Risco térmico real.
 
 **Incidente 2 (2026-07-30), já sob branco permanente:** anéis com cor presa e
 misturada (branco+rainbow — retenção de frame, não efeito), pás apagadas,
-controle remoto de novo 100% sem resposta. **Desta vez as pás continuaram
-girando** — sem risco térmico, mas o padrão de MCU travado é o mesmo.
+controle remoto de novo sem resposta. Pás continuaram girando.
+
+**Incidente 3 (2026-08-12), após ~24h de uptime:** fans pararam de girar de
+novo — mas com um **sintoma novo e decisivo**: os LEDs estavam **piscando**, não
+com cor presa. Piscar significa algo *ciclando* (liga, atinge um limite,
+desliga, tenta de novo) — assinatura de **proteção de alimentação em modo
+hiccup**, não de firmware travado. Aponta para energia, não para lógica.
 
 LEDs acesos **não provam** que o hub está funcionando: WS2812 retém a última
 cor recebida indefinidamente, sem sinal contínuo.
 
-O segundo incidente pesa a favor de uma das duas hipóteses:
+### A causa mais provável, e o que ela implica
 
-| Candidato | Estado depois do 2º travamento |
+**Antes deste projeto existir, o hub rodava Rainbow autônomo e nunca travou.**
+Essa observação do dono é o melhor indício que existe, e reorienta tudo: o
+problema está no que **mudamos**, não num componente que já estava morrendo.
+
+A conta: no Rainbow cada LED mostra um tom saturado — vermelho puro acende 1
+canal, amarelo 2, ciano 2. A média ao longo do arco-íris fica em ~**48% dos
+canais ligados**. Branco pleno acende os **3 canais em 100%**. O projeto
+**praticamente dobrou a corrente contínua** pelo hub — e desde 2026-07-30, 24/7.
+
+O hub é especificado para até 10 fans (são 8 em uso), mas rodando **os efeitos
+dele**. Branco pleno em todos os LEDs é um estado que o firmware dele nunca
+produz sozinho, e que nunca foi validado.
+
+| Candidato | Estado |
 |---|---|
-| Firmware afogado em comando repetido | Mitigado ao limite prático (2 escritas/hora) — **travou mesmo assim** |
-| Regulador do hub em estresse térmico | Sem mitigação, exposição aumentou (branco 24/7) — **candidato mais provável agora** |
+| Firmware afogado em comando repetido | Mitigado ao limite (2 escritas/hora) — **travou mesmo assim, descartado** |
+| Corrente sustentada / proteção de alimentação | **Principal.** Mitigado em 2026-08-12: brilho a 48% de duty |
+| Modo M/B Sync em si | Reserva. Se travar a 48%, é o que sobra |
+
+**Mitigação em teste desde 2026-08-12:** `LED_COLOR=707090` e
+`RAM_COLOR=72728B`, ambos calibrados para 48% de duty — a mesma corrente do
+Rainbow que rodou meses sem pane. Isso deixa a configuração a **uma única
+variável** do estado comprovadamente seguro (só o M/B Sync difere).
+
+> **Ciclo de retorno longo:** o intervalo entre a 2ª e a 3ª pane foi de 13 dias.
+> "Não travou hoje" não significa nada — só há sinal após **2 a 3 semanas**.
+>
+> **Se travar mesmo a 48%:** a hipótese de corrente cai e sobra o M/B Sync. O
+> plano B é pôr o hub em **modo autônomo branco com brilho reduzido pelo
+> controle IR** (ele tem branco e controle de brilho), tirando a placa-mãe do
+> caminho do hub. O script continua cuidando do cooler e das RAMs. Custo: o hub
+> volta a Rainbow após queda total de energia, exigindo apertar botões — mesma
+> chateação do `ON M/B` de hoje.
 
 Se as fans do hub pararem de girar, ou o controle remoto não responder:
 
