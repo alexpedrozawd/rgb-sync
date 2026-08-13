@@ -570,7 +570,49 @@ fecham caminhos que pareciam promissores.
 consistente com todas as três panes e reforça que a falha é interna ao hub e
 invisível ao sistema operacional.
 
-#### O achado: conflito de alimentação (backfeed) no header ARGB
+#### ⚠️ CORREÇÃO (mesma data, poucas horas depois) — o backfeed foi superestimado
+
+A seção abaixo foi escrita e commitada antes de eu revisar a física com cuidado.
+**Ela tem um furo lógico e o peso dado ao backfeed está errado.** Mantida na
+íntegra abaixo porque o raciocínio e as fontes seguem úteis, mas leia primeiro
+esta correção.
+
+**O furo:** argumentei que sob carga o 5V do hub afunda e o header injeta
+corrente nele. Mas se o header está **fornecendo** corrente ao hub, isso
+**alivia** o hub, não o derruba. Usei o backfeed para explicar um brownout que
+ele tenderia a compensar. Não fecha.
+
+**A explicação mais simples, que não precisa de backfeed nenhum:**
+
+> O caminho de alimentação do próprio hub — Molex, trilhas, conectores — não
+> aguenta a corrente de branco pleno sustentado. Ele afunda, o MCU faz brownout,
+> trava, e as fans param. O piscar é esse ciclo se repetindo.
+
+Isso explica as três panes, a correlação com branco pleno, o piscar e o host não
+ver nada — sem exigir interação entre duas fontes. Navalha de Occam favorece a
+simples; eu me empolguei com o achado de fórum porque era vistoso.
+
+**Risco de queimar a placa-mãe: baixo, e não há emergência.** Os relatos de placa
+destruída em fórum são quase sempre de 12V RGB plugado em header 5V ARGB,
+conector invertido ou curto real — coisas diferentes. Aqui as duas fontes de 5V
+vêm da MESMA fonte de alimentação, então a diferença de potencial é de décimos de
+volt. E a montagem está assim desde que a máquina foi construída, sem nenhum
+sintoma do lado da placa: o Aura responde, o header aciona as fans do cooler, as
+RAMs funcionam. Quem falha é sempre o hub.
+
+**O que muda na prática:**
+
+| Item | Peso corrigido |
+|---|---|
+| Brilho a 48% (aplicado 2026-08-12) | **A correção certa** — ataca a causa diretamente |
+| Desconectar o +5V entre header e hub | Precaução barata, **não** a solução |
+| Comprar cabo extensor para o mod | **Não fazer** até o teste dos 48% concluir |
+| Urgência | **Nenhuma** |
+
+O risco real permanece o de sempre, e não é elétrico do lado da placa: **o hub
+travar e parar as 8 fans**, sem sensor que detecte. Esse é térmico.
+
+#### O achado original: conflito de alimentação (backfeed) no header ARGB
 
 O hub tem **duas fontes de 5V ligadas em paralelo**:
 
