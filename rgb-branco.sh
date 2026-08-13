@@ -176,16 +176,62 @@ aplicar_branco() {
   openrgb -d "$RAM_DEVICE" -m static -c "$RAM_COLOR" > /dev/null 2>&1
 }
 
-# Rajada de arranque: fecha a corrida de boot em que o dispositivo Aura ainda nao
-# esta pronto no OpenRGB quando o servico sobe -- bug real de 2026-07-28, em que as
-# RAMs acendiam e o resto ficava apagado porque o unico comando falhou em silencio.
-# 4 aplicacoes no 1o minuto e trafego irrisorio; o perigoso era 6 por minuto
-# sustentado por 19 minutos.
-for espera in 0 10 20 30; do
-  sleep "$espera"
-  aplicar_branco
-done
-echo "rgb-branco: branco aplicado (rajada de arranque concluida)."
+# ARRANQUE -- espera o servidor responder ANTES de escrever, em vez de disparar
+# as cegas (substitui a "rajada de 4 aplicacoes", 2026-08-13).
+#
+#   POR QUE O UNIT NAO RESOLVE: `After=openrgb.service` num unit de USUARIO e
+#   NO-OP. O gerenciador `systemd --user` nao enxerga unidades de SISTEMA, e o
+#   openrgb.service e de sistema. Medido em 2026-08-13:
+#   `systemctl --user list-unit-files openrgb.service` responde "0 unit files
+#   listed". A ordenacao declarada NUNCA funcionou -- o que fechava a corrida de
+#   boot de 2026-07-28 era a rajada cega, nao a dependencia.
+#
+#   A sonda e READ-ONLY (nao escreve no header) e confirma o que importa: o
+#   servidor esta no ar E ja detectou o dispositivo Aura. Depois disso escreve
+#   UMA vez em vez de quatro -- menos trafego no header, que e o objetivo de
+#   seguranca deste projeto inteiro.
+ARRANQUE_TENTATIVAS="${ARRANQUE_TENTATIVAS:-30}"
+ARRANQUE_INTERVALO="${ARRANQUE_INTERVALO:-2}"
+
+# Conta o dispositivo Aura no inventario. NAO usa o tamanho da zona pra isso: uma
+# queda de energia pode zerar o tamanho, e ai a sonda esperaria pra sempre por uma
+# condicao que so o proprio `aplicar_branco` conserta.
+aura_detectado() {
+  openrgb --list-devices 2>/dev/null | grep -c "^[0-9]*: ${MB_DEVICE}"
+}
+
+modo_do_aura() {
+  openrgb --list-devices 2>/dev/null \
+    | awk -v dev="$MB_DEVICE" '$0 ~ "^[0-9]+: " dev {f=1} f && /Modes:/ {print; exit}' \
+    | grep -oE "\[[A-Za-z]+\]"
+}
+
+aguardar_openrgb() {
+  local i
+  for i in $(seq 1 "$ARRANQUE_TENTATIVAS"); do
+    if [ "$(aura_detectado)" -gt 0 ]; then
+      echo "rgb-branco: servidor OpenRGB pronto e Aura detectado (tentativa ${i})."
+      return 0
+    fi
+    sleep "$ARRANQUE_INTERVALO"
+  done
+  echo "rgb-branco: AVISO -- Aura nao apareceu em $((ARRANQUE_TENTATIVAS * ARRANQUE_INTERVALO))s. Aplicando assim mesmo." >&2
+  return 1
+}
+
+aguardar_openrgb
+aplicar_branco
+
+# Verificacao explicita. O --list-devices NAO imprime cor, entao isto confirma que
+# o comando CHEGOU ao controlador (modo mudou pra Static), nao que a cor esta
+# exata -- e o maximo verificavel por software. Antes disso, toda escrita deste
+# script era cega: saida jogada em /dev/null, codigo de retorno ignorado, e uma
+# falha do servidor ficaria invisivel pra sempre.
+if [ "$(modo_do_aura)" = "[Static]" ]; then
+  echo "rgb-branco: branco aplicado e confirmado (Aura em Static)."
+else
+  echo "rgb-branco: AVISO -- Aura nao confirmou modo Static apos aplicar. Sera reafirmado em ${REASSERT_SECONDS}s." >&2
+fi
 echo "rgb-branco: reafirmando a cada ${REASSERT_SECONDS}s."
 
 while true; do

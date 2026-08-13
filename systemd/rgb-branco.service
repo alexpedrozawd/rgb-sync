@@ -1,6 +1,12 @@
 [Unit]
 Description=rgb-branco (OpenRGB - todos os LEDs em branco estatico, permanente)
-After=graphical-session.target openrgb.service
+# NAO adicione "openrgb.service" aqui. Isto e um unit de USUARIO e o openrgb e um
+# unit de SISTEMA -- o gerenciador `systemd --user` nao enxerga unidades de
+# sistema, entao a ordenacao seria NO-OP silencioso. Ficou assim de 2026-07-28 ate
+# 2026-08-13 dando a falsa impressao de que a corrida de boot estava resolvida por
+# dependencia. Quem resolve e a sonda `aguardar_openrgb` dentro do script, que
+# espera o servidor responder antes de escrever.
+After=graphical-session.target
 
 [Service]
 Type=simple

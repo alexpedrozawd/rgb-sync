@@ -548,6 +548,103 @@ de energia, exigindo apertar botões de cor/brilho — chateação equivalente �
 13 dias. "Não travou hoje" não significa nada. Só há sinal depois de **2 a 3
 semanas** sem pane.
 
+### 2026-08-13 — Auditoria completa do ambiente: a causa provável é ELÉTRICA
+
+Varredura do servidor inteiro atrás de conflito com o script. **Nenhum conflito
+de software encontrado** — e as refutações valem tanto quanto o achado, porque
+fecham caminhos que pareciam promissores.
+
+#### Refutado com medição
+
+| Suspeita | Por que caiu |
+|---|---|
+| `pichau-display.service` escrevendo no dispositivo errado | O driver casa por **VID:PID** (`1A86:484A`), não por número de hidraw. Simulei a lógica exata dele contra os 4 hidraw reais: casa só no water cooler, **nunca** no Aura (`0B05:19AF`) |
+| Numeração hidraw instável confundindo o OpenRGB | Instável de fato (o Aura migrou de `hidraw2` para `hidraw3`, e o water cooler ocupa **dois** nós), mas ninguém seleciona por número |
+| USB autosuspend resetando o Aura | `power/control=on` (desabilitado), `runtime_suspended_time=0` — o Aura **nunca** suspendeu em 40.000s de uptime |
+| Evento USB/HID na janela da pane | **Zero.** Todos os 39 eventos USB do boot da pane são de 20:58:31–33, o boot em si. Nenhum disconnect, reset ou erro nas 24h seguintes |
+| Erro de I2C/SMBus na janela | 11 linhas no boot inteiro, 6 delas o `i2c_designware timed out` já documentado como ruído crônico (o Aura usa `i801`, não `designware`) |
+| Outro software de RGB concorrendo | Só o `openrgb` instalado. `i2cdetect`/`i2cset`/`ectool` presentes mas nenhum serviço os usa |
+| Regra `udev` interferindo | Nenhuma toca o VID `0b05` |
+
+**Conclusão dessas refutações:** o host não viu absolutamente nada. Isso é
+consistente com todas as três panes e reforça que a falha é interna ao hub e
+invisível ao sistema operacional.
+
+#### O achado: conflito de alimentação (backfeed) no header ARGB
+
+O hub tem **duas fontes de 5V ligadas em paralelo**:
+
+1. o **Molex da fonte** (alimentação própria dele), e
+2. o **pino +5V do header ARGB** da placa-mãe.
+
+Isso é um modo de falha conhecido e documentado na comunidade — *"dual power
+sources (the motherboard header providing 5V and a powered hub also providing
+5V) can create a ground loop that damages components and causes system
+instability"*, e há relatos de **placa-mãe queimada** por isso.
+
+**Por que isso explica tudo, inclusive o que nenhuma outra hipótese explicava:**
+
+- **O piscar.** Duas fontes em paralelo com pequena diferença de potencial
+  brigam; sob proteção de corrente isso **oscila**. Fonte travada dá cor presa;
+  fonte oscilando dá LED piscando. Foi exatamente a mudança de sintoma da 3ª pane.
+- **A correlação com branco pleno.** Quanto maior a corrente, mais o 5V local do
+  hub afunda; quanto mais afunda, maior a diferença para o 5V do header e maior
+  a corrente injetada de volta. Rainbow (~48%) ficava abaixo do limiar; branco
+  pleno (100%) passou.
+- **Por que nunca aconteceu antes do projeto.** O caminho elétrico sempre
+  existiu — o cabo sempre esteve plugado. O que mudou foi a **corrente**.
+- **Por que o host não vê nada.** É briga de rail de 5V, não tráfego de dados.
+- **Por que nenhuma mitigação de software resolveu.** Nenhuma delas mexe em
+  corrente. A única que mexeu (brilho a 48%) é justamente a que ainda está em
+  teste.
+- **Possivelmente também a perda de M/B Sync em reboot.** Um brownout momentâneo
+  do MCU durante a transição de 5V da placa resetaria o modo — o que casa com o
+  modo ser volátil sem o hub perder alimentação por completo (seção 6, (B)).
+
+> ⚠️ **Isto é inferência forte, NÃO medição.** Confirmar exige multímetro
+> (diferença de potencial entre o 5V do header e o 5V do hub sob carga) ou o
+> próprio teste da correção. **Premissa a checar primeiro, de graça:** o cabo
+> ARGB que vai do hub ao header tem os **3 fios populados** ou só 2? Se só
+> tiver data + terra, o backfeed é impossível e esta hipótese morre na hora.
+
+**A correção documentada:** desconectar o **+5V** entre o header e o hub,
+mantendo **Data e Terra**. *"A user solved the backfeed power problem by cutting
+the 5V pin going into the controller and just connecting the data wire."* O hub
+não precisa do 5V do header — ele tem o Molex. O terra **tem que ficar**: é a
+referência do sinal de dados.
+
+#### Defeitos de software encontrados e corrigidos na auditoria
+
+Nenhum é a causa das panes, mas os três são reais:
+
+1. **`After=openrgb.service` no unit de usuário era NO-OP.** `systemd --user` não
+   enxerga unidades de sistema — `systemctl --user list-unit-files
+   openrgb.service` responde "0 unit files listed". De 2026-07-28 a 2026-08-13 o
+   projeto acreditou que a corrida de boot estava resolvida por dependência;
+   quem resolvia era só a rajada cega. **Corrigido:** removido do unit, e o
+   script agora tem sonda `aguardar_openrgb` (read-only) que espera o servidor
+   responder antes de escrever.
+2. **Toda escrita era cega.** Saída em `/dev/null`, código de retorno ignorado.
+   Uma falha do servidor ficaria invisível para sempre. **Corrigido:** o arranque
+   agora verifica que o Aura entrou em `[Static]` e loga aviso se não entrou.
+   Efeito colateral bom: **1 escrita no header por arranque em vez de 4.**
+3. **Vazamento de logs.** Cada invocação do CLI `openrgb` grava um arquivo em
+   `~/.config/OpenRGB/logs/` — **5234 arquivos / 21 MB** desde 2026-07-23,
+   ~250/dia, vindos deste projeto. Não há como desligar (`--loglevel 0` não
+   suprime, `--config` não move o caminho). **Corrigido** com
+   `~/.config/user-tmpfiles.d/openrgb-logs.conf`. Detalhe que custou uma
+   iteração: a regra precisa de `m:7d` e não `7d`, porque o default considera
+   atime e o `clamav-nightly` lê todos os arquivos toda noite, rejuvenescendo o
+   atime — com o default, **nada seria limpo nunca**.
+
+#### Observação sem conclusão
+
+O servidor OpenRGB consome **~1,7% de CPU continuamente** (7 threads em ~104s de
+CPU cada em 11h). Há bugs conhecidos do projeto nessa linha (issues #279, #2989
+— "500 wake-up events per second"). **Não consegui determinar se essas threads
+tocam o Aura** — `strace` exigiria sudo com senha. Fica registrado como não
+esclarecido; se as panes continuarem após a correção elétrica, vale voltar aqui.
+
 ---
 
 ## 6. Hipóteses em aberto, ranqueadas
