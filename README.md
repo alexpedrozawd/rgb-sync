@@ -104,13 +104,15 @@ O instalador é idempotente — rodar de novo só confere/corrige o que falta. E
 1. **Remove o serviço antigo `gpu-rgb-sync.service`**, se existir (os dois
    brigariam pelos mesmos LEDs).
 2. Confere se o `openrgb` está instalado; se não estiver, **pergunta antes** de
-   rodar `rpm-ostree install openrgb` (cria uma camada na imagem ostree e exige
-   reboot — o script avisa e para pra você reiniciar e rodar de novo).
+   rodar `rpm-ostree install "openrgb-1.0*"` (especifica a versão oficial para
+   evitar conflito com o COPR de akmods do Bazzite; cria uma camada ostree e
+   exige reboot — o script avisa e para pra você reiniciar e rodar de novo).
 3. Restringe o servidor OpenRGB a `127.0.0.1` (o padrão do pacote é `0.0.0.0`,
    ouvindo em todas as interfaces — sem necessidade nenhuma nesse uso).
 4. Habilita o `openrgb.service` (nível sistema, roda como root, é quem fala com
    o hardware).
-5. Instala e habilita o `rgb-branco.service` (nível usuário).
+5. Instala e habilita o `rgb-branco.service` (nível usuário) e configura a
+   regra de limpeza periódica de logs em `~/.config/user-tmpfiles.d/openrgb-logs.conf`.
 
 Em até ~30s tudo deve estar branco.
 

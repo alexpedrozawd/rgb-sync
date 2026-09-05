@@ -39,9 +39,9 @@ if ! command -v openrgb >/dev/null 2>&1; then
   echo "OpenRGB nao encontrado no sistema."
   echo "Isso e uma mudanca de sistema (rpm-ostree layer) -- so prossiga se voce"
   echo "entende o impacto: cria uma camada na imagem ostree e exige reboot."
-  read -r -p "Instalar 'openrgb' via 'sudo rpm-ostree install openrgb' agora? [s/N] " resp
+  read -r -p "Instalar 'openrgb' via 'sudo rpm-ostree install \"openrgb-1.0*\"' agora? [s/N] " resp
   if [[ "$resp" =~ ^[sS]$ ]]; then
-    sudo rpm-ostree install openrgb
+    sudo rpm-ostree install "openrgb-1.0*"
     echo
     echo ">>> Pacote na fila. REINICIE o sistema e rode este instalador de novo"
     echo ">>> (o binario so aparece na proxima imagem apos o boot)."
@@ -54,6 +54,7 @@ fi
 echo "[ok] openrgb instalado: $(command -v openrgb)"
 
 # --- 2. Servidor OpenRGB restrito a localhost (seguranca: default do pacote e 0.0.0.0) ---
+sudo mkdir -p /etc/openrgb
 if [ ! -f "$OPENRGB_OVERRIDE_DST" ] || ! cmp -s "$OPENRGB_OVERRIDE_SRC" "$OPENRGB_OVERRIDE_DST"; then
   echo "Aplicando override de seguranca em openrgb.service (bind 127.0.0.1)..."
   sudo mkdir -p "$OPENRGB_OVERRIDE_DIR"
@@ -71,8 +72,17 @@ else
 fi
 
 # --- 3. Servico do usuario (aplica branco e reafirma) --------------------------
+chmod +x "$SCRIPT_PATH"
 mkdir -p "$(dirname "$USER_UNIT_DST")"
 sed "s#{{SCRIPT_PATH}}#$SCRIPT_PATH#" "$USER_UNIT_SRC" > "$USER_UNIT_DST"
+
+# Limpeza de logs do CLI do OpenRGB (~/.config/OpenRGB/logs) para evitar vazamento em disco
+USER_TMPFILES_DIR="$HOME/.config/user-tmpfiles.d"
+USER_TMPFILES_FILE="$USER_TMPFILES_DIR/openrgb-logs.conf"
+mkdir -p "$USER_TMPFILES_DIR"
+echo 'e %h/.config/OpenRGB/logs - - - m:7d' > "$USER_TMPFILES_FILE"
+systemd-tmpfiles --user --create "$USER_TMPFILES_FILE" 2>/dev/null || true
+
 systemctl --user daemon-reload
 systemctl --user reenable rgb-branco.service >/dev/null
 systemctl --user restart rgb-branco.service
