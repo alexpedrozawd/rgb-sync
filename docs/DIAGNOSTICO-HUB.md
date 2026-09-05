@@ -968,8 +968,10 @@ sensors
 | 2026-07-30 | `UTIL_THRESHOLD_PCT` de 1 para 10, e `ACTIVATION_SAMPLES=2` | **Bug real:** idle da RX 9070 tem pico de 1% uma vez por minuto no segundo `:00`; com limiar 1 isso acendia tudo por 60s+, ~50x por noite. Ver seção 5 |
 | 2026-07-30 | `UTIL_THRESHOLD_PCT` e `POWER_THRESHOLD_W` viraram sobrescrevíveis por env | O README dizia que eram, mas no script eram atribuições fixas — a variável era ignorada em silêncio |
 | 2026-07-30 | `RAM_COLOR=D0D0FF` separado do `LED_COLOR` | RAMs saíam **amareladas** em `FFFFFF`: duty igual em R/G/B não dá branco neutro num LED RGB. Azul já no máximo, então baixa R e G |
-| 2026-07-30 | Medido que `FAN_ZONE_SIZE` não tem efeito entre 1 e 120 | `-sz 120` não acendeu nada a mais. Só `0` importa (header mudo). Encerra a investigação das "hélices apagadas" |
 | 2026-07-30 | **Redesenho completo.** `gpu-rgb-sync.sh` → `rgb-branco.sh`; sincronia com a GPU REMOVIDA; branco permanente 24/7 | Preferência do dono. De quebra: header nunca mudo, tráfego de 2 escritas/hora, e abre o teste de sync no POST que a configuração antiga impedia |
+| 2026-09-05 | **Descoberta da Topologia Real e Desbloqueio do Hub.** | Teste com cores separadas (Z1=Red, Z2=Green, Z3=Blue) revelou que o Hub está fisicamente em **ADDGEN1 (Zona 1)** e o Water Cooler em **ADDGEN3 (Zona 3)**. A Zona 1 estava com tamanho 0 (sem sinal), o que fazia o MCU do hub travar ao apertar `ON M/B`. Com Zona 1 configurada e dreno de energia, o hub sincronizou perfeitamente. |
+| 2026-09-05 | **Calibração Visual Fina do Water Cooler.** | Water Cooler afinado para `COOLER_COLOR=121A18` (branco sutil esverdeado a ~20% de brilho, pedido do dono). Hub mantido em `707090` (48% duty) e RAMs em `7272C0`. |
+| 2026-09-05 | **Compatibilidade Bazzite 44 Ostree.** | Instalador atualizado com `openrgb-1.0*` (evita colisão de akmod do COPR), criação de `/etc/openrgb` e regra de purga de logs em `user-tmpfiles.d`. |
 
 Parâmetros atuais (sobrescrevíveis por variável de ambiente no `ExecStart`):
 

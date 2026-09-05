@@ -59,35 +59,26 @@ O que o projeto perdeu, e não volta sem reescrever: a sincronia com a GPU, a
 detecção automática NVIDIA/AMD, e os limiares de atividade. Está tudo no
 histórico do git se um dia for necessário.
 
-## Hardware coberto
+### Hardware coberto
 
-| Componente | Modelo |
-|---|---|
-| Placa-mãe | ASUS PRIME B760M-A D4 |
-| Hub de fans (8x, gabinete) | Rise Mode Galaxy Glass Standard V2 |
-| Water cooler | Pichau Aqua 240X (2 fans de radiador na zona ARGB) |
-| RAM | 2 pentes com controlador "ENE DRAM" |
+| Componente | Modelo | Conexão / Zona |
+|---|---|---|
+| Placa-mãe | ASUS PRIME B760M-A D4 | Controlador Aura USB HID (`0B05:19AF`) |
+| Hub de fans (8x, gabinete) | Rise Mode Galaxy Glass Standard V2 | **Header 1 (`ADD_GEN2_1` / Zona 1)** |
+| Water cooler | Pichau Aqua 240X (bomba + 2 fans) | **Header 3 (`ADD_GEN2_3` / Zona 3)** |
+| RAM | 2 pentes com controlador "ENE DRAM" | Barramento SMBus I801 (`0x71` e `0x73`) |
 
-**Topologia ARGB — o que está medido:** a placa expõe 4 zonas Aura ("Aura
-Mainboard" + "Aura Addressable 1/2/3") e só a zona 3 tem algo conectado; 1 e 2
-estão vazias. Na zona 3 respondem as 2 fans do radiador do cooler (sempre
-obedecem) e o hub das 8 fans (obedece só em "M/B Sync").
+**Topologia ARGB — medida e confirmada em 2026-09-05:**
+- **Header 1 (`ADD_GEN2_1` / Zona 1):** Hub Rise Mode com as 8 fans do gabinete.
+- **Header 3 (`ADD_GEN2_3` / Zona 3):** Water Cooler Pichau Aqua 240X (anel da bomba e as 2 fans do radiador).
+- **Header 2 (`ADD_GEN2_2` / Zona 2):** Vazio.
 
-O cooler **não está a jusante do hub** — continua obedecendo o header enquanto o
-hub roda o Rainbow autônomo dele. Mas isso não distingue *splitter em paralelo*
-de *cooler primeiro, em série*: a fiação nunca foi conferida visualmente.
-
-> ⚠️ **`FAN_ZONE_SIZE` não tem efeito observável entre 1 e 120 — medido.** O 40
-> veio de subir `-sz` até "acender tudo uniforme, sem ponta apagada", mas com
-> **cor única esse teste não pode falhar**: qualquer tamanho parece certo.
-> Medindo depois: com a zona em **1** as fans do cooler acendem **inteiras**, e
-> com **120** (aceito pelo controlador, 3x o valor em uso) **nada acende a mais em
-> nenhum dispositivo**. Qualquer valor ≥ 1 serve.
->
-> O único valor que demonstravelmente importa é **`0`** — aí nada acende e o
-> header fica mudo, que foi o contexto do travamento de 2026-07-27. É por isso
-> que a rede de segurança contra "queda de energia zerou o tamanho" continua no
-> script, embora o valor exato não importe.
+> ⚠️ **Por que a separação de headers importa:** O script anterior assumia que tudo
+> estava na Zona 3 e deixava a Zona 1 com tamanho 0 (sem sinal). Quando o botão
+> `ON M/B` era apertado, o microcontrolador do hub tentava ler o Header 1 sem dados
+> e **travava completamente** (apagando os LEDs e parando de responder ao controle).
+> Com o script atual, ambas as Zonas 1 e 3 recebem sinal válido contínuo desde o
+> boot com tamanho 40, prevenindo travamentos.
 
 ## Instalação
 
@@ -109,57 +100,39 @@ O instalador é idempotente — rodar de novo só confere/corrige o que falta. E
    exige reboot — o script avisa e para pra você reiniciar e rodar de novo).
 3. Restringe o servidor OpenRGB a `127.0.0.1` (o padrão do pacote é `0.0.0.0`,
    ouvindo em todas as interfaces — sem necessidade nenhuma nesse uso).
-4. Habilita o `openrgb.service` (nível sistema, roda como root, é quem fala com
+4. Garante a existência de `/etc/openrgb` para o daemon.
+5. Habilita o `openrgb.service` (nível sistema, roda como root, é quem fala com
    o hardware).
-5. Instala e habilita o `rgb-branco.service` (nível usuário) e configura a
+6. Instala e habilita o `rgb-branco.service` (nível usuário) e configura a
    regra de limpeza periódica de logs em `~/.config/user-tmpfiles.d/openrgb-logs.conf`.
 
-Em até ~30s tudo deve estar branco.
+Em até ~30s tudo deve estar branco e calibrado.
 
 ## Como funciona
 
-O script é praticamente linear:
+O script [`rgb-branco.sh`](rgb-branco.sh) opera em segundo plano:
 
-1. **Rajada de arranque** — aplica branco 4 vezes no primeiro minuto (nos
-   segundos 0, 10, 30 e 60). Isso fecha a corrida de boot em que o dispositivo
-   Aura ainda não está pronto no OpenRGB quando o serviço sobe (bug real de
-   2026-07-28: as RAMs acendiam e o resto ficava apagado porque o único comando
-   falhava em silêncio).
-2. **Regime** — reafirma branco a cada `REASSERT_SECONDS` (30 min). Existe por
-   dois motivos reais: corrigir *drift* (Aura ou RAMs voltando sozinhos ao efeito
-   de fábrica, já observado neste projeto) e desfazer qualquer mexida externa
-   (GUI do OpenRGB, outro software) em até 30 min.
+1. **Sonda de arranque (`aguardar_openrgb`)** — aguarda o servidor OpenRGB responder
+   e confirmar a presença do controlador Aura antes de enviar qualquer comando
+   (até 30 tentativas x 2s). Elimina corridas de boot.
+2. **Aplicação com proteção de canal** — lê o tamanho das Zonas 1 e 3 antes de
+   escrever; se alguma tiver zerado (ex.: corte de energia), reconfigura o tamanho
+   para 40 LEDs. Se já estiver correto, apenas atualiza a cor da zona sem forçar
+   reconfiguração invasiva de canal.
+3. **Regime** — reafirma o estado a cada `REASSERT_SECONDS` (30 min / 2 escritas por hora)
+   para corrigir eventual drift de firmware ou sobrescrita acidental por apps externos.
 
-Duas otimizações que importam para a segurança do hub:
+### Calibração de cores e brilho por dispositivo
 
-- **Um comando por dispositivo.** No Aura, o comando no dispositivo inteiro já
-  cobre a zona 3 — `-c` com cor única replica em todos os LEDs. Não precisa de um
-  segundo comando por zona.
-- **O tamanho da zona é lido antes de ser reescrito**, e só reescrito se estiver
-  errado. A leitura custa ~0,04s como cliente e não escreve nada. Redimensionar
-  reconfigura o canal do header, que é mais invasivo que trocar cor.
+Cada componente possui sua cor específica calibrada diretamente nos valores RGB:
 
-`REASSERT_SECONDS` e `RAM_COLOR` são sobrescrevíveis por variável de ambiente no
-`ExecStart` do `systemd/rgb-branco.service`.
+| Dispositivo | Header / Conexão | Cor Configurada | Justificativa |
+|---|---|---|---|
+| **Hub Rise Mode (8 fans)** | Zona 1 (`ADD_GEN2_1`) | `HUB_COLOR=707090` | **48% de duty cycle** — metade da corrente do branco pleno (`FFFFFF`), prevenindo desarme térmico e hiccup no hub |
+| **Water Cooler (bomba + 2 fans)** | Zona 3 (`ADD_GEN2_3`) | `COOLER_COLOR=121A18` | **Branco suave esverdeado a ~20% de brilho** — tom sutil personalizado para não ofuscar e harmonizar com o gabinete |
+| **Memórias RAM (2x ENE DRAM)** | SMBus `0x71` e `0x73` | `RAM_COLOR=7272C0` | **Compensação de azul (B/R 1.68)** — evita o tom amarelado causado pela perda de eficiência do die azul em duty reduzido |
 
-### Por que existem duas cores de "branco"
-
-`FFFFFF` significa "R, G e B no duty máximo" — e isso **não** produz branco
-neutro num LED RGB, porque os três dies têm eficiências diferentes e o azul é
-tipicamente o mais fraco. O resultado varia por controlador:
-
-| Dispositivo | Cor | Motivo |
-|---|---|---|
-| Aura (8 fans + 2 do cooler) | `LED_COLOR=FFFFFF` | Branco aceitável a olho |
-| RAMs (ENE DRAM) | `RAM_COLOR=D0D0FF` | Em `FFFFFF` saíam visivelmente **amareladas** |
-
-Como o azul já está no máximo, a correção é **baixar R e G** — não há como subir
-azul. A calibração é visual e específica deste hardware: se ficar amarelado
-ainda, baixe mais (ex. `B0B0FF`); se ficar azulado, suba (ex. `E8E8FF`). Mantenha
-o azul em `FF`.
-
-É o mesmo mecanismo que fez a tentativa de usar `A0A0A0` no Aura sair amarelada —
-ver "Bugs corrigidos".
+Todas as cores são sobrescrevíveis por variável de ambiente no `rgb-branco.service` ou no ambiente do script.
 
 ## Quando as 8 fans do gabinete não estão brancas
 

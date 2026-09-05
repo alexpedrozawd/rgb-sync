@@ -57,122 +57,60 @@
 #   Standalone cada chamada leva ~8,7s, porque a RX 9070 registra ~13 barramentos
 #   I2C que sao re-sondados do zero. Como cliente, uma leitura custa ~0,04s.
 
+# TOPOLOGIA ARGB MEDIDA E CONFIRMADA (2026-09-05):
+#   - Header 1 (ADD_GEN2_1 / Zona 1): Hub ativo Rise Mode (8 fans do gabinete)
+#   - Header 3 (ADD_GEN2_3 / Zona 3): Water Cooler Pichau Aqua 240X (bomba + 2 fans)
+#   - Header 2 (ADD_GEN2_2 / Zona 2): Vazio
+#   - RAMs: 2 pentes DDR4 controlador ENE DRAM (SMBus 0x71 e 0x73)
+
 MB_DEVICE="ASUS PRIME B760M-A D4"
 RAM_DEVICE="ENE DRAM"
 
-# Branco do dispositivo Aura (hub das 8 fans + 2 fans do cooler).
-#
-# 707090 e NAO FFFFFF (2026-08-12) -- isto e mitigacao de PANE, nao estetica:
-#   O hub travou 3x (2026-07-29, 07-30 e 08-12), sempre com as fans do gabinete
-#   parando de girar. Antes deste projeto existir, o hub rodava o Rainbow
-#   autonomo dele e NUNCA travou. O usuario apontou essa correlacao e ela e o
-#   melhor indicio que temos.
-#
-#   A conta: no Rainbow cada LED mostra um tom saturado -- vermelho puro acende 1
-#   canal, amarelo 2, e assim por diante; a media ao longo do arco-iris fica em
-#   ~48% dos canais ligados. Branco pleno acende os 3 canais em 100%. Ou seja, o
-#   projeto praticamente DOBROU a corrente continua pelo hub, e desde 2026-07-30
-#   isso virou permanente 24/7. O hub e especificado pra 10 fans rodando OS
-#   EFEITOS DELE -- branco pleno em todos os LEDs e um estado que o firmware dele
-#   nunca produz sozinho, e nunca foi validado nessa condicao.
-#
-#   O sintoma de 2026-08-12 fecha o raciocinio: as duas panes anteriores tinham
-#   cor PRESA E IMOVEL (MCU morto, retencao passiva de frame WS2812). Desta vez
-#   os LEDs estavam PISCANDO -- algo ciclando: liga, atinge um limite, desliga,
-#   tenta de novo. Assinatura de protecao de alimentacao em modo hiccup, nao de
-#   firmware travado.
-#
-#   707090 = 48% de duty medio, calibrado pra bater exatamente com a corrente do
-#   Rainbow que rodou meses sem uma unica pane. Nao e chute: e voltar ao ponto
-#   empiricamente comprovado como seguro, mantendo branco. O azul vai mais alto
-#   que R/G (0x90 vs 0x70) porque em duty reduzido o die azul do WS2812 perde
-#   eficiencia antes dos outros e o branco puxa pro amarelado -- mesma
-#   compensacao ja validada nas RAMs.
-#
-#   SE VOLTAR A TRAVAR mesmo assim: a hipotese de corrente cai, sobra o modo M/B
-#   Sync em si, e o caminho passa a ser tirar o hub do header (modo autonomo pelo
-#   controle IR) ou trocar o hardware. Ver docs/DIAGNOSTICO-HUB.md secao 7.
-LED_COLOR="${LED_COLOR:-707090}"
+# --- 1. Hub Rise Mode (8 fans do gabinete, Zona 1 / ADD_GEN2_1) ---
+# 707090 = 48% de duty medio (calibrado em 2026-08-12 para protecao contra panes de
+# sobrecorrente/hiccup no regulador do hub).
+HUB_ZONE_INDEX=1
+HUB_ZONE_SIZE=40
+HUB_COLOR="${HUB_COLOR:-707090}"
 
-# Branco das RAMs, CALIBRADO SEPARADO -- nao e capricho.
-#   `FFFFFF` significa "R, G e B no duty maximo", e isso NAO produz branco neutro
-#   num LED RGB: os tres dies tem eficiencias diferentes e o azul e tipicamente o
-#   mais fraco. Nas RAMs (controlador ENE DRAM) o resultado foi visivelmente
-#   AMARELADO -- R+G dominando. Reportado pelo usuario olhando o hardware em
-#   2026-07-30.
-#
-#   A correcao e subir o azul em relacao a R e G. Em 2026-07-30, com o conjunto
-#   em brilho alto, D0D0FF resolveu -- proporcao B/R = 1.23.
-#
-#   ATENCAO -- A COMPENSACAO NAO ESCALA LINEARMENTE COM O BRILHO. Em 2026-08-12,
-#   ao acompanhar o escurecimento do Aura pra 48% de duty, a primeira tentativa
-#   foi 72728B, que preserva exatamente a mesma proporcao B/R = 1.22. Ficou
-#   VISIVELMENTE AMARELADO. Motivo: em duty reduzido o die azul do WS2812 perde
-#   eficiencia MAIS RAPIDO que os outros dois, entao quanto mais escuro, MAIS
-#   compensacao e preciso -- nao a mesma.
-#
-#   7272C0 = B/R 1.68, calibrado visualmente a 48% de duty em tres rodadas:
-#     72728B (B/R 1.22) -> bem amarelado
-#     7272AC (B/R 1.51) -> ainda um pouco amarelado
-#     7272C0 (B/R 1.68) -> neutro, aprovado com o hardware a vista
-#   Se um dia mudar o brilho, RECALIBRE: nao reaproveite a proporcao do brilho
-#   anterior. Amarelado ainda -> suba o azul. Azulado/frio -> desca.
-#
-#   As RAMs NAO fazem parte do problema de corrente do hub (sao alimentadas pelos
-#   slots DIMM, nao pelo Molex do hub). O escurecimento aqui e puramente pra
-#   manter o conjunto visualmente uniforme com as fans.
+# --- 2. Water Cooler Pichau Aqua 240X (bomba + 2 fans, Zona 3 / ADD_GEN2_3) ---
+# 121A18 = Branco suave com leve nuance esverdeada e brilho reduzido a ~20%
+# (calibrado visualmente e aprovado pelo usuario em 2026-09-05).
+COOLER_ZONE_INDEX=3
+COOLER_ZONE_SIZE=40
+COOLER_COLOR="${COOLER_COLOR:-121A18}"
+
+# --- 3. Memórias RAM (2 pentes ENE DRAM) ---
+# 7272C0 = B/R 1.68, compensado com azul para manter o branco neutro sem amarelar.
 RAM_COLOR="${RAM_COLOR:-7272C0}"
 
-# Zona 3 = hub das 8 fans + 2 fans do cooler.
-#
-# ATENCAO ao FAN_ZONE_SIZE=40: NAO e uma contagem de LEDs. Foi escolhido mandando
-#   -sz 40 e observando "acendeu tudo uniforme, sem ponta apagada" -- mas com uma
-#   COR UNICA esse teste nao pode falhar, qualquer tamanho parece certo. Medindo
-#   depois: com a zona em tamanho 1 as fans do cooler acendem INTEIRAS, o que e
-#   impossivel numa cadeia de 40 LEDs enderecaveis. Mantido em 40 porque funciona;
-#   nao tratar como medicao. Ver docs/DIAGNOSTICO-HUB.md, secao 3.
-FAN_ZONE_INDEX=3
-FAN_ZONE_SIZE=40
-
-# Rotulo dos LEDs dessa zona em `openrgb --list-devices`, usado pra LER o tamanho
-# antes de reescreve-lo. Nao e derivavel do indice: a zona 0 e a "Aura Mainboard",
-# entao indice 3 <-> "Aura Addressable 3" e coincidencia, nao regra.
-FAN_ZONE_LED_LABEL="Aura Addressable ${FAN_ZONE_INDEX}, LED "
-
-# Intervalo da reafirmacao em regime. Existe por dois motivos, os dois reais:
-#   (1) drift -- o controlador Aura ou as RAMs podem voltar sozinhos pro efeito de
-#       fabrica (ja observado no projeto);
-#   (2) se alguem mexer nos LEDs por fora (GUI do OpenRGB, outro software), isso
-#       reverte sozinho em ate REASSERT_SECONDS.
-# 1800s = 2 escritas por hora no header. Ordens de magnitude abaixo do que travou
-# o hub. Sobrescrevivel por variavel de ambiente pra teste/afinacao.
+# Intervalo da reafirmacao em regime (1800s = 30 min / 2 escritas por hora).
 REASSERT_SECONDS="${REASSERT_SECONDS:-1800}"
 
-# Le o tamanho atual da zona do hub. Custa ~0,04s como cliente e NAO escreve nada
-# no hardware -- barato o bastante pra checar antes de cada aplicacao.
-#
-# `grep -o | wc -l`, NAO `grep -c`: o --list-devices imprime todos os LEDs numa
-# UNICA linha, entao grep -c retornaria 1, o teste nunca casaria e o resize
-# dispararia sempre. Falha silenciosa; ja aconteceu ao escrever esta funcao.
+# Le o tamanho atual de uma zona especifica no Aura. Custa ~0,04s e nao escreve nada.
 zona_tamanho_atual() {
+  local idx="$1"
   openrgb --list-devices 2>/dev/null \
-    | grep -o "'${FAN_ZONE_LED_LABEL}[0-9]*'" \
+    | grep -o "'Aura Addressable ${idx}, LED [0-9]*'" \
     | wc -l
 }
 
 aplicar_branco() {
-  # O tamanho da zona fica gravado no controlador Aura e sobrevive a reboot, mas
-  # uma queda de energia pode zerar. Rede de seguranca: LE antes e so reescreve se
-  # estiver errado. Redimensionar reconfigura o canal do header, e mais invasivo
-  # que trocar cor -- nao convem fazer de graca em toda reafirmacao.
-  if [ "$(zona_tamanho_atual)" != "$FAN_ZONE_SIZE" ]; then
-    openrgb -d "$MB_DEVICE" -z "$FAN_ZONE_INDEX" -sz "$FAN_ZONE_SIZE" -c "$LED_COLOR" -m static > /dev/null 2>&1
+  # Zona 1: Hub Rise Mode (8 fans do gabinete)
+  if [ "$(zona_tamanho_atual "$HUB_ZONE_INDEX")" != "$HUB_ZONE_SIZE" ]; then
+    openrgb -d "$MB_DEVICE" -z "$HUB_ZONE_INDEX" -sz "$HUB_ZONE_SIZE" -c "$HUB_COLOR" -m static > /dev/null 2>&1
+  else
+    openrgb -d "$MB_DEVICE" -z "$HUB_ZONE_INDEX" -c "$HUB_COLOR" -m static > /dev/null 2>&1
   fi
-  # Um comando por dispositivo. No Aura, o comando no dispositivo INTEIRO ja cobre
-  # a zona 3: `-c` com cor unica replica ela em todos os LEDs ("If there are more
-  # LEDs than colors given, the last color will be applied to the remaining LEDs"
-  # -- openrgb --help). Nao precisa de um segundo comando por zona.
-  openrgb -d "$MB_DEVICE" -m static -c "$LED_COLOR" > /dev/null 2>&1
+
+  # Zona 3: Water Cooler Pichau Aqua 240X (bomba + 2 fans do radiador)
+  if [ "$(zona_tamanho_atual "$COOLER_ZONE_INDEX")" != "$COOLER_ZONE_SIZE" ]; then
+    openrgb -d "$MB_DEVICE" -z "$COOLER_ZONE_INDEX" -sz "$COOLER_ZONE_SIZE" -c "$COOLER_COLOR" -m static > /dev/null 2>&1
+  else
+    openrgb -d "$MB_DEVICE" -z "$COOLER_ZONE_INDEX" -c "$COOLER_COLOR" -m static > /dev/null 2>&1
+  fi
+
+  # Memórias RAM
   openrgb -d "$RAM_DEVICE" -m static -c "$RAM_COLOR" > /dev/null 2>&1
 }
 
