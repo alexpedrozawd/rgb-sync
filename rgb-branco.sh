@@ -74,11 +74,11 @@ HUB_ZONE_SIZE=40
 HUB_COLOR="${HUB_COLOR:-707090}"
 
 # --- 2. Water Cooler Pichau Aqua 240X (bomba + 2 fans, Zona 3 / ADD_GEN2_3) ---
-# 121A18 = Branco suave com leve nuance esverdeada e brilho reduzido a ~20%
+# 182220 = Branco suave com leve nuance esverdeada, brilho ajustado ligeiramente acima
 # (calibrado visualmente e aprovado pelo usuario em 2026-09-05).
 COOLER_ZONE_INDEX=3
 COOLER_ZONE_SIZE=40
-COOLER_COLOR="${COOLER_COLOR:-121A18}"
+COOLER_COLOR="${COOLER_COLOR:-182220}"
 
 # --- 3. Memórias RAM (2 pentes ENE DRAM) ---
 # 7272C0 = B/R 1.68, compensado com azul para manter o branco neutro sem amarelar.
