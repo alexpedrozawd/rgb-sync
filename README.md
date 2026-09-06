@@ -129,7 +129,7 @@ Cada componente possui sua cor específica calibrada diretamente nos valores RGB
 | Dispositivo | Header / Conexão | Cor Configurada | Justificativa |
 |---|---|---|---|
 | **Hub Rise Mode (8 fans)** | Zona 1 (`ADD_GEN2_1`) | `HUB_COLOR=707090` | **48% de duty cycle** — metade da corrente do branco pleno (`FFFFFF`), prevenindo desarme térmico e hiccup no hub |
-| **Water Cooler (bomba + 2 fans)** | Zona 3 (`ADD_GEN2_3`) | `COOLER_COLOR=182220` | **Branco suave esverdeado** — tom sutil personalizado com brilho afinado para visual agradável e discreto |
+| **Water Cooler (bomba + 2 fans)** | Zona 3 (`ADD_GEN2_3`) | `COOLER_COLOR=243330` | **Branco suave esverdeado** — tom sutil personalizado com brilho equilibrado para presença visual agradável sem ofuscar |
 | **Memórias RAM (2x ENE DRAM)** | SMBus `0x71` e `0x73` | `RAM_COLOR=7272C0` | **Compensação de azul (B/R 1.68)** — evita o tom amarelado causado pela perda de eficiência do die azul em duty reduzido |
 
 Todas as cores são sobrescrevíveis por variável de ambiente no `rgb-branco.service` ou no ambiente do script.
