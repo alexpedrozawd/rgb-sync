@@ -84,8 +84,12 @@ COOLER_COLOR="${COOLER_COLOR:-243330}"
 # 7272C0 = B/R 1.68, compensado com azul para manter o branco neutro sem amarelar.
 RAM_COLOR="${RAM_COLOR:-7272C0}"
 
-# Intervalo da reafirmacao em regime (1800s = 30 min / 2 escritas por hora).
-REASSERT_SECONDS="${REASSERT_SECONDS:-1800}"
+# Intervalo da reafirmacao em regime (43200s = 12h). Alongado de 30min pra 12h em
+# 2026-09-09: a cada reenvio de "-m static" (mesmo sem mudanca), o controlador
+# reprocessa o frame e isso causava uma piscada discreta e incomoda nas fans a
+# cada 30min. 12h ainda cobre drift de firmware/sobrescrita externa, so que com
+# a piscada ~24x mais rara.
+REASSERT_SECONDS="${REASSERT_SECONDS:-43200}"
 
 # Le o tamanho atual de uma zona especifica no Aura. Custa ~0,04s e nao escreve nada.
 zona_tamanho_atual() {

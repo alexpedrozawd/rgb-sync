@@ -119,8 +119,11 @@ O script [`rgb-branco.sh`](rgb-branco.sh) opera em segundo plano:
    escrever; se alguma tiver zerado (ex.: corte de energia), reconfigura o tamanho
    para 40 LEDs. Se já estiver correto, apenas atualiza a cor da zona sem forçar
    reconfiguração invasiva de canal.
-3. **Regime** — reafirma o estado a cada `REASSERT_SECONDS` (30 min / 2 escritas por hora)
-   para corrigir eventual drift de firmware ou sobrescrita acidental por apps externos.
+3. **Regime** — reafirma o estado a cada `REASSERT_SECONDS` (12h) para corrigir
+   eventual drift de firmware ou sobrescrita acidental por apps externos. Alongado
+   de 30 min pra 12h em 2026-09-09: cada reenvio de `-m static` faz o controlador
+   reprocessar o frame, o que causava uma piscada discreta e incomoda nas fans a
+   cada 30 min. Em 12h a proteção contra drift continua de pé, só que bem mais rara.
 
 ### Calibração de cores e brilho por dispositivo
 
