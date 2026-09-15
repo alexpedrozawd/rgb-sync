@@ -20,11 +20,12 @@
 #       travamento do hub em 2026-07-29 aconteceu sob ~6 escritas por MINUTO
 #       sustentadas por 19 min. E ~180x menos trafego.
 #
-#   Contrapartida que se confirmou custosa: branco PLENO e o estado de CORRENTE
-#   MAXIMA do array, e o desenho o tornou permanente 24/7 em vez de so sob carga.
-#   O hub travou de novo em 2026-08-12, terceira vez -- e o sintoma novo (LEDs
-#   PISCANDO em vez de cor presa) apontou pra protecao de alimentacao em modo
-#   hiccup. Ver LED_COLOR abaixo pra conta completa e pra mitigacao aplicada.
+#   Contrapartida investigada, depois descartada: suspeitou-se que branco PLENO
+#   (corrente maxima do array) estivesse ligado aos travamentos do hub (3x em
+#   14 dias, ate 2026-08-12). CAUSA RAIZ REAL: defeito de hardware na propria
+#   controladora do hub Rise Mode -- trocada, o hub nunca mais travou. As
+#   hipoteses de software (comando excessivo, corrente, backfeed de 5V) nao
+#   eram a causa; ver docs/DIAGNOSTICO-HUB.md para o historico completo.
 #
 #   Uma tentativa anterior de escurecer (A0A0A0, 2026-07-29) foi revertida porque
 #   saiu AMARELADA -- mas o problema era falta de compensacao de azul, nao o
@@ -67,8 +68,9 @@ MB_DEVICE="ASUS PRIME B760M-A D4"
 RAM_DEVICE="ENE DRAM"
 
 # --- 1. Hub Rise Mode (8 fans do gabinete, Zona 1 / ADD_GEN2_1) ---
-# 707090 = 48% de duty medio (calibrado em 2026-08-12 para protecao contra panes de
-# sobrecorrente/hiccup no regulador do hub).
+# 707090 = 48% de duty medio (calibrado em 2026-08-12, na epoca como mitigacao
+# de panes -- a causa real era defeito na controladora do hub, ja trocada e
+# resolvida. Cor mantida por preferencia visual, nao mais por seguranca).
 HUB_ZONE_INDEX=1
 HUB_ZONE_SIZE=40
 HUB_COLOR="${HUB_COLOR:-707090}"

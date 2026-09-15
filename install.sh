@@ -76,7 +76,9 @@ chmod +x "$SCRIPT_PATH"
 mkdir -p "$(dirname "$USER_UNIT_DST")"
 sed "s#{{SCRIPT_PATH}}#$SCRIPT_PATH#" "$USER_UNIT_SRC" > "$USER_UNIT_DST"
 
-# Limpeza de logs do CLI do OpenRGB (~/.config/OpenRGB/logs) para evitar vazamento em disco
+# Limpeza de logs do CLI do OpenRGB (~/.config/OpenRGB/logs) para evitar vazamento em disco.
+# "m:7d" (mtime) e nao so "7d" (default atime): um scanner de antivirus que leia os
+# arquivos periodicamente rejuvenesce o atime, e com o criterio default nada seria limpo.
 USER_TMPFILES_DIR="$HOME/.config/user-tmpfiles.d"
 USER_TMPFILES_FILE="$USER_TMPFILES_DIR/openrgb-logs.conf"
 mkdir -p "$USER_TMPFILES_DIR"

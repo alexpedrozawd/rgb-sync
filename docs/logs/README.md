@@ -1,8 +1,9 @@
 # Logs brutos dos incidentes
 
-Extratos do `journalctl` das janelas citadas em
-[`../DIAGNOSTICO-HUB.md`](../DIAGNOSTICO-HUB.md). Guardados aqui porque o
-journal rotaciona e essa evidência não é reproduzível depois.
+Extratos do `journalctl` citados em [`../DIAGNOSTICO-HUB.md`](../DIAGNOSTICO-HUB.md)
+(investigação encerrada — causa raiz foi defeito de hardware na controladora
+do hub, já trocada). Guardados porque o journal rotaciona; não são
+reproduzíveis depois.
 
 | Arquivo | Conteúdo |
 |---|---|
