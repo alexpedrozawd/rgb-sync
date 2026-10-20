@@ -42,15 +42,17 @@ monitora nem controla velocidade de fan, só cor.
 |---|---|---|
 | Placa-mãe | ASUS PRIME B760M-A D4 | Controlador Aura USB HID (`0B05:19AF`) |
 | Hub de fans (8x, gabinete) | Rise Mode Galaxy Glass Standard V2 | Header 1 (`ADD_GEN2_1` / Zona 1) |
-| Water cooler | Pichau Aqua 240X (bomba + 2 fans) | Header 3 (`ADD_GEN2_3` / Zona 3) |
+| Water cooler (fans do radiador) | Pichau Aqua 240X (2 fans) | Header 2 (`ADD_GEN2_2` / Zona 2) |
+| Water cooler (anel/bomba) | Pichau Aqua 240X (bomba ARGB) | Header 3 (`ADD_GEN2_3` / Zona 3) |
 | RAM | 2 pentes "ENE DRAM" | SMBus I801 (`0x71` e `0x73`) |
 
-Topologia medida e confirmada em 2026-09-05. Header 2 (Zona 2) está vazio.
+Topologia medida e confirmada em 2026-10-20. As 8 fans do gabinete respondem no Header 1, as 2 fans do radiador do water cooler respondem no Header 2 e a bomba no Header 3.
 
-> **Por que a separação de headers importa:** antes, a Zona 1 ficava com
-> tamanho 0 (sem sinal) e o MCU do hub travava ao ler o header sem dados via
-> `ON M/B`. Hoje ambas Zonas 1 e 3 recebem sinal válido contínuo desde o boot
-> (tamanho 40), o que previne esse travamento.
+> **Por que o dimensionamento dos headers importa:** se qualquer zona ficar com
+> tamanho 0 (sem sinal), o header correspondente fica inativo (fans apagadas) ou,
+> no caso do hub Rise Mode, o microcontrolador pode travar ao ler dados inexistentes
+> via `ON M/B`. O script garante que todas as Zonas 1, 2 e 3 recebam sinal contínuo
+> desde o boot com tamanho 40.
 
 ## Instalação
 
@@ -81,8 +83,8 @@ O script [`rgb-branco.sh`](rgb-branco.sh) roda em segundo plano:
 
 1. **Sonda de arranque** — aguarda o servidor OpenRGB responder e confirmar o
    controlador Aura antes de escrever (até 30x2s). Elimina corrida de boot.
-2. **Aplicação com proteção de canal** — lê o tamanho das Zonas 1 e 3 antes de
-   escrever; se zerado (ex.: corte de energia), reconfigura para 40 LEDs;
+2. **Aplicação com proteção de canal** — lê o tamanho das Zonas 1, 2 e 3 antes de
+   escrever; se zerado (ex.: após boot ou corte de energia), reconfigura para 40 LEDs;
    senão só atualiza a cor, sem reconfiguração invasiva de canal.
 3. **Regime** — reafirma o estado a cada `REASSERT_SECONDS` (12h) contra drift
    de firmware ou sobrescrita externa. Alongado de 30min para 12h em
@@ -94,7 +96,7 @@ O script [`rgb-branco.sh`](rgb-branco.sh) roda em segundo plano:
 | Dispositivo | Zona | Cor | Motivo |
 |---|---|---|---|
 | Hub Rise Mode (8 fans) | 1 (`ADD_GEN2_1`) | `HUB_COLOR=707090` | 48% de duty — brilho reduzido por preferência visual |
-| Water Cooler (bomba + 2 fans) | 3 (`ADD_GEN2_3`) | `COOLER_COLOR=243330` | Branco suave esverdeado, calibrado visualmente |
+| Water Cooler (fans e bomba) | 2 e 3 (`ADD_GEN2_2` e `ADD_GEN2_3`) | `COOLER_COLOR=FFFFFF` | Branco pleno — ativação e brilho límpido nas 2 fans do radiador e anel |
 | RAM (2x ENE DRAM) | — | `RAM_COLOR=7272C0` | Compensação de azul (B/R 1.68) — evita tom amarelado por perda de eficiência do die azul em duty reduzido |
 
 Todas sobrescrevíveis por variável de ambiente no `rgb-branco.service` ou no

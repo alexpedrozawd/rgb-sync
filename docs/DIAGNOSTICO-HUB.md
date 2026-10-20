@@ -32,10 +32,12 @@ pleno era real, mas não causal.
 
 ## O que ficou medido e continua válido
 
-- **Topologia real (confirmada 2026-09-05):** Zona 1 (`ADD_GEN2_1`) = hub de
-  fans do gabinete; Zona 3 (`ADD_GEN2_3`) = water cooler (bomba + 2 fans do
-  radiador); Zona 2 vazia. O cooler **não** está a jusante do hub — continuou
-  obedecendo mesmo com o hub em Rainbow autônomo.
+- **Topologia real (confirmada 2026-10-20):** Zona 1 (`ADD_GEN2_1`) = hub de
+  fans do gabinete; Zona 2 (`ADD_GEN2_2`) = fans do radiador do water cooler;
+  Zona 3 (`ADD_GEN2_3`) = anel/bomba do water cooler. O cooler **não** está
+  a jusante do hub — continuou obedecendo mesmo com o hub em Rainbow autônomo.
+  Ambas as Zonas 2 e 3 são configuradas com tamanho 40 e branco pleno (`FFFFFF`),
+  evitando que o Header 2 fique mudo (tamanho 0 pós-boot/formatação).
 - **`FAN_ZONE_SIZE` não tem efeito observável entre 1 e 120** — só `0` importa
   (zona muda, header sem sinal). O valor "40" em uso não é uma contagem física
   real de LEDs, é só um tamanho que funciona.

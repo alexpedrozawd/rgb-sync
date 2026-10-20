@@ -58,10 +58,10 @@
 #   Standalone cada chamada leva ~8,7s, porque a RX 9070 registra ~13 barramentos
 #   I2C que sao re-sondados do zero. Como cliente, uma leitura custa ~0,04s.
 
-# TOPOLOGIA ARGB MEDIDA E CONFIRMADA (2026-09-05):
+# TOPOLOGIA ARGB MEDIDA E CONFIRMADA (2026-10-20):
 #   - Header 1 (ADD_GEN2_1 / Zona 1): Hub ativo Rise Mode (8 fans do gabinete)
-#   - Header 3 (ADD_GEN2_3 / Zona 3): Water Cooler Pichau Aqua 240X (bomba + 2 fans)
-#   - Header 2 (ADD_GEN2_2 / Zona 2): Vazio
+#   - Header 2 (ADD_GEN2_2 / Zona 2): Water Cooler Pichau Aqua 240X (2 fans do radiador)
+#   - Header 3 (ADD_GEN2_3 / Zona 3): Water Cooler Pichau Aqua 240X (anel/bomba)
 #   - RAMs: 2 pentes DDR4 controlador ENE DRAM (SMBus 0x71 e 0x73)
 
 MB_DEVICE="ASUS PRIME B760M-A D4"
@@ -75,12 +75,12 @@ HUB_ZONE_INDEX=1
 HUB_ZONE_SIZE=40
 HUB_COLOR="${HUB_COLOR:-707090}"
 
-# --- 2. Water Cooler Pichau Aqua 240X (bomba + 2 fans, Zona 3 / ADD_GEN2_3) ---
-# 243330 = Branco suave com nuance esverdeada, brilho calibrado para maior presença visual
-# (calibrado visualmente e aprovado pelo usuario em 2026-09-05).
-COOLER_ZONE_INDEX=3
+# --- 2. Water Cooler Pichau Aqua 240X (fans do radiador + anel/bomba, Zonas 2 e 3) ---
+# FFFFFF = Branco pleno puro, garantindo brilho e ativacao de ambas as zonas
+# do cooler (fans no Header 2 e bomba no Header 3).
+COOLER_ZONE_INDICES=(2 3)
 COOLER_ZONE_SIZE=40
-COOLER_COLOR="${COOLER_COLOR:-243330}"
+COOLER_COLOR="${COOLER_COLOR:-FFFFFF}"
 
 # --- 3. Memórias RAM (2 pentes ENE DRAM) ---
 # 7272C0 = B/R 1.68, compensado com azul para manter o branco neutro sem amarelar.
@@ -109,12 +109,14 @@ aplicar_branco() {
     openrgb -d "$MB_DEVICE" -z "$HUB_ZONE_INDEX" -c "$HUB_COLOR" -m static > /dev/null 2>&1
   fi
 
-  # Zona 3: Water Cooler Pichau Aqua 240X (bomba + 2 fans do radiador)
-  if [ "$(zona_tamanho_atual "$COOLER_ZONE_INDEX")" != "$COOLER_ZONE_SIZE" ]; then
-    openrgb -d "$MB_DEVICE" -z "$COOLER_ZONE_INDEX" -sz "$COOLER_ZONE_SIZE" -c "$COOLER_COLOR" -m static > /dev/null 2>&1
-  else
-    openrgb -d "$MB_DEVICE" -z "$COOLER_ZONE_INDEX" -c "$COOLER_COLOR" -m static > /dev/null 2>&1
-  fi
+  # Zonas 2 e 3: Water Cooler Pichau Aqua 240X (fans do radiador no Header 2 e anel/bomba no Header 3)
+  for z in "${COOLER_ZONE_INDICES[@]}"; do
+    if [ "$(zona_tamanho_atual "$z")" != "$COOLER_ZONE_SIZE" ]; then
+      openrgb -d "$MB_DEVICE" -z "$z" -sz "$COOLER_ZONE_SIZE" -c "$COOLER_COLOR" -m static > /dev/null 2>&1
+    else
+      openrgb -d "$MB_DEVICE" -z "$z" -c "$COOLER_COLOR" -m static > /dev/null 2>&1
+    fi
+  done
 
   # Memórias RAM
   openrgb -d "$RAM_DEVICE" -m static -c "$RAM_COLOR" > /dev/null 2>&1
